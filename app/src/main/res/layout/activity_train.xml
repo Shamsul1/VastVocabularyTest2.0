@@ -9,8 +9,16 @@
 
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+
+        android:src="@drawable/stars"
+        android:scaleType="fitXY"/>
+
     <RelativeLayout
-        android:layout_margin="15dp"
+        android:id="@+id/word_view_landscape"
+        android:layout_marginTop="-80dp"
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
@@ -18,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/beginner_ful_land2"
-            android:scaleType="centerInside"/>
+            />
 
         <TextView
             android:id="@+id/word"
@@ -58,7 +66,7 @@
         android:layout_height="56dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -88,7 +96,7 @@
         android:layout_height="56dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -143,7 +151,7 @@
 
 
     <RelativeLayout
-        android:visibility="invisible"
+
         android:background="@drawable/stipe"
         android:scaleType="centerCrop"
         android:layout_margin="15dp"
@@ -200,7 +208,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_above="@+id/button2"
