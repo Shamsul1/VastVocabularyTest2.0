@@ -18,13 +18,13 @@ import java.util.List;
 
 public class Train extends AppCompatActivity {
 
-    RelativeLayout translation_layout;
+    RelativeLayout translation_layout,button1,button2,button3,button4;
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendData = new String[5];
     int[] wordCounter = new int[5];
     String[] wordArray, translationArray,sendWords;
     TextView wordView, translationView, countView;
-    Button answer1, answer2, answer3, answer4;
+    TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext;
     int id = 0;
     int ia = 0;
@@ -82,10 +82,10 @@ public class Train extends AppCompatActivity {
             if(fiveWords.get(id).isSeen()){
                 next.setVisibility(View.INVISIBLE);
                 translation_layout.setVisibility(View.INVISIBLE);
-                answer1.setVisibility(View.VISIBLE);
-                answer2.setVisibility(View.VISIBLE);
-                answer3.setVisibility(View.VISIBLE);
-                answer4.setVisibility(View.VISIBLE);
+                button1.setVisibility(View.VISIBLE);
+                button2.setVisibility(View.VISIBLE);
+                button3.setVisibility(View.VISIBLE);
+                button4.setVisibility(View.VISIBLE);
                 translationView.setText("");
                 answers(view);}
 
@@ -110,10 +110,10 @@ public class Train extends AppCompatActivity {
     public void showWords(int index) {
         next.setVisibility(View.VISIBLE);
         translation_layout.setVisibility(View.VISIBLE);
-        answer1.setVisibility(View.INVISIBLE);
-        answer2.setVisibility(View.INVISIBLE);
-        answer3.setVisibility(View.INVISIBLE);
-        answer4.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
         fiveWords.get(index).setSeen(true);
     }
@@ -134,9 +134,10 @@ public class Train extends AppCompatActivity {
     // This method gets called when you are asnwering the questions
     public void answers(View view) {
 
+        Toast.makeText(this, view.getId()+"", Toast.LENGTH_SHORT).show();
         String answer;
 
-        if (view.getId() == answer1.getId()) {
+        if (view.getId() == button1.getId()) {
             answer = answer1.getText().toString();
             if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
                 // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
@@ -150,7 +151,7 @@ public class Train extends AppCompatActivity {
             }
         }
 
-        if (view.getId() == answer2.getId()) {
+        if (view.getId() == button2.getId()) {
             answer = answer2.getText().toString();
 
             if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
@@ -161,7 +162,7 @@ public class Train extends AppCompatActivity {
                 showAnswer(fiveWords.get(id).getTranslation());
             }
         }
-        if (view.getId() == answer3.getId()) {
+        if (view.getId() == button3.getId()) {
             answer = answer3.getText().toString();
 
             if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
@@ -172,7 +173,7 @@ public class Train extends AppCompatActivity {
                 showAnswer(fiveWords.get(id).getTranslation());
             }
         }
-        if (view.getId() == answer4.getId()) {
+        if (view.getId() == button4.getId()) {
             answer = answer4.getText().toString();
 
             if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
@@ -192,10 +193,10 @@ public class Train extends AppCompatActivity {
 
     // This gets called when you have answered a wrong answer
     public void showAnswer(String wordAnswer) {
-        answer1.setVisibility(View.INVISIBLE);
-        answer2.setVisibility(View.INVISIBLE);
-        answer3.setVisibility(View.INVISIBLE);
-        answer4.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.INVISIBLE);
         fakeNext.setVisibility(View.VISIBLE);
         translationView.setText(wordAnswer);
 
@@ -203,10 +204,10 @@ public class Train extends AppCompatActivity {
 
     // DummyNext
     public void dummyNext(View view) {
-        answer1.setVisibility(View.VISIBLE);
-        answer2.setVisibility(View.VISIBLE);
-        answer3.setVisibility(View.VISIBLE);
-        answer4.setVisibility(View.VISIBLE);
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
         fakeNext.setVisibility(View.INVISIBLE);
     }
 
@@ -322,15 +323,24 @@ public class Train extends AppCompatActivity {
     private void buttonInitializations() {
         translation_layout = (RelativeLayout)findViewById(R.id.translation_layout);
         fakeNext = (ImageView) findViewById(R.id.dummy_next);
-        answer1 = (Button) findViewById(R.id.answer_button);
-        answer2 = (Button) findViewById(R.id.answer2);
-        answer3 = (Button) findViewById(R.id.answer3);
-        answer4 = (Button) findViewById(R.id.answer4);
+
+
+        button1 = (RelativeLayout)findViewById(R.id.button1);
+        button2 = (RelativeLayout)findViewById(R.id.button2);
+        button3 = (RelativeLayout)findViewById(R.id.button3);
+        button4 = (RelativeLayout)findViewById(R.id.button4);
+
+        answer1 = (TextView) findViewById(R.id.answer1);
+        answer2 = (TextView) findViewById(R.id.answer2);
+        answer3 = (TextView) findViewById(R.id.answer3);
+        answer4 = (TextView) findViewById(R.id.answer4);
+
         next = (ImageView) findViewById(R.id.next);
-        answer1.setVisibility(View.INVISIBLE);
-        answer2.setVisibility(View.INVISIBLE);
-        answer3.setVisibility(View.INVISIBLE);
-        answer4.setVisibility(View.INVISIBLE);
+
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.INVISIBLE);
     }
 
     private void textViewInitializations() {
