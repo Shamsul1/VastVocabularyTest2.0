@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Vast Vocabulary</string>
+
+    <string-array name="words">
+        <item>"Hello"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="translation">
+        <item>"Hello"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+
+    <string-array name="pre_intermediate_words">
+        <item>Cool</item>
+        <item>Wool</item>
+        <item>fool</item>
+        <item>pool</item>
+        <item>tool</item>
+        <item>Mood</item>
+        <item>Boot</item>
+        <item>Hood</item>
+        <item>Could</item>
+        <item>Put</item>
+    </string-array>
+
+    <string-array name="pre_intermediate_translation">
+        <item>Cool</item>
+        <item>Wool</item>
+        <item>fool</item>
+        <item>pool</item>
+        <item>tool</item>
+        <item>Mood</item>
+        <item>Boot</item>
+        <item>Hood</item>
+        <item>Could</item>
+        <item>Put</item>
+    </string-array>
+</resources>

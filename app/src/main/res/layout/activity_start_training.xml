@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start_training"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#34495e"
+    tools:context="com.example.shamsulkarim.vastvocabulary.StartTrainingActivity">
+
+    <ImageView
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:src="@drawable/beginner_ful_land2"
+        />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:src="@drawable/train"
+        android:scaleType="centerCrop"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:onClick="onStartTraining"/>
+
+</RelativeLayout>

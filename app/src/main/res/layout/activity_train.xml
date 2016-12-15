@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_train"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.shamsulkarim.vastvocabulary.Train">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Word"
+        android:id="@+id/word"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:text="Next"
+        android:src="@drawable/next"
+        android:id="@+id/dummy_next"
+        android:layout_alignTop="@+id/next"
+        android:visibility="invisible"
+        android:onClick="dummyNext"
+        android:layout_alignParentRight="true" />
+
+    <RelativeLayout
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_margin="15dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:text="Answer"
+            android:id="@+id/answer_button"
+            android:onClick="nextWord"/>
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/button2"
+        android:layout_below="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_margin="15dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:text="Answer"
+            android:id="@+id/answer2"
+            android:onClick="nextWord"/>
+
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:background="@drawable/stipe"
+        android:scaleType="centerCrop"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="350dp"
+        android:id="@+id/translation_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Translation"
+            android:id="@+id/translation"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+
+
+        />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="Answer"
+        android:id="@+id/answer3"
+        android:onClick="nextWord"
+        android:background="@color/colorAccent"
+        android:layout_alignTop="@+id/dummy_next"
+        android:layout_toLeftOf="@+id/word"
+        android:layout_toStartOf="@+id/word" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="Answer"
+        android:id="@+id/answer4"
+        android:onClick="nextWord"
+        android:nestedScrollingEnabled="false"
+        android:elevation="2dp"
+        android:background="@color/colorAccent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="184dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="394dp" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:src="@drawable/next"
+        android:id="@+id/next"
+        android:layout_alignParentBottom="true"
+        android:onClick="nextWord"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CorrectCount"
+        android:id="@+id/count"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
