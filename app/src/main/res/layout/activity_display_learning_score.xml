@@ -4,119 +4,154 @@
     android:id="@+id/activity_display_learning_score"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#2f3d4b"
     tools:context="com.example.shamsulkarim.vastvocabulary.DisplayLearningScore">
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="You have completed the session"
-        android:id="@+id/textView8"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/word1"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/word4"
-        android:layout_below="@+id/word1"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/word2"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/word4"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/word3"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/word2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/word5"
-        android:layout_below="@+id/word3"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/left"
-        android:layout_alignBaseline="@+id/word3"
-        android:layout_alignBottom="@+id/word3"
-        android:layout_alignStart="@+id/learned"
-        android:layout_alignLeft="@+id/learned" />
-
-    <TextView
-        android:text="TextViewLest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView12"
-        android:layout_below="@+id/word2"
-        android:layout_alignEnd="@+id/left"
-        android:layout_alignRight="@+id/left" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/learned"
-        android:layout_alignBaseline="@+id/word1"
-        android:layout_alignBottom="@+id/word1"
-        android:layout_alignEnd="@+id/textView9"
-        android:layout_alignRight="@+id/textView9" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Words you&apos;ve learned in this session"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/textView8"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/no_back_land1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/no_back_land1"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/button"
-        android:onClick="home" />
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="-30dp"/>
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/no_back_land1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/session"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Session Completed"
+            android:gravity="center"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_word1"
+            android:layout_below="@+id/session"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Frank"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_translation1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/result_word1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_word2"
+            android:layout_below="@+id/result_translation1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Frank"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_translation2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/result_word2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_word3"
+            android:layout_below="@+id/result_translation2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Frank"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_translation3"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/result_word3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_word4"
+            android:layout_below="@+id/result_translation3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Frank"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_translation4"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/result_word4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_word5"
+            android:layout_below="@+id/result_translation4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Frank"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:id="@+id/result_translation5"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/result_word5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

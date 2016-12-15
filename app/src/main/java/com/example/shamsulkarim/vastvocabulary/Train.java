@@ -22,8 +22,8 @@ public class Train extends AppCompatActivity {
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendData = new String[5];
     int[] wordCounter = new int[5];
-    String[] wordArray, translationArray,sendWords;
-    TextView wordView, translationView, countView;
+    String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
+    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
     TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext;
     int id = 0;
@@ -54,6 +54,11 @@ public class Train extends AppCompatActivity {
 
             wordView.setText(fiveWords.get(ia).getWord());
             translationView.setText(fiveWords.get(ia).getTranslation());
+            pronunView.setText(pronunArray[ia]);
+            grammarView.setText(grammarArray[ia]);
+            exampleView1.setText(example1array[ia]);
+            exampleView2.setText(example2Array[ia]);
+            exampleView3.setText(example3Array[ia]);
             fiveWords.get(ia).setSeen(true);
 
             ia++;
@@ -87,6 +92,11 @@ public class Train extends AppCompatActivity {
                 button3.setVisibility(View.VISIBLE);
                 button4.setVisibility(View.VISIBLE);
                 translationView.setText("");
+                grammarView.setText("");
+                pronunView.setText("");
+                exampleView1.setText("");
+                exampleView2.setText("");
+                exampleView3.setText("");
                 answers(view);}
 
         }
@@ -115,6 +125,11 @@ public class Train extends AppCompatActivity {
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
+        pronunView.setText(pronunArray[index]);
+        grammarView.setText(grammarArray[index]);
+        exampleView1.setText(example1array[index]);
+        exampleView2.setText(example2Array[index]);
+        exampleView3.setText(example3Array[index]);
         fiveWords.get(index).setSeen(true);
     }
 
@@ -347,12 +362,27 @@ public class Train extends AppCompatActivity {
         wordView = (TextView) findViewById(R.id.word);
         translationView = (TextView) findViewById(R.id.translation);
         countView = (TextView) findViewById(R.id.count);
+        grammarView = (TextView) findViewById(R.id.grammar);
+        pronunView = (TextView) findViewById(R.id.pronunciation);
+        exampleView1 = (TextView) findViewById(R.id.example1);
+        exampleView2 = (TextView) findViewById(R.id.example2);
+        exampleView3 = (TextView) findViewById(R.id.example3);
+
+
+
+
     }
 
     private void gettingResources() {
 
-            wordArray = getResources().getStringArray(R.array.words);
-            translationArray = getResources().getStringArray(R.array.translation);
+        wordArray = getResources().getStringArray(R.array.words);
+        translationArray = getResources().getStringArray(R.array.translation);
+        grammarArray =  getResources().getStringArray(R.array.grammar);
+        pronunArray =  getResources().getStringArray(R.array.pronunciation);
+        example1array = getResources().getStringArray(R.array.example1);
+        example2Array = getResources().getStringArray(R.array.example2);
+        example3Array = getResources().getStringArray(R.array.example3);
+
 
 
     }
