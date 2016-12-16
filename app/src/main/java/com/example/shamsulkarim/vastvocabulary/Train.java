@@ -396,7 +396,7 @@ public class Train extends AppCompatActivity {
         }
         if(level == "intermediate"){
 
-            train_land.setImageResource(R.drawable.intermediate_full_land);
+            train_land.setImageResource(R.drawable.new_intermediate);
             wordArray = getResources().getStringArray(R.array.intermediate_words);
             translationArray = getResources().getStringArray(R.array.intermediate_translation);
             grammarArray =  getResources().getStringArray(R.array.intermediate_grammar);
@@ -408,7 +408,7 @@ public class Train extends AppCompatActivity {
         }
         if(level == "advanced"){
 
-            train_land.setImageResource(R.drawable.advance_full_landscape);
+            train_land.setImageResource(R.drawable.new_advance);
             wordArray = getResources().getStringArray(R.array.advanced_words);
             translationArray = getResources().getStringArray(R.array.advanced_translation);
             grammarArray =  getResources().getStringArray(R.array.advanced_grammar);

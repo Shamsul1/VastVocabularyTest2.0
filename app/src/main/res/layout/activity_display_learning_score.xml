@@ -11,9 +11,9 @@
         android:id="@+id/no_back_land1"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@drawable/no_back_land1"
+        android:src="@drawable/advance_result"
         android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
+
         android:layout_marginBottom="-30dp"/>
 
     <RelativeLayout

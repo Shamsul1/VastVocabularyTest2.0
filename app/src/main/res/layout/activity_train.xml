@@ -26,7 +26,7 @@
             android:id="@+id/train_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/beginner_ful_land2"
+            android:src="@drawable/new_intermediate"
             />
 
         <TextView
@@ -128,7 +128,7 @@
 
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="30dp">
 
         <ImageView
             android:layout_width="match_parent"
