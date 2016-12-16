@@ -8,9 +8,40 @@ public class Word {
 
 
     int count;
-    String word, translation;
+    String word, translation,pronun,grammar,example1,example2,example3;
     boolean seen;
     boolean removable;
+
+
+    public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3) {
+        this.word = word;
+        this.translation = translation;
+        this.pronun = pronun;
+        this.grammar = grammar;
+        this.example1 = example1;
+        this.example2 = example2;
+        this.example3 = example3;
+    }
+
+    public String getPronun() {
+        return pronun;
+    }
+
+    public String getGrammar() {
+        return grammar;
+    }
+
+    public String getExample1() {
+        return example1;
+    }
+
+    public String getExample2() {
+        return example2;
+    }
+
+    public String getExample3() {
+        return example3;
+    }
 
     public boolean isRemovable() {
         return removable;
@@ -36,10 +67,7 @@ public class Word {
         this.count += count;
     }
 
-    public Word(String word, String translation) {
-        this.word = word;
-        this.translation = translation;
-    }
+
 
     public void setWord(String word) {
         this.word = word;

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,7 +19,9 @@ public class Train extends AppCompatActivity {
 
     RelativeLayout translation_layout,button1,button2,button3,button4;
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
-    String[] sendData = new String[5];
+    String[] sendWord = new String[5];
+    String[] sendTranslation = new String[5];
+
     int[] wordCounter = new int[5];
     String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
     TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
@@ -54,11 +55,11 @@ public class Train extends AppCompatActivity {
 
             wordView.setText(fiveWords.get(ia).getWord());
             translationView.setText(fiveWords.get(ia).getTranslation());
-            pronunView.setText(pronunArray[ia]);
-            grammarView.setText(grammarArray[ia]);
-            exampleView1.setText(example1array[ia]);
-            exampleView2.setText(example2Array[ia]);
-            exampleView3.setText(example3Array[ia]);
+            pronunView.setText(fiveWords.get(ia).getPronun());
+            grammarView.setText(fiveWords.get(ia).getGrammar());
+            exampleView1.setText(fiveWords.get(ia).getExample1());
+            exampleView2.setText(fiveWords.get(ia).getExample2());
+            exampleView3.setText(fiveWords.get(ia).getExample3());;
             fiveWords.get(ia).setSeen(true);
 
             ia++;
@@ -76,7 +77,7 @@ public class Train extends AppCompatActivity {
         if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
             addLearnedWordsToSend();
             Intent intent = new Intent(this, DisplayLearningScore.class);
-            intent.putExtra("words", sendData).putExtra("wordCount", wordCounter).putExtra("Level",level);
+            intent.putExtra("words", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("Level",level);
             this.startActivity(intent);
 
         }
@@ -125,11 +126,11 @@ public class Train extends AppCompatActivity {
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
-        pronunView.setText(pronunArray[index]);
-        grammarView.setText(grammarArray[index]);
-        exampleView1.setText(example1array[index]);
-        exampleView2.setText(example2Array[index]);
-        exampleView3.setText(example3Array[index]);
+        pronunView.setText(fiveWords.get(index).getPronun());
+        grammarView.setText(fiveWords.get(index).getGrammar());
+        exampleView1.setText(fiveWords.get(index).getExample1());
+        exampleView2.setText(fiveWords.get(index).getExample2());
+        exampleView3.setText(fiveWords.get(index).getExample3());
         fiveWords.get(index).setSeen(true);
     }
 
@@ -265,7 +266,8 @@ public class Train extends AppCompatActivity {
 
     private void addLearnedWordsToSend() {
         for (int i = 0; i < fiveWords.size(); i++) {
-            sendData[i] = fiveWords.get(i).getWord();
+            sendWord[i] = fiveWords.get(i).getWord();
+            sendTranslation[i] = fiveWords.get(i).getTranslation();
             learnedWords.add(fiveWords.get(i));
             if (words.contains(fiveWords.get(i))) {
                 words.remove(words.indexOf(fiveWords.get(i)));
@@ -291,7 +293,7 @@ public class Train extends AppCompatActivity {
 
 
         for (int i = 0; i < wordArray.length; i++) {
-            words.add(new Word(wordArray[i], translationArray[i]));
+            words.add(new Word(wordArray[i], translationArray[i],pronunArray[i],grammarArray[i],example1array[i],example2Array[i],example3Array[i]));
 
         }
 
