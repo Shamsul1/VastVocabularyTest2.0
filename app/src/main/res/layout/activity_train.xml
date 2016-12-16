@@ -23,6 +23,7 @@
         android:layout_height="300dp">
 
         <ImageView
+            android:id="@+id/train_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/beginner_ful_land2"

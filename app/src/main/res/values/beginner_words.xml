@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="beginner_words">
+        <item>"Frank"</item>
+        <item>"Rival"</item>
+        <item>"Commence"</item>
+        <item>"Unruly"</item>
+        <item>"Vicious"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_translation">
+        <item>"Honest"</item>
+        <item>"Competitor"</item>
+        <item>"start"</item>
+        <item>"Hard to rule or control"</item>
+        <item>"evil"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_grammar">
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"verb"</item>
+        <item>"adjective"</item>
+        <item>"adjective"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_pronunciation">
+        <item>"/fraŋk/"</item>
+        <item>"/ˈrʌɪv(ə)l/"</item>
+        <item>"/kəˈmɛns/"</item>
+        <item>"/ʌnˈruːli/"</item>
+        <item>"/ˈvɪʃəs/"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_example1">
+        <item>"I will be frank with you."</item>
+        <item>"Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming " two truths.""</item>
+        <item>"Aphides are born, as a rule, alive, and the young soon commence to reproduce again."</item>
+        <item>"One face stood out, a shock of unruly red hair waving in the wind."</item>
+        <item>"She thinks she is some kind of vicious animal."</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_example2">
+        <item>"frank and open-hearted."</item>
+        <item>"The ancient rival of Venice, Genoa, was likewise far gone in decline."</item>
+        <item>"Aphides are born, as a rule, alive, and the young soon commence to reproduce again."</item>
+        <item>"Adults are bad enough, but when they bring their unruly offspring, it's unbearable."</item>
+        <item>"Subsequently this vicious principle was extended still further."</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="beginner_example3">
+        <item>"Yet this young man's frank appraisal was none of those."</item>
+        <item>"He had heard of the swiftness of Ilagin's borzois, and in that beautiful bitch saw a rival to his own Milka."</item>
+        <item>"2 was ordered to fall back to the Hindenburg line, and to commence the move that same evening."</item>
+        <item>"And yet, like an unruly child, she had rebelled, causing him endless worry and stress."</item>
+        <item>"It is a vicious circle from which we must break a way out."</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+
+</resources>

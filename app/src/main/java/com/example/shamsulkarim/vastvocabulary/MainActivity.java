@@ -1,6 +1,8 @@
 package com.example.shamsulkarim.vastvocabulary;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +22,29 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onStartTrainingActivity(View view){
         Intent intent = new Intent(this,StartTrainingActivity.class);
-        this.startActivity(intent);
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        sp.edit().putString("Hello","hello").apply();
+
+        if(view.getId() == R.id.beginner){
+            sp.edit().putString("level","beginner").apply();
+            this.startActivity(intent);
+
+
+        }
+        if(view.getId() == R.id.intermediate){
+            sp.edit().putString("level","intermediate").apply();
+            this.startActivity(intent);
+
+
+        }
+        if(view.getId() == R.id.advanced){
+            sp.edit().putString("level","advanced").apply();
+            this.startActivity(intent);
+
+
+        }
+
+
     }
 
 

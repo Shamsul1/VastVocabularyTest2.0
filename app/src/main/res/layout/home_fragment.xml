@@ -5,13 +5,13 @@
 
     <RelativeLayout
         android:background="#2f3d4b"
-        android:id="@+id/advanced"
+        android:id="@+id/advanced_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         >
         <ImageView
-
+            android:id="@+id/advanced"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
@@ -48,13 +48,14 @@
 
     <RelativeLayout
         android:background="#314150"
-        android:id="@+id/intermediate"
+        android:id="@+id/intermediate_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         >
 
         <ImageView
+            android:id="@+id/intermediate"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
@@ -89,12 +90,13 @@
 
     <RelativeLayout
         android:background="#34495e"
-        android:id="@+id/beginner"
+        android:id="@+id/beginner_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         >
         <ImageView
+            android:id="@+id/beginner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerVertical="true"

@@ -17,6 +17,7 @@ import java.util.List;
 
 public class Train extends AppCompatActivity {
 
+
     RelativeLayout translation_layout,button1,button2,button3,button4;
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendWord = new String[5];
@@ -26,7 +27,7 @@ public class Train extends AppCompatActivity {
     String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
     TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
     TextView answer1, answer2, answer3, answer4;
-    ImageView next, fakeNext;
+    ImageView next, fakeNext,train_land;
     int id = 0;
     int ia = 0;
     int question = 4;
@@ -77,7 +78,7 @@ public class Train extends AppCompatActivity {
         if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
             addLearnedWordsToSend();
             Intent intent = new Intent(this, DisplayLearningScore.class);
-            intent.putExtra("words", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("Level",level);
+            intent.putExtra("words", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
             this.startActivity(intent);
 
         }
@@ -353,6 +354,8 @@ public class Train extends AppCompatActivity {
         answer4 = (TextView) findViewById(R.id.answer4);
 
         next = (ImageView) findViewById(R.id.next);
+        train_land = (ImageView)findViewById(R.id.train_land);
+
 
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
@@ -376,14 +379,47 @@ public class Train extends AppCompatActivity {
     }
 
     private void gettingResources() {
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        String level = sp.getString("level","beginner");
 
-        wordArray = getResources().getStringArray(R.array.words);
-        translationArray = getResources().getStringArray(R.array.translation);
-        grammarArray =  getResources().getStringArray(R.array.grammar);
-        pronunArray =  getResources().getStringArray(R.array.pronunciation);
-        example1array = getResources().getStringArray(R.array.example1);
-        example2Array = getResources().getStringArray(R.array.example2);
-        example3Array = getResources().getStringArray(R.array.example3);
+        if(level == "beginner"){
+
+            train_land.setImageResource(R.drawable.beginner_ful_land2);
+            wordArray = getResources().getStringArray(R.array.beginner_words);
+            translationArray = getResources().getStringArray(R.array.beginner_translation);
+            grammarArray =  getResources().getStringArray(R.array.beginner_grammar);
+            pronunArray =  getResources().getStringArray(R.array.beginner_pronunciation);
+            example1array = getResources().getStringArray(R.array.beginner_example1);
+            example2Array = getResources().getStringArray(R.array.beginner_example2);
+            example3Array = getResources().getStringArray(R.array.beginner_example3);
+
+        }
+        if(level == "intermediate"){
+
+            train_land.setImageResource(R.drawable.intermediate_full_land);
+            wordArray = getResources().getStringArray(R.array.intermediate_words);
+            translationArray = getResources().getStringArray(R.array.intermediate_translation);
+            grammarArray =  getResources().getStringArray(R.array.intermediate_grammar);
+            pronunArray =  getResources().getStringArray(R.array.intermediate_pronunciation);
+            example1array = getResources().getStringArray(R.array.intermediate_example1);
+            example2Array = getResources().getStringArray(R.array.intermediate_example2);
+            example3Array = getResources().getStringArray(R.array.intermediate_example3);
+
+        }
+        if(level == "advanced"){
+
+            train_land.setImageResource(R.drawable.advance_full_landscape);
+            wordArray = getResources().getStringArray(R.array.advanced_words);
+            translationArray = getResources().getStringArray(R.array.advanced_translation);
+            grammarArray =  getResources().getStringArray(R.array.advanced_grammar);
+            pronunArray =  getResources().getStringArray(R.array.advanced_pronunciation);
+            example1array = getResources().getStringArray(R.array.advanced_example1);
+            example2Array = getResources().getStringArray(R.array.advanced_example2);
+            example3Array = getResources().getStringArray(R.array.advanced_example3);
+
+        }
+
+
 
 
 

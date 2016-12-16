@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="intermediate_words">
+        <item>"Frank"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_translation">
+        <item>"Honest"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_grammar">
+        <item>"adjective"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_pronunciation">
+        <item>"/fraŋk/"</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_example1">
+        <item>"I will be frank with you."</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_example2">
+        <item>"frank and open-hearted."</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+    <string-array name="intermediate_example3">
+        <item>"Yet this young man's frank appraisal was none of those."</item>
+        <item>"Good"</item>
+        <item>"Stop"</item>
+        <item>"Care"</item>
+        <item>"Like"</item>
+        <item>"Love"</item>
+        <item>"Don"</item>
+        <item>"Laough"</item>
+        <item>"Busy"</item>
+        <item>"Work"</item>
+        <item>"Hot"</item>
+        <item>"Bot"</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>
