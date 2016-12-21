@@ -19,9 +19,10 @@
         android:onClick="onStartTraining"/>
 
     <RelativeLayout
+        android:id="@+id/landscape_layout_train"
         android:background="#A7FFEB"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -35,7 +36,7 @@
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:paddingLeft="20dp"
-             />
+            />
 
 
 
@@ -82,5 +83,10 @@
 
 
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></RelativeLayout>
 
 </RelativeLayout>

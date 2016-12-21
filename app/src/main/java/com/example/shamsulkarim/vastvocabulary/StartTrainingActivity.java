@@ -16,13 +16,13 @@ public class StartTrainingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_training);
-        start_training_land = (ImageView)findViewById(R.id.start_training_land);
+        start_training_land = (ImageView)findViewById(R.id.start_training_landscape);
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         String level = sp.getString("level","");
         Toast.makeText(this,level,Toast.LENGTH_SHORT).show();
 
         if(level == "beginner"){
-            start_training_land.setImageResource(R.drawable.beginner_ful_land2);
+            start_training_land.setImageResource(R.drawable.no_back_land1);
         }
         if(level == "intermediate"){
             start_training_land.setImageResource(R.drawable.intermediate_full_land);

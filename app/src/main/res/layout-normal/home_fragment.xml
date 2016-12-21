@@ -23,8 +23,8 @@
         <ImageView
             android:id="@+id/advanced_land"
             android:layout_margin="10dp"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_centerVertical="true"
             android:src="@drawable/adanced_langscape"/>
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADVANCED"
-            android:textSize="30dp"
+            android:textSize="22dp"
             android:textColor="#ffffff"
             android:layout_marginLeft="-10dp"
             android:layout_centerVertical="true"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Large"
+            android:text=" normal"
             android:textSize="60dp"
             android:textColor="#fff"/>]
 
@@ -74,8 +74,8 @@
             android:layout_centerVertical="true"
             android:src="@drawable/intermediate_landscape"
             android:id="@+id/intermediate_land"
-            android:layout_width="220dp"
-            android:layout_height="220dp" />
+            android:layout_width="140dp"
+            android:layout_height="140dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,13 +83,13 @@
             android:text="INTERMEDIATE"
             android:textColor="#ffffff"
             android:id="@+id/textView"
-            android:textSize="30dp"
 
+            android:textSize="22dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/intermediate_land"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:layout_marginLeft="-10dp" />
+            android:layout_marginLeft="-15dp" />
 
     </RelativeLayout>
 
@@ -113,14 +113,13 @@
         <ImageView
             android:id="@+id/beginner_land"
             android:layout_margin="10dp"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_width="140dp"
             android:layout_centerVertical="true"
             android:src="@drawable/beginner_langscape"
-             />
+            android:layout_height="140dp" />
 
         <TextView
-            android:textSize="30dp"
+            android:textSize="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BEGINNER"
