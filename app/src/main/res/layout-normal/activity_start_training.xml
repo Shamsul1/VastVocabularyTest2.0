@@ -9,13 +9,13 @@
 
 
     <ImageView
+        android:id="@+id/start_trainging_button"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:src="@drawable/train"
         android:scaleType="centerCrop"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
         android:onClick="onStartTraining"/>
 
     <RelativeLayout
@@ -32,9 +32,8 @@
             android:layout_height="75dp"
             android:src="@drawable/sun"
             android:id="@+id/sun"
-            android:layout_centerVertical="true"
             android:layout_centerInParent="true"
-            android:paddingLeft="20dp"
+            android:layout_toRightOf="@id/cloud1"
             />
 
 
@@ -56,6 +55,7 @@
             android:layout_above="@+id/sun"
             android:layout_alignLeft="@+id/start_training_landscape"
             android:layout_marginLeft="40dp"
+            android:layout_marginBottom="-20dp"
             android:id="@+id/cloud1" />
 
         <ImageView
@@ -64,9 +64,10 @@
             android:layout_height="50dp"
             android:src="@drawable/cloud2"
             android:id="@+id/cloud3"
-            android:layout_alignTop="@+id/sun"
+            android:layout_above="@+id/sun"
             android:layout_toRightOf="@+id/cloud1"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
+
             />
 
         <ImageView
@@ -75,10 +76,12 @@
             android:layout_height="50dp"
             android:src="@drawable/cloud2"
             android:id="@+id/cloud2"
-            android:layout_below="@+id/cloud1"
-            android:layout_alignRight="@id/start_training_landscape"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="-40dp"/>
+            android:layout_above="@+id/start_training_landscape"
+            android:layout_alignRight="@+id/start_training_landscape"
+            android:layout_marginBottom="-30dp"
+            android:layout_marginRight="50dp"
+
+           />
 
 
     </RelativeLayout>
@@ -178,6 +181,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+
 
         android:id="@+id/learn_state"
         android:layout_width="match_parent"
