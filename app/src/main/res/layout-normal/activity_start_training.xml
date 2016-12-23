@@ -22,13 +22,12 @@
         android:id="@+id/landscape_layout_train"
         android:background="#A7FFEB"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <ImageView
-
             android:layout_width="80dp"
             android:layout_height="75dp"
             android:src="@drawable/sun"
@@ -85,8 +84,132 @@
     </RelativeLayout>
 
 
+
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></RelativeLayout>
+        android:id="@+id/word_state"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/title">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:id="@+id/book_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_book_icon_78892"/>
+
+        <TextView
+            android:id="@+id/words_train"
+            android:layout_toRightOf="@+id/book_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="150 Words"
+            android:textSize="20dp"
+            android:textColor="#212121"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_below="@+id/landscape_layout_train"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:src="@drawable/stipe"
+        android:scaleType="centerCrop"/>
+    <ImageView
+
+        android:layout_below="@+id/landscape_layout_train"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:src="@drawable/stipe"
+        android:scaleType="fitXY"/>
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_below="@id/landscape_layout_train"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="BEGINNER"
+        android:textSize="25dp"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+
+        />
+
+
+    <RelativeLayout
+
+        android:id="@+id/learned_state"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/word_state">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:id="@+id/learned_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_learned_active"/>
+
+        <TextView
+            android:id="@+id/words_learned_train"
+            android:layout_toRightOf="@+id/learned_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="50 Words learned"
+            android:textSize="20dp"
+            android:textColor="#212121"
+            android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/learn_state"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/learned_state">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:id="@+id/left_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_learn_active"/>
+
+        <TextView
+            android:id="@+id/words_left_train"
+            android:layout_toRightOf="@+id/left_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="100 Words left"
+            android:textSize="20sp"
+            android:textColor="#212121"
+            android:gravity="center_vertical"/>
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
