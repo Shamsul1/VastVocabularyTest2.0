@@ -22,6 +22,7 @@ import java.util.List;
 public class Train extends AppCompatActivity {
 
 
+    boolean firstTime = true;
     RelativeLayout translation_layout,button1,button2,button3,button4;
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendWord = new String[5];
@@ -88,6 +89,7 @@ public class Train extends AppCompatActivity {
 
         nextAnimation();
 
+
         handler.postDelayed(new Runnable() {
 
 
@@ -98,11 +100,6 @@ public class Train extends AppCompatActivity {
 
             }
         },400);
-
-
-
-
-
     }
 
 
@@ -111,7 +108,6 @@ public class Train extends AppCompatActivity {
 
 
     public void nextWord(View view) {
-
 
 
         // To Next Activity
@@ -126,7 +122,7 @@ public class Train extends AppCompatActivity {
         /// IF SEEN IT TRUE THEN IT WOULD START TO ASK QUESTION
         if (id < fiveWords.size()  && fiveWords.size() != 0) {
 
-            if(fiveWords.get(id).isSeen()){
+            if (fiveWords.get(id).isSeen()) {
                 next.setVisibility(View.INVISIBLE);
                 translation_layout.setVisibility(View.INVISIBLE);
                 button1.setVisibility(View.VISIBLE);
@@ -139,25 +135,28 @@ public class Train extends AppCompatActivity {
                 exampleView1.setText("");
                 exampleView2.setText("");
                 exampleView3.setText("");
-                answers(view);}
 
-        }
 
-        /// IF ISSEEN IS FALSE IT WOULD SHOW WORDS WITH TRANSLATION
-        if (ia < fiveWords.size() && !fiveWords.get(ia).isSeen()) {
-            wordView.setText(fiveWords.get(ia).getWord());
-            Toast.makeText(this, "IA: "+ia, Toast.LENGTH_SHORT).show();
-            showWords(ia);
-            ia++;
-        }
+                answers(view);
+                settingQuestionButton();
 
-        // IF ID EQUALS TO FIVEWORDS SIZE ID WOULD SET TO ZERO.
-        if (id == fiveWords.size()) {
-            id = 0;
+            }
 
-        }
+            /// IF ISSEEN IS FALSE IT WOULD SHOW WORDS WITH TRANSLATION
+            if (ia < fiveWords.size() && !fiveWords.get(ia).isSeen()) {
+                // wordView.setText(fiveWords.get(ia).getWord());
+                Toast.makeText(this, "IA: " + ia, Toast.LENGTH_SHORT).show();
+                showWords(ia);
+                ia++;
+            }
 
-    }
+            // IF ID EQUALS TO FIVEWORDS SIZE ID WOULD SET TO ZERO.
+            if (id == fiveWords.size()) {
+                id = 0;
+
+            }
+
+        }}
 
     public void showWords(int index) {
         next.setVisibility(View.VISIBLE);
@@ -167,6 +166,7 @@ public class Train extends AppCompatActivity {
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
+        wordView.setText(fiveWords.get(index).getWord());
         pronunView.setText(fiveWords.get(index).getPronun());
         grammarView.setText(fiveWords.get(index).getGrammar());
         exampleView1.setText(fiveWords.get(index).getExample1());
@@ -191,8 +191,9 @@ public class Train extends AppCompatActivity {
     // This method gets called when you are asnwering the questions
     public void answers(View view) {
 
-        Toast.makeText(this, view.getId()+"", Toast.LENGTH_SHORT).show();
+
         String answer;
+
 
         if (view.getId() == button1.getId()) {
             answer = answer1.getText().toString();
@@ -215,6 +216,7 @@ public class Train extends AppCompatActivity {
                 fiveWords.get(id).setCount(1);
                 countView.setText(fiveWords.get(id).getCount() + " ");
                 id++;
+
             } else {
                 showAnswer(fiveWords.get(id).getTranslation());
             }
@@ -226,6 +228,7 @@ public class Train extends AppCompatActivity {
                 fiveWords.get(id).setCount(1);
                 countView.setText(fiveWords.get(id).getCount() + " ");
                 id++;
+
             } else {
                 showAnswer(fiveWords.get(id).getTranslation());
             }
@@ -237,6 +240,7 @@ public class Train extends AppCompatActivity {
                 fiveWords.get(id).setCount(1);
                 countView.setText(fiveWords.get(id).getCount() + "");
                 id++;
+
             } else {
                 showAnswer(fiveWords.get(id).getTranslation());
             }
@@ -245,7 +249,7 @@ public class Train extends AppCompatActivity {
             id = 0;
 
         }
-        settingQuestionButton();
+
     }
 
     // This gets called when you have answered a wrong answer
@@ -513,7 +517,7 @@ public class Train extends AppCompatActivity {
     }
 
     private void nextAnimation(){
-        float alpha = translation_layout.getAlpha();
+        float alpha = train_land.getAlpha();
 
         ValueAnimator va = ValueAnimator.ofFloat(alpha,0);
 
@@ -524,6 +528,39 @@ public class Train extends AppCompatActivity {
 
                 float value = (float) valueAnimator.getAnimatedValue();
                 translation_layout.setAlpha(value);
+                button1.setAlpha(value);
+                button2.setAlpha(value);
+                button3.setAlpha(value);
+                button4.setAlpha(value);
+
+            }
+        });
+
+
+        va.setRepeatMode(ValueAnimator.REVERSE);
+        va.setRepeatCount(1);
+        va.setDuration(400L);
+        va.start();
+    }
+
+
+
+
+    private void answerButtonAnimation(){
+        float alpha = train_land.getAlpha();
+
+        ValueAnimator va = ValueAnimator.ofFloat(alpha,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+                button1.setAlpha(value);
+                button2.setAlpha(value);
+                button3.setAlpha(value);
+                button4.setAlpha(value);
 
             }
         });
