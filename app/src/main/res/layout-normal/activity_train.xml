@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_train"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2f3d4b"
+    tools:context="com.example.shamsulkarim.vastvocabulary.Train">
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+
+        android:src="@drawable/stars"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:id="@+id/word_view_landscape"
+        android:layout_marginTop="-80dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/train_land"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/new_intermediate"
+            />
+
+        <TextView
+            android:id="@+id/word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comprehensive"
+            android:textSize="30dp"
+            android:textColor="#000000"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+
+
+
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:text="Next"
+        android:src="@drawable/next"
+        android:id="@+id/dummy_next"
+        android:layout_alignTop="@+id/next"
+        android:visibility="invisible"
+        android:onClick="dummyNext"
+        android:layout_alignParentRight="true" />
+
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:onClick="nextWord"
+        android:id="@+id/button2"
+        android:layout_above="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Answer"
+            android:id="@+id/answer2"
+            />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:onClick="nextWord"
+        android:id="@+id/button3"
+        android:layout_above="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Answer"
+            android:id="@+id/answer3"
+            />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:onClick="nextWord"
+        android:id="@+id/button4"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Answer"
+            android:id="@+id/answer4"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/translation_layout"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CorrectCount"
+        android:id="@+id/count"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:onClick="nextWord"
+        android:id="@+id/button1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_above="@+id/button2"
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Answer"
+            android:id="@+id/answer1"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/translation_layout"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Verb"
+            android:textSize="23dp"
+            android:id="@+id/grammar"
+            />
+        <TextView
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="/ˈrʌɪv(ə)l/"
+            android:textSize="23dp"
+            android:id="@+id/pronunciation"
+            android:layout_toRightOf="@+id/grammar"
+            />
+
+        <TextView
+            android:id="@+id/example1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="15dp"
+            android:layout_below="@+id/translation"
+            android:text="Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming."
+            />
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/grammar"
+            android:id="@+id/translation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hard to rule or control"/>
+
+        <TextView
+            android:id="@+id/example2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="15dp"
+            android:layout_below="@+id/example1"
+            android:text="Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming."
+            />
+        <TextView
+            android:id="@+id/example3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="15dp"
+            android:layout_below="@+id/example2"
+            android:text="Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming."
+            />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:src="@drawable/next"
+        android:id="@+id/next"
+        android:layout_alignParentBottom="true"
+        android:onClick="neext"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

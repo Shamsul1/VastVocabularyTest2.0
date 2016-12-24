@@ -72,7 +72,7 @@ public class StartTrainingActivity extends AppCompatActivity {
         float sunY = sun.getY();
         sun.setY(sunY+100);
 
-        ValueAnimator va = ValueAnimator.ofFloat(sunY,-100);
+        ValueAnimator va = ValueAnimator.ofFloat(sunY,-60);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
 
             @Override

@@ -1,10 +1,14 @@
 package com.example.shamsulkarim.vastvocabulary;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -41,7 +45,6 @@ public class Train extends AppCompatActivity {
         setContentView(R.layout.activity_train);
 
         // INITIALIZATION
-
         arrayInitializations();
         buttonInitializations();
         textViewInitializations();
@@ -67,12 +70,49 @@ public class Train extends AppCompatActivity {
 
         }
 
+        comeInAnimation();
+
+
+
+
 
 
     }
     //----------------------------------------------------------------------------------------------
 
+    public  void neext(View view){
+
+        final View view1 = view;
+
+        Handler handler = new Handler();
+
+        nextAnimation();
+
+        handler.postDelayed(new Runnable() {
+
+
+            @Override
+            public void run() {
+                nextWord(view1);
+
+
+            }
+        },400);
+
+
+
+
+
+    }
+
+
+
+
+
+
     public void nextWord(View view) {
+
+
 
         // To Next Activity
         if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
@@ -424,6 +464,113 @@ public class Train extends AppCompatActivity {
 
 
     }
+
+
+
+    private void comeInAnimation(){
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        float width = dm.widthPixels;
+        float height = dm.heightPixels;
+
+        ValueAnimator va = ValueAnimator.ofFloat(width,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float)valueAnimator.getAnimatedValue();
+                next.setTranslationX(value);
+            }
+        });
+
+
+        va.setInterpolator(new FastOutSlowInInterpolator());
+        va.setDuration(1000);
+        va.start();
+
+        ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float)valueAnimator.getAnimatedValue();
+                translation_layout.setTranslationY(value/2);
+            }
+        });
+
+
+        va.setInterpolator(new FastOutSlowInInterpolator());
+        va.setDuration(1000);
+        va.start();
+
+
+
+
+    }
+
+    private void nextAnimation(){
+        float alpha = translation_layout.getAlpha();
+
+        ValueAnimator va = ValueAnimator.ofFloat(alpha,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+                translation_layout.setAlpha(value);
+
+            }
+        });
+
+
+        va.setRepeatMode(ValueAnimator.REVERSE);
+        va.setRepeatCount(1);
+        va.setDuration(400L);
+        va.start();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
