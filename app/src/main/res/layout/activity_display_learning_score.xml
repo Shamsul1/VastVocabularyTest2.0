@@ -7,21 +7,39 @@
     android:background="#2f3d4b"
     tools:context="com.example.shamsulkarim.vastvocabulary.DisplayLearningScore">
 
-    <ImageView
-        android:id="@+id/no_back_land1"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:src="@drawable/advance_result"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginBottom="-30dp"/>
-
     <RelativeLayout
-        android:layout_margin="10dp"
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        >
+
+        <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/no_back_land1">
+        android:src="@drawable/stipe"
+        android:scaleType="centerCrop"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="fitXY"/>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BEGINNER"
+            android:textSize="24sp"
+            android:paddingLeft="10dp"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,138 +47,153 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/session"
+            android:id="@+id/word1"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Session Completed"
-            android:gravity="center"
-            android:textSize="30dp"/>
-
+            android:text="Frank"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            />
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_word1"
-            android:layout_below="@+id/session"
+            android:layout_below="@+id/word1"
+            android:id="@+id/tran1"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Frank"/>
+            android:text="honest"
+            android:textSize="20sp"
+            />
+
+        <View
+
+            android:id="@+id/line1"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tran1"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#000"
+            ></View>
 
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_translation1"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/result_word1"
+            android:layout_below="@+id/line1"
+            android:id="@+id/word2"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
-
+            android:text="Frank"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            />
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_word2"
-            android:layout_below="@+id/result_translation1"
+            android:layout_below="@+id/word2"
+            android:id="@+id/tran2"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Frank"/>
+            android:text="honest"
+            android:textSize="20sp"
+            />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tran2"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#000"
+            ></View>
 
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_translation2"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/result_word2"
+            android:layout_below="@+id/line2"
+            android:id="@+id/word3"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
-
+            android:text="Frank"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            />
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_word3"
-            android:layout_below="@+id/result_translation2"
+            android:layout_below="@+id/word3"
+            android:id="@+id/tran3"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Frank"/>
+            android:text="honest"
+            android:textSize="20sp"
+            />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tran3"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#000"
+            ></View>
+
+
+
+
 
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_translation3"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/result_word3"
+            android:layout_below="@+id/line3"
+            android:id="@+id/word4"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
-
+            android:text="Frank"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            />
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_word4"
-            android:layout_below="@+id/result_translation3"
+            android:layout_below="@+id/word4"
+            android:id="@+id/tran4"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Frank"/>
+            android:text="honest"
+            android:textSize="20sp"
+            />
+
+        <View
+            android:id="@+id/line4"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tran4"
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#000"
+            ></View>
+
+
+
 
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_translation4"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/result_word4"
+            android:layout_below="@+id/line4"
+            android:id="@+id/word5"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
-
+            android:text="Frank"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            />
         <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_word5"
-            android:layout_below="@+id/result_translation4"
+            android:layout_below="@+id/word5"
+            android:id="@+id/tran5"
+            android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Frank"/>
-
-        <TextView
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:id="@+id/result_translation5"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/result_word5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="The ancient rival of Venice, Genoa, was likewise far gone in."/>
-
+            android:text="honest"
+            android:textSize="20sp"
+            />
 
     </RelativeLayout>
-
-    <ImageView
-        android:layout_marginBottom="-10dp"
-        android:layout_marginRight="-5dp"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:src="@drawable/go_home"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="homeActivity"/>
 
 
 
