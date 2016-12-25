@@ -1,74 +1,157 @@
 package com.example.shamsulkarim.vastvocabulary;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DisplayLearningScore extends AppCompatActivity {
 
-    String[] recieveWord = new String[5];
-    String[] recieveTranslation = new String[5];
-    TextView resultWordView1,resultWordView2,resultWordView3,resultWordView4,resultWordView5,resultTranslationView1,resultTranslationView2,resultTranslationView3,resultTranslationView4,resultTranslationView5;
-    ImageView noBackLand;
+    RelativeLayout new_learned_word, display_learned_word,word_info,learn_info, left_info;
+
+    int height;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_learning_score);
 
+        DisplayMetrics dm = new DisplayMetrics();
 
-        recieveWord = getIntent().getStringArrayExtra("words");
-        recieveTranslation = getIntent().getStringArrayExtra("translation");
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        resultWordView1 = (TextView)findViewById(R.id.result_word1);
-        resultWordView2 = (TextView)findViewById(R.id.result_word2);
-        resultWordView3 = (TextView)findViewById(R.id.result_word3);
-        resultWordView4 = (TextView)findViewById(R.id.result_word4);
-        resultWordView5 = (TextView)findViewById(R.id.result_word5);
-        resultTranslationView1 = (TextView)findViewById(R.id.result_translation1);
-        resultTranslationView2 = (TextView)findViewById(R.id.result_translation2);
-        resultTranslationView3 = (TextView)findViewById(R.id.result_translation3);
-        resultTranslationView4 = (TextView)findViewById(R.id.result_translation4);
-        resultTranslationView5 = (TextView)findViewById(R.id.result_translation5);
-        noBackLand = (ImageView)findViewById(R.id.no_back_land1);
+        height = dm.heightPixels;
+
+         new_learned_word = (RelativeLayout)findViewById(R.id.new_words_learned);
+        display_learned_word = (RelativeLayout)findViewById(R.id.display_learned_words);
+        word_info =(RelativeLayout)findViewById(R.id.word_info);
+        learn_info =(RelativeLayout)findViewById(R.id.learn_info);
+        left_info =(RelativeLayout)findViewById(R.id.left_info);
+
+        new_learned_word.setY(-height);
+        display_learned_word.setY(-height);
+        word_info.setY(-height);
+        left_info.setY(-height);
+        learn_info.setY(-height);
 
 
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        String level = sp.getString("level","beginner");
-
-        if(level == "beginner"){
-
-            noBackLand.setImageResource(R.drawable.no_back_land1);
-
-        }
-        if(level == "intermediate"){
-
-            noBackLand.setImageResource(R.drawable.intermediate_result);
-
-        }
-        if(level == "advance"){
-
-            noBackLand.setImageResource(R.drawable.advance_result);
-
-        }
+        String level = sp.getString("level", "beginner");
 
 
-        resultWordView1.setText(recieveWord[0]);
-        resultWordView2.setText(recieveWord[1]);
-        resultWordView3.setText(recieveWord[2]);
-        resultWordView4.setText(recieveWord[3]);
-        resultWordView5.setText(recieveWord[4]);
-        resultTranslationView1.setText(recieveTranslation[0]);
-        resultTranslationView2.setText(recieveTranslation[1]);
-        resultTranslationView3.setText(recieveTranslation[2]);
-        resultTranslationView4.setText(recieveTranslation[3]);
-        resultTranslationView5.setText(recieveTranslation[4]);
+
+
+
+
+
     }
+
+    public void animationDisplayScore(View view){
+
+        Handler handler = new Handler();
+
+        comeIn();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                comeOut();
+                comeInWords();
+
+            }
+        },1500L);
+
+
+    }
+
+
+    public void comeIn(){
+        ValueAnimator va = ValueAnimator.ofFloat(-height,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float value = (float) valueAnimator.getAnimatedValue();
+                new_learned_word.setTranslationY(value);
+                word_info.setTranslationY(value);
+                learn_info.setTranslationY(value);
+                left_info.setTranslationY(value);
+
+
+            }
+        });
+
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setDuration(400L);
+        va.start();
+
+
+    }
+
+    private void comeOut(){
+        ValueAnimator va = ValueAnimator.ofFloat( 0,-height);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+                new_learned_word.setTranslationY(value);
+                word_info.setTranslationY(value);
+                learn_info.setTranslationY(value);
+                left_info.setTranslationY(value);
+
+
+            }
+        });
+
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setDuration(400L);
+        va.start();
+    }
+
+    private void comeInWords(){
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(-height, 0);
+
+        valueAnimator.addUpdateListener( new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+                display_learned_word.setTranslationY(value);
+            }
+        });
+
+        valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        valueAnimator.setDuration(400L);
+        valueAnimator.start();
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
     public void homeActivity(View view){

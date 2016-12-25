@@ -7,53 +7,31 @@
     android:background="#2f3d4b"
     tools:context="com.example.shamsulkarim.vastvocabulary.DisplayLearningScore">
 
-    <RelativeLayout
-        android:id="@+id/actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        >
 
-        <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/stipe"
-        android:scaleType="centerCrop"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="fitXY"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="BEGINNER"
-            android:textSize="24sp"
-            android:paddingLeft="10dp"
-            android:layout_centerVertical="true"
-            />
-
-    </RelativeLayout>
 
     <RelativeLayout
+        android:background="@drawable/boardy"
+        android:id="@+id/display_learned_words"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+
         android:layout_below="@+id/actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="350dp">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+        android:layout_width="400dp"
+        android:layout_height="wrap_content">
+
 
         <TextView
+            android:layout_marginTop="5dp"
             android:id="@+id/word1"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#000"
             />
         <TextView
             android:layout_below="@+id/word1"
@@ -61,8 +39,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="honest"
-            android:textSize="20sp"
+            android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
+            android:textSize="14sp"
             />
 
         <View
@@ -83,8 +61,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#000"
             />
         <TextView
             android:layout_below="@+id/word2"
@@ -93,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="honest"
-            android:textSize="20sp"
+            android:textSize="14sp"
             />
 
         <View
@@ -113,8 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#000"
             />
         <TextView
             android:layout_below="@+id/word3"
@@ -122,8 +102,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="honest"
-            android:textSize="20sp"
+            android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
+            android:textSize="14sp"
             />
 
         <View
@@ -147,8 +127,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#000"
             />
         <TextView
             android:layout_below="@+id/word4"
@@ -156,8 +137,8 @@
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="honest"
-            android:textSize="20sp"
+            android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
+            android:textSize="14sp"
             />
 
         <View
@@ -180,21 +161,244 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="23sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="#000"
             />
         <TextView
+            android:layout_marginBottom="10dp"
             android:layout_below="@+id/word5"
             android:id="@+id/tran5"
             android:layout_marginLeft="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="honest"
-            android:textSize="20sp"
+            android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
+            android:textSize="14sp"
             />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/new_words_learned"
+        android:layout_marginTop="-3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFEB3B"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/word_info"
+        android:layout_marginTop="-3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/new_words_learned"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+
+        <ImageView
+
+            android:id="@+id/book_icon_display_score"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_book_icon_78892"/>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/book_icon_display_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="150 words"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+
+        android:visibility="invisible"
+        android:id="@+id/learn_info"
+        android:layout_marginTop="-3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/word_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+
+        <ImageView
+
+            android:id="@+id/learned_icon_display_score"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_learned_active"/>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/learned_icon_display_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50 words learned"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:visibility="invisible"
+
+        android:id="@+id/left_info"
+        android:layout_marginTop="-3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/learn_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+
+        <ImageView
+
+            android:id="@+id/left_icon_display_score"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_learn_active"/>
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/left_icon_display_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100 words left"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/go_home_display_score"
+        android:layout_margin="5dp"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        >
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/home_icon_display_score"
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_home_active"/>
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="23sp"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_above="@+id/go_home_display_score"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="animationDisplayScore"
+        >
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Train again"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="fitXY"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BEGINNER"
+            android:textSize="24sp"
+            android:paddingLeft="10dp"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>
