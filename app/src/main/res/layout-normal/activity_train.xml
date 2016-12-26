@@ -46,16 +46,7 @@
 
 
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="120dp"
-        android:text="Next"
-        android:src="@drawable/next"
-        android:id="@+id/dummy_next"
-        android:layout_alignTop="@+id/next"
-        android:visibility="invisible"
-        android:onClick="dummyNext"
-        android:layout_alignParentRight="true" />
+
 
 
     <RelativeLayout
@@ -297,6 +288,17 @@
         android:id="@+id/next"
         android:layout_alignParentBottom="true"
         android:onClick="neext"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:text="Next"
+        android:src="@drawable/next"
+        android:id="@+id/dummy_next"
+        android:layout_alignTop="@+id/next"
+        android:visibility="invisible"
+        android:onClick="dummyNext"
         android:layout_alignParentRight="true" />
 
 </RelativeLayout>

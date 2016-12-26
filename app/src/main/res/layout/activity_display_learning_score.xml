@@ -7,10 +7,27 @@
     android:background="#2f3d4b"
     tools:context="com.example.shamsulkarim.vastvocabulary.DisplayLearningScore">
 
+    <ImageView
+
+        android:id="@+id/display_learned_words_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/display_learned_words"
+        android:layout_alignTop="@+id/display_learned_words"
+        android:layout_alignLeft="@+id/display_learned_words"
+        android:layout_alignRight="@+id/display_learned_words"
+        android:src="@drawable/back"
+        android:scaleType="fitXY"/>
+
+
 
 
     <RelativeLayout
-        android:background="@drawable/boardy"
+
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="13dp"
         android:id="@+id/display_learned_words"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-8dp"
@@ -18,8 +35,10 @@
         android:layout_marginRight="5dp"
 
         android:layout_below="@+id/actionbar"
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+
 
 
         <TextView
@@ -29,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"
             />
@@ -40,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
-            android:textSize="14sp"
+            android:textSize="13sp"
             />
 
         <View
@@ -61,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"
             />
@@ -72,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="honest"
-            android:textSize="14sp"
+            android:textSize="13sp"
             />
 
         <View
@@ -92,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"
             />
@@ -103,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
-            android:textSize="14sp"
+            android:textSize="13sp"
             />
 
         <View
@@ -127,7 +146,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"
             />
@@ -138,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
-            android:textSize="14sp"
+            android:textSize="13sp"
             />
 
         <View
@@ -161,7 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Frank"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#000"
             />
@@ -173,13 +192,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thomas great rival Duns Scotus, does this to a large extent, at times affirming "
-            android:textSize="14sp"
+            android:textSize="13sp"
             />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="invisible"
+
         android:id="@+id/new_words_learned"
         android:layout_marginTop="-3dp"
         android:layout_marginLeft="5dp"
@@ -192,12 +211,28 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFEB3B"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="New 5 words learned"
+            android:textColor="#000"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textAllCaps="true"
+
+            />
+
     </RelativeLayout>
 
 
     <RelativeLayout
-        android:visibility="invisible"
+
         android:id="@+id/word_info"
         android:layout_marginTop="-3dp"
         android:layout_marginLeft="5dp"
@@ -210,8 +245,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
 
 
         <ImageView
@@ -237,7 +272,7 @@
 
     <RelativeLayout
 
-        android:visibility="invisible"
+
         android:id="@+id/learn_info"
         android:layout_marginTop="-3dp"
         android:layout_marginLeft="5dp"
@@ -250,8 +285,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
 
 
         <ImageView
@@ -277,7 +312,6 @@
 
 
     <RelativeLayout
-        android:visibility="invisible"
 
         android:id="@+id/left_info"
         android:layout_marginTop="-3dp"
@@ -291,8 +325,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
 
 
         <ImageView
@@ -326,10 +360,11 @@
 
 
         <ImageView
+            android:onClick="homeActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:layout_marginLeft="10dp"
@@ -345,8 +380,8 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home"
-            android:textSize="23sp"
+            android:text="HOME"
+            android:textSize="21sp"
             android:textColor="#000"
             />
     </RelativeLayout>
@@ -363,15 +398,15 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stipe"
-            android:scaleType="centerCrop"/>
+            android:src="@drawable/back"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Train again"
+            android:text="TRAIN AGAIN"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textSize="21sp"
             android:textColor="#000"
             />
     </RelativeLayout>
@@ -394,9 +429,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="BEGINNER"
-            android:textSize="24sp"
+            android:textSize="23sp"
             android:paddingLeft="10dp"
             android:layout_centerVertical="true"
+            android:textColor="#000"
+            android:textStyle="normal"
             />
 
     </RelativeLayout>

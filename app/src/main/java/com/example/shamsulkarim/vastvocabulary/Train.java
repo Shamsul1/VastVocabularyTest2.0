@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class Train extends AppCompatActivity {
     String[] sendWord = new String[5];
     String[] sendTranslation = new String[5];
 
+
+
     int[] wordCounter = new int[5];
     String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
     TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
@@ -45,11 +48,14 @@ public class Train extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
 
+
         // INITIALIZATION
+
+        gettingResources();
         arrayInitializations();
         buttonInitializations();
         textViewInitializations();
-        gettingResources();
+
 
         // INITIALIZING WORDS
         addingNewWords();
@@ -71,7 +77,7 @@ public class Train extends AppCompatActivity {
 
         }
 
-        comeInAnimation();
+         comeInAnimation();
 
 
 
@@ -111,52 +117,60 @@ public class Train extends AppCompatActivity {
 
 
         // To Next Activity
-        if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
+        if (fiveWords.get(fiveWords.size() - 2).getCount() == 2) {
             addLearnedWordsToSend();
+            this.finish();
             Intent intent = new Intent(this, DisplayLearningScore.class);
-            intent.putExtra("words", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
+            intent.putExtra("word", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
             this.startActivity(intent);
 
+        }else{
+            //----------
+
+            /// IF SEEN IT TRUE THEN IT WOULD START TO ASK QUESTION
+            if (id < fiveWords.size()  && fiveWords.size() != 0) {
+
+                if (fiveWords.get(id).isSeen()) {
+                    next.setVisibility(View.INVISIBLE);
+                    translation_layout.setVisibility(View.INVISIBLE);
+                    button1.setVisibility(View.VISIBLE);
+                    button2.setVisibility(View.VISIBLE);
+                    button3.setVisibility(View.VISIBLE);
+                    button4.setVisibility(View.VISIBLE);
+                    translationView.setText("");
+                    grammarView.setText("");
+                    pronunView.setText("");
+                    exampleView1.setText("");
+                    exampleView2.setText("");
+                    exampleView3.setText("");
+
+
+                    answers(view);
+                    settingQuestionButton();
+
+                }
+
+                /// IF ISSEEN IS FALSE IT WOULD SHOW WORDS WITH TRANSLATION
+                if (ia < fiveWords.size() && !fiveWords.get(ia).isSeen()) {
+                    // wordView.setText(fiveWords.get(ia).getWord());
+                    Toast.makeText(this, "IA: " + ia, Toast.LENGTH_SHORT).show();
+                    showWords(ia);
+                    ia++;
+                }
+
+                // IF ID EQUALS TO FIVEWORDS SIZE ID WOULD SET TO ZERO.
+                if (id == fiveWords.size()) {
+                    id = 0;
+
+                }
+
+            }
+
+
+            //----------
         }
 
-        /// IF SEEN IT TRUE THEN IT WOULD START TO ASK QUESTION
-        if (id < fiveWords.size()  && fiveWords.size() != 0) {
-
-            if (fiveWords.get(id).isSeen()) {
-                next.setVisibility(View.INVISIBLE);
-                translation_layout.setVisibility(View.INVISIBLE);
-                button1.setVisibility(View.VISIBLE);
-                button2.setVisibility(View.VISIBLE);
-                button3.setVisibility(View.VISIBLE);
-                button4.setVisibility(View.VISIBLE);
-                translationView.setText("");
-                grammarView.setText("");
-                pronunView.setText("");
-                exampleView1.setText("");
-                exampleView2.setText("");
-                exampleView3.setText("");
-
-
-                answers(view);
-                settingQuestionButton();
-
-            }
-
-            /// IF ISSEEN IS FALSE IT WOULD SHOW WORDS WITH TRANSLATION
-            if (ia < fiveWords.size() && !fiveWords.get(ia).isSeen()) {
-                // wordView.setText(fiveWords.get(ia).getWord());
-                Toast.makeText(this, "IA: " + ia, Toast.LENGTH_SHORT).show();
-                showWords(ia);
-                ia++;
-            }
-
-            // IF ID EQUALS TO FIVEWORDS SIZE ID WOULD SET TO ZERO.
-            if (id == fiveWords.size()) {
-                id = 0;
-
-            }
-
-        }}
+}
 
     public void showWords(int index) {
         next.setVisibility(View.VISIBLE);
@@ -167,11 +181,13 @@ public class Train extends AppCompatActivity {
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
         wordView.setText(fiveWords.get(index).getWord());
+
         pronunView.setText(fiveWords.get(index).getPronun());
         grammarView.setText(fiveWords.get(index).getGrammar());
         exampleView1.setText(fiveWords.get(index).getExample1());
         exampleView2.setText(fiveWords.get(index).getExample2());
         exampleView3.setText(fiveWords.get(index).getExample3());
+
         fiveWords.get(index).setSeen(true);
     }
 
@@ -203,7 +219,7 @@ public class Train extends AppCompatActivity {
                 countView.setText(fiveWords.get(id).getCount() + " ");
                 id++;
             } else {
-                showAnswer(fiveWords.get(id).getTranslation());
+                showAnswer(fiveWords.get(id));
                 // Toast.makeText(this,"Wrong ",Toast.LENGTH_SHORT).show();
 
             }
@@ -218,7 +234,7 @@ public class Train extends AppCompatActivity {
                 id++;
 
             } else {
-                showAnswer(fiveWords.get(id).getTranslation());
+                showAnswer(fiveWords.get(id));
             }
         }
         if (view.getId() == button3.getId()) {
@@ -230,7 +246,7 @@ public class Train extends AppCompatActivity {
                 id++;
 
             } else {
-                showAnswer(fiveWords.get(id).getTranslation());
+                showAnswer(fiveWords.get(id));
             }
         }
         if (view.getId() == button4.getId()) {
@@ -242,7 +258,7 @@ public class Train extends AppCompatActivity {
                 id++;
 
             } else {
-                showAnswer(fiveWords.get(id).getTranslation());
+                showAnswer(fiveWords.get(id));
             }
         }
         if (id == fiveWords.size()) {
@@ -253,18 +269,31 @@ public class Train extends AppCompatActivity {
     }
 
     // This gets called when you have answered a wrong answer
-    public void showAnswer(String wordAnswer) {
+
+    public void showAnswer(Word wordAnswer) {
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         fakeNext.setVisibility(View.VISIBLE);
-        translationView.setText(wordAnswer);
+
+        translationView.setText(wordAnswer.getTranslation());
+        pronunView.setText(wordAnswer.getPronun());
+        grammarView.setText(wordAnswer.getGrammar());
+        exampleView1.setText(wordAnswer.getExample1());
+        exampleView2.setText(wordAnswer.getExample2());
+        exampleView3.setText(wordAnswer.getExample3());
+
+        translation_layout.setVisibility(View.VISIBLE);
+
+        wrongAnswerAnimation();
 
     }
 
+
     // DummyNext
     public void dummyNext(View view) {
+        translation_layout.setVisibility(View.INVISIBLE);
         button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
@@ -423,10 +452,13 @@ public class Train extends AppCompatActivity {
     }
 
     private void gettingResources() {
+
+
+        train_land = (ImageView)findViewById(R.id.train_land);
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         String level = sp.getString("level","beginner");
 
-        if(level == "beginner"){
+        if(level.equalsIgnoreCase("beginner") ){
 
             train_land.setImageResource(R.drawable.beginner_ful_land2);
             wordArray = getResources().getStringArray(R.array.beginner_words);
@@ -437,8 +469,9 @@ public class Train extends AppCompatActivity {
             example2Array = getResources().getStringArray(R.array.beginner_example2);
             example3Array = getResources().getStringArray(R.array.beginner_example3);
 
+
         }
-        if(level == "intermediate"){
+        else if(level.equalsIgnoreCase("intermediate")){
 
             train_land.setImageResource(R.drawable.new_intermediate);
             wordArray = getResources().getStringArray(R.array.intermediate_words);
@@ -450,7 +483,7 @@ public class Train extends AppCompatActivity {
             example3Array = getResources().getStringArray(R.array.intermediate_example3);
 
         }
-        if(level == "advanced"){
+        else if(level.equalsIgnoreCase("advanced")){
 
             train_land.setImageResource(R.drawable.new_advance);
             wordArray = getResources().getStringArray(R.array.advanced_words);
@@ -462,7 +495,6 @@ public class Train extends AppCompatActivity {
             example3Array = getResources().getStringArray(R.array.advanced_example3);
 
         }
-
 
 
 
@@ -490,8 +522,8 @@ public class Train extends AppCompatActivity {
         });
 
 
-        va.setInterpolator(new FastOutSlowInInterpolator());
-        va.setDuration(1000);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setDuration(500L);
         va.start();
 
         ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
@@ -507,8 +539,8 @@ public class Train extends AppCompatActivity {
         });
 
 
-        va.setInterpolator(new FastOutSlowInInterpolator());
-        va.setDuration(1000);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setDuration(500L);
         va.start();
 
 
@@ -546,37 +578,65 @@ public class Train extends AppCompatActivity {
 
 
 
-    private void answerButtonAnimation(){
-        float alpha = train_land.getAlpha();
 
-        ValueAnimator va = ValueAnimator.ofFloat(alpha,0);
+
+
+
+
+    private void wrongAnswerAnimation(){
+
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        float width = dm.widthPixels;
+        float height = dm.heightPixels;
+
+        ValueAnimator va = ValueAnimator.ofFloat(width,0);
 
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
 
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
-                float value = (float) valueAnimator.getAnimatedValue();
-                button1.setAlpha(value);
-                button2.setAlpha(value);
-                button3.setAlpha(value);
-                button4.setAlpha(value);
-
+                float value = (float)valueAnimator.getAnimatedValue();
+                fakeNext.setTranslationX(value);
             }
         });
 
 
-        va.setRepeatMode(ValueAnimator.REVERSE);
-        va.setRepeatCount(1);
-        va.setDuration(400L);
+        va.setInterpolator(new FastOutSlowInInterpolator());
+        va.setDuration(500L);
         va.start();
+
+        ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float)valueAnimator.getAnimatedValue();
+                translation_layout.setTranslationY(value/2);
+            }
+        });
+
+
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setDuration(500L);
+        va.start();
+
+
+
+
+
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
 
 
 

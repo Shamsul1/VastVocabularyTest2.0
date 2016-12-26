@@ -30,6 +30,10 @@ public class StartTrainingActivity extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         String level = sp.getString("level","");
 
+
+
+
+
         initialization();
         levelPicker(level);
 
@@ -180,15 +184,20 @@ public class StartTrainingActivity extends AppCompatActivity {
 
     private void levelPicker(String level){
 
-        if(level == "beginner"){
+        if(level.equalsIgnoreCase("beginner") ){
+
             start_training_land.setImageResource(R.drawable.no_back_land1);
             title.setText("BEGINNER");
+
         }
-        if(level == "intermediate"){
+        else if(level.equalsIgnoreCase("intermediate")){
+
             start_training_land.setImageResource(R.drawable.intermediate_result);
             title.setText("INTERMEDIATE");
+
         }
-        if(level == "advanced"){
+       else if(level.equalsIgnoreCase("advanced")){
+
             start_training_land.setImageResource(R.drawable.advance_result);
             title.setText("ADVANCED");
         }
