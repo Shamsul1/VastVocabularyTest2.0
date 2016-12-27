@@ -48,6 +48,8 @@ public class Train extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
 
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        level = sp.getString("level","beginner");
 
         // INITIALIZATION
 
@@ -56,6 +58,7 @@ public class Train extends AppCompatActivity {
         buttonInitializations();
         textViewInitializations();
 
+        Toast.makeText(this,level,Toast.LENGTH_SHORT).show();
 
         // INITIALIZING WORDS
         addingNewWords();
@@ -363,6 +366,7 @@ public class Train extends AppCompatActivity {
             sp.edit().putInt(level,COUNTWORDS).apply();
         }
         int countWords = sp.getInt(level,0);
+
         Toast.makeText(this, level+" "+countWords, Toast.LENGTH_SHORT).show();
 
 
@@ -396,6 +400,9 @@ public class Train extends AppCompatActivity {
         if(countWords >= words.size()){
             Toast.makeText(this, "There are no more Words", Toast.LENGTH_SHORT).show();
 
+            Intent intent = new Intent(this,NoWordLeft.class);
+            this.startActivity(intent);
+            this.finish();
         }
 
 
@@ -455,8 +462,7 @@ public class Train extends AppCompatActivity {
 
 
         train_land = (ImageView)findViewById(R.id.train_land);
-        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        String level = sp.getString("level","beginner");
+
 
         if(level.equalsIgnoreCase("beginner") ){
 

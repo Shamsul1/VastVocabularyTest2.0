@@ -17,7 +17,9 @@
         </activity>
         <activity android:name=".StartTrainingActivity" />
         <activity android:name=".Train" />
-        <activity android:name=".DisplayLearningScore"></activity>
+        <activity android:name=".DisplayLearningScore" />
+        <activity android:name=".NoWordLeft" />
+        <activity android:name=".SplashScreen"></activity>
     </application>
 
 </manifest>

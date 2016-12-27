@@ -44,6 +44,19 @@ public class DisplayLearningScore extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         String level = sp.getString("level", "beginner");
 
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+
+        int sharedLearned = sharedPreferences.getInt(level,0);
+
+        if(sharedLearned >= 5){
+            sharedLearned +=5;
+        }
+        if(sharedLearned <= 0){
+            sharedLearned = 5;
+        }
+        
+        sharedPreferences.edit().putInt(level,sharedLearned).apply();
+
 
 
 
