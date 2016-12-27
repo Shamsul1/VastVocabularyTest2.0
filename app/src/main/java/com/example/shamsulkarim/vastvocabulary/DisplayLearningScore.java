@@ -19,9 +19,9 @@ import android.widget.Toast;
 public class DisplayLearningScore extends AppCompatActivity {
 
     RelativeLayout new_learned_word, display_learned_word,word_info,learn_info, left_info;
-    ImageView display_learned_word_back;
+    private ImageView display_learned_word_back;
 
-    TextView word1,word2,word3, word4,word5,tran1, tran2,tran3,tran4,tran5;
+    TextView word1,word2,word3, word4,word5,tran1, tran2,tran3,tran4,tran5, word_displayscore,learn_displayscore, left_displayscore;
     String[] word,translation;
 
     int height;
@@ -35,6 +35,7 @@ public class DisplayLearningScore extends AppCompatActivity {
         textViewInitialization();
         layoutInitialization();
         initialSetUp();
+        animationDisplayScore();
 
         word = getIntent().getStringArrayExtra("word");
         translation = getIntent().getStringArrayExtra("translation");
@@ -54,6 +55,52 @@ public class DisplayLearningScore extends AppCompatActivity {
         if(sharedLearned <= 0){
             sharedLearned = 5;
         }
+
+
+
+        if(level.equalsIgnoreCase("beginner") ){
+
+            if(sharedLearned> getResources().getStringArray(R.array.beginner_words).length){
+                sharedLearned = getResources().getStringArray(R.array.beginner_words).length;
+
+
+            }
+
+            word_displayscore.setText(getResources().getStringArray(R.array.beginner_words).length+" words");
+            learn_displayscore.setText(sharedLearned+" words learned");
+            left_displayscore.setText(getResources().getStringArray(R.array.beginner_words).length-sharedLearned+" words left");
+
+        }
+        else if(level.equalsIgnoreCase("intermediate")){
+
+            if(sharedLearned> getResources().getStringArray(R.array.intermediate_words).length){
+
+                sharedLearned = getResources().getStringArray(R.array.intermediate_words).length;
+            }
+
+            word_displayscore.setText(getResources().getStringArray(R.array.intermediate_words).length+" words");
+            learn_displayscore.setText(sharedLearned+" words learned");
+            left_displayscore.setText(getResources().getStringArray(R.array.intermediate_words).length-sharedLearned+" words left");
+
+        }
+        else if(level.equalsIgnoreCase("advanced")){
+
+            if(sharedLearned> getResources().getStringArray(R.array.advanced_words).length){
+
+                sharedLearned = getResources().getStringArray(R.array.advanced_words).length;
+            }
+
+            word_displayscore.setText(getResources().getStringArray(R.array.advanced_words).length+" words");
+            learn_displayscore.setText(sharedLearned+" words learned");
+            left_displayscore.setText(getResources().getStringArray(R.array.advanced_words).length-sharedLearned+" words left");
+
+
+        }
+
+        if(sharedLearned> getResources().getStringArray(R.array.beginner_words).length){
+
+            sharedLearned = getResources().getStringArray(R.array.beginner_words).length;
+        }
         
         sharedPreferences.edit().putInt(level,sharedLearned).apply();
 
@@ -65,7 +112,7 @@ public class DisplayLearningScore extends AppCompatActivity {
 
     }
 
-    public void animationDisplayScore(View view){
+    public void animationDisplayScore(){
 
         display_learned_word.setY(-height);
         display_learned_word_back.setY(-height);
@@ -189,6 +236,10 @@ public class DisplayLearningScore extends AppCompatActivity {
         tran4 = (TextView)findViewById(R.id.tran4);
         tran5 = (TextView)findViewById(R.id.tran5);
 
+        word_displayscore = (TextView)findViewById(R.id.word_displayscore);
+        learn_displayscore = (TextView)findViewById(R.id.learned_displayscore);
+        left_displayscore = (TextView)findViewById(R.id.left_displayscore);
+
 
     }
 
@@ -200,6 +251,7 @@ public class DisplayLearningScore extends AppCompatActivity {
         learn_info =(RelativeLayout)findViewById(R.id.learn_info);
         left_info =(RelativeLayout)findViewById(R.id.left_info);
         display_learned_word_back = (ImageView)findViewById(R.id.display_learned_words_back);
+
 
 
     }
@@ -234,6 +286,15 @@ public class DisplayLearningScore extends AppCompatActivity {
         tran3.setText(translation[2]);
         tran4.setText(translation[3]);
         tran5.setText(translation[4]);
+
+
+    }
+
+    public void trainAgain(View view){
+        Intent intent = new Intent(this, Train.class);
+        this.startActivity(intent);
+        this.finish();
+
 
 
     }

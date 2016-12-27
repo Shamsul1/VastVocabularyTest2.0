@@ -49,7 +49,7 @@ public class Train extends AppCompatActivity {
         setContentView(R.layout.activity_train);
 
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        level = sp.getString("level","beginner");
+        level = sp.getString("level","NOTHING");
 
         // INITIALIZATION
 

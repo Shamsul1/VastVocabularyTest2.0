@@ -22,6 +22,7 @@ public class StartTrainingActivity extends AppCompatActivity {
     private TextView title,learned,left,words;
     private ImageView sun,start_training_Button, cloud1,cloud2,cloud3;
 
+    private int learnedWordCount,totalWordCount;
     ImageView start_training_land;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,10 @@ public class StartTrainingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_training);
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         String level = sp.getString("level","");
+         learnedWordCount = sp.getInt(level,0);
+
+
+
 
 
 
@@ -167,6 +172,7 @@ public class StartTrainingActivity extends AppCompatActivity {
     public void onStartTraining(View view){
         Intent intent = new Intent(this, Train.class);
         this.startActivity(intent);
+        this.finish();
     }
 
     private void initialization(){
@@ -186,20 +192,33 @@ public class StartTrainingActivity extends AppCompatActivity {
 
         if(level.equalsIgnoreCase("beginner") ){
 
+
+            totalWordCount = getResources().getStringArray(R.array.beginner_words).length;
             start_training_land.setImageResource(R.drawable.no_back_land1);
             title.setText("BEGINNER");
+            words.setText(totalWordCount+" words");
+            learned.setText(learnedWordCount+" words learned");
+            left.setText(totalWordCount-learnedWordCount+" words left");
 
         }
         else if(level.equalsIgnoreCase("intermediate")){
 
+            totalWordCount = getResources().getStringArray(R.array.intermediate_words).length;
             start_training_land.setImageResource(R.drawable.intermediate_result);
             title.setText("INTERMEDIATE");
+            words.setText(totalWordCount+" words");
+            learned.setText(learnedWordCount+" words learned");
+            left.setText(totalWordCount-learnedWordCount+" words left");
 
         }
        else if(level.equalsIgnoreCase("advanced")){
 
+            totalWordCount = getResources().getStringArray(R.array.advanced_words).length;
             start_training_land.setImageResource(R.drawable.advance_result);
             title.setText("ADVANCED");
+            words.setText(totalWordCount+" words");
+            learned.setText(learnedWordCount+" words learned");
+            left.setText(totalWordCount-learnedWordCount+" words left");
         }
     }
 

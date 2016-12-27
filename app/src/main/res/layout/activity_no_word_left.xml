@@ -52,7 +52,7 @@
 
         android:layout_width="200dp"
         app:srcCompat="@drawable/back"
-        android:id="@+id/imageButton"
+        android:id="@+id/home_button"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:layout_marginStart="16dp"
@@ -66,16 +66,18 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintVertical_bias="1.0"
         android:background="#2f3d4b"
-        android:layout_height="56dp" />
+        android:layout_height="56dp"
+        android:onClick="home_nomorewords" />
 
     <ImageView
+        android:onClick="reset"
         android:layout_width="200dp"
         android:layout_height="60dp"
         app:srcCompat="@drawable/back"
-        android:id="@+id/imageView"
+        android:id="@+id/reset"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -92,33 +94,33 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:textSize="21sp"
-        app:layout_constraintLeft_toLeftOf="@+id/imageButton"
-        app:layout_constraintRight_toRightOf="@+id/imageButton"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintLeft_toLeftOf="@+id/home_button"
+        app:layout_constraintRight_toRightOf="@+id/home_button"
+        app:layout_constraintBottom_toBottomOf="@+id/home_button"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.54" />
+        app:layout_constraintTop_toBottomOf="@+id/reset" />
 
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:srcCompat="@drawable/ic_home_active"
         android:id="@+id/imageView2"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintLeft_toLeftOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/home_button"
+        app:layout_constraintLeft_toLeftOf="@+id/home_button"
         app:layout_constraintRight_toLeftOf="@+id/textView3"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        app:layout_constraintTop_toTopOf="@+id/home_button"
+        app:layout_constraintHorizontal_bias="0.81" />
 
     <TextView
         android:text="RESET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        app:layout_constraintRight_toRightOf="@+id/imageView"
-        app:layout_constraintLeft_toLeftOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintRight_toRightOf="@+id/reset"
+        app:layout_constraintLeft_toLeftOf="@+id/reset"
+        app:layout_constraintTop_toTopOf="@+id/reset"
+        app:layout_constraintBottom_toBottomOf="@+id/reset"
         android:textSize="21sp" />
 </android.support.constraint.ConstraintLayout>

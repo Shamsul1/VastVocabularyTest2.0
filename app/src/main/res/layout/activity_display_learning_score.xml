@@ -257,6 +257,7 @@
             android:src="@drawable/ic_book_icon_78892"/>
 
         <TextView
+            android:id="@+id/word_displayscore"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/book_icon_display_score"
@@ -297,6 +298,8 @@
             android:src="@drawable/ic_learned_active"/>
 
         <TextView
+
+            android:id="@+id/learned_displayscore"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/learned_icon_display_score"
@@ -337,6 +340,8 @@
             android:src="@drawable/ic_learn_active"/>
 
         <TextView
+
+            android:id="@+id/left_displayscore"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/left_icon_display_score"
@@ -391,7 +396,7 @@
         android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
-        android:onClick="animationDisplayScore"
+        android:onClick="trainAgain"
         >
 
 
