@@ -198,163 +198,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-
-        android:id="@+id/new_words_learned"
-        android:layout_marginTop="-3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/actionbar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/back"
-            android:scaleType="fitXY"/>
-
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="New 5 words learned"
-            android:textColor="#000"
-            android:gravity="center"
-            android:textSize="28sp"
-            android:fontFamily="sans-serif-condensed"
-            android:textAllCaps="true"
-
-            />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-
-        android:id="@+id/word_info"
-        android:layout_marginTop="-3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/new_words_learned"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/back"
-            android:scaleType="fitXY"/>
-
-
-        <ImageView
-
-            android:id="@+id/book_icon_display_score"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_book_icon_78892"/>
-
-        <TextView
-            android:id="@+id/word_displayscore"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/book_icon_display_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="150 words"
-            android:textSize="20sp"
-            />
-    </RelativeLayout>
-
-
-
-
-    <RelativeLayout
-
-
-        android:id="@+id/learn_info"
-        android:layout_marginTop="-3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/word_info"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/back"
-            android:scaleType="fitXY"/>
-
-
-        <ImageView
-
-            android:id="@+id/learned_icon_display_score"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_learned_active"/>
-
-        <TextView
-
-            android:id="@+id/learned_displayscore"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/learned_icon_display_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50 words learned"
-            android:textSize="20sp"
-            />
-    </RelativeLayout>
-
-
-
-
-
-    <RelativeLayout
-
-        android:id="@+id/left_info"
-        android:layout_marginTop="-3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_below="@id/learn_info"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/back"
-            android:scaleType="fitXY"/>
-
-
-        <ImageView
-
-            android:id="@+id/left_icon_display_score"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_learn_active"/>
-
-        <TextView
-
-            android:id="@+id/left_displayscore"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/left_icon_display_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="100 words left"
-            android:textSize="20sp"
-            />
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
         android:id="@+id/go_home_display_score"
         android:layout_margin="5dp"
         android:layout_width="200dp"
@@ -414,6 +257,7 @@
             android:textSize="21sp"
             android:textColor="#000"
             />
+
     </RelativeLayout>
 
 
@@ -443,4 +287,43 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/session_completed_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/stipe"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/session_completed"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/sessioncompleted"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:id="@+id/big_star"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bigstar"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/session_completed"
+        />
+    <ImageView
+        android:id="@+id/small_star1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/smallstar"
+        android:layout_above="@id/session_completed"
+        android:layout_toLeftOf="@+id/big_star"
+        />
+
+    <ImageView
+        android:id="@+id/small_star2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/smallstar"
+        android:layout_above="@id/session_completed"
+        android:layout_toRightOf="@+id/big_star"
+        />
 </RelativeLayout>

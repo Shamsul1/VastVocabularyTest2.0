@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,10 +19,10 @@ import android.widget.Toast;
 
 public class DisplayLearningScore extends AppCompatActivity {
 
-    RelativeLayout new_learned_word, display_learned_word,word_info,learn_info, left_info;
-    private ImageView display_learned_word_back;
+    RelativeLayout  display_learned_word;
+    private ImageView display_learned_word_back, small_star1,small_star2,big_star,session_completed,session_completed_background;
 
-    TextView word1,word2,word3, word4,word5,tran1, tran2,tran3,tran4,tran5, word_displayscore,learn_displayscore, left_displayscore;
+    TextView word1,word2,word3, word4,word5,tran1, tran2,tran3,tran4,tran5;
     String[] word,translation;
 
     int height;
@@ -32,9 +33,12 @@ public class DisplayLearningScore extends AppCompatActivity {
 
         // INITIALIZATION
 
+
         textViewInitialization();
         layoutInitialization();
         initialSetUp();
+
+
         animationDisplayScore();
 
         word = getIntent().getStringArrayExtra("word");
@@ -57,50 +61,6 @@ public class DisplayLearningScore extends AppCompatActivity {
         }
 
 
-
-        if(level.equalsIgnoreCase("beginner") ){
-
-            if(sharedLearned> getResources().getStringArray(R.array.beginner_words).length){
-                sharedLearned = getResources().getStringArray(R.array.beginner_words).length;
-
-
-            }
-
-            word_displayscore.setText(getResources().getStringArray(R.array.beginner_words).length+" words");
-            learn_displayscore.setText(sharedLearned+" words learned");
-            left_displayscore.setText(getResources().getStringArray(R.array.beginner_words).length-sharedLearned+" words left");
-
-        }
-        else if(level.equalsIgnoreCase("intermediate")){
-
-            if(sharedLearned> getResources().getStringArray(R.array.intermediate_words).length){
-
-                sharedLearned = getResources().getStringArray(R.array.intermediate_words).length;
-            }
-
-            word_displayscore.setText(getResources().getStringArray(R.array.intermediate_words).length+" words");
-            learn_displayscore.setText(sharedLearned+" words learned");
-            left_displayscore.setText(getResources().getStringArray(R.array.intermediate_words).length-sharedLearned+" words left");
-
-        }
-        else if(level.equalsIgnoreCase("advanced")){
-
-            if(sharedLearned> getResources().getStringArray(R.array.advanced_words).length){
-
-                sharedLearned = getResources().getStringArray(R.array.advanced_words).length;
-            }
-
-            word_displayscore.setText(getResources().getStringArray(R.array.advanced_words).length+" words");
-            learn_displayscore.setText(sharedLearned+" words learned");
-            left_displayscore.setText(getResources().getStringArray(R.array.advanced_words).length-sharedLearned+" words left");
-
-
-        }
-
-        if(sharedLearned> getResources().getStringArray(R.array.beginner_words).length){
-
-            sharedLearned = getResources().getStringArray(R.array.beginner_words).length;
-        }
         
         sharedPreferences.edit().putInt(level,sharedLearned).apply();
 
@@ -117,14 +77,16 @@ public class DisplayLearningScore extends AppCompatActivity {
         display_learned_word.setY(-height);
         display_learned_word_back.setY(-height);
 
+        sessionCompletedAnimation();
+        sessionCompletedAnimationScale();
+
         Handler handler = new Handler();
 
-        comeIn();
+
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                comeOut();
                 comeInWords();
 
             }
@@ -134,53 +96,9 @@ public class DisplayLearningScore extends AppCompatActivity {
     }
 
 
-    public void comeIn(){
-        ValueAnimator va = ValueAnimator.ofFloat(-height,0);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
 
 
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                float value = (float) valueAnimator.getAnimatedValue();
-                new_learned_word.setTranslationY(value);
-                word_info.setTranslationY(value);
-                learn_info.setTranslationY(value);
-                left_info.setTranslationY(value);
 
-
-            }
-        });
-
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(400L);
-        va.start();
-
-
-    }
-
-    private void comeOut(){
-        ValueAnimator va = ValueAnimator.ofFloat( 0,-height);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float) valueAnimator.getAnimatedValue();
-                new_learned_word.setTranslationY(value);
-                word_info.setTranslationY(value);
-                learn_info.setTranslationY(value);
-                left_info.setTranslationY(value);
-
-
-            }
-        });
-
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(400L);
-        va.start();
-    }
 
     private void comeInWords(){
 
@@ -236,21 +154,19 @@ public class DisplayLearningScore extends AppCompatActivity {
         tran4 = (TextView)findViewById(R.id.tran4);
         tran5 = (TextView)findViewById(R.id.tran5);
 
-        word_displayscore = (TextView)findViewById(R.id.word_displayscore);
-        learn_displayscore = (TextView)findViewById(R.id.learned_displayscore);
-        left_displayscore = (TextView)findViewById(R.id.left_displayscore);
-
 
     }
 
     private void layoutInitialization(){
 
-        new_learned_word = (RelativeLayout)findViewById(R.id.new_words_learned);
         display_learned_word = (RelativeLayout)findViewById(R.id.display_learned_words);
-        word_info =(RelativeLayout)findViewById(R.id.word_info);
-        learn_info =(RelativeLayout)findViewById(R.id.learn_info);
-        left_info =(RelativeLayout)findViewById(R.id.left_info);
         display_learned_word_back = (ImageView)findViewById(R.id.display_learned_words_back);
+
+        small_star1 = (ImageView)findViewById(R.id.small_star1);
+        small_star2 = (ImageView)findViewById(R.id.small_star2);
+        big_star = (ImageView)findViewById(R.id.big_star);
+        session_completed = (ImageView)findViewById(R.id.session_completed);
+        session_completed_background = (ImageView)findViewById(R.id.session_completed_background);
 
 
 
@@ -262,11 +178,8 @@ public class DisplayLearningScore extends AppCompatActivity {
         height = dm.heightPixels;
 
         display_learned_word_back.setY(-height);
-        new_learned_word.setY(-height);
         display_learned_word.setY(-height);
-        word_info.setY(-height);
-        left_info.setY(-height);
-        learn_info.setY(-height);
+
 
 
         word = getIntent().getStringArrayExtra("word");
@@ -294,6 +207,84 @@ public class DisplayLearningScore extends AppCompatActivity {
         Intent intent = new Intent(this, Train.class);
         this.startActivity(intent);
         this.finish();
+
+
+
+    }
+
+
+
+    public void sessionCompletedAnimation(){
+
+
+
+        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value  = (float)valueAnimator.getAnimatedValue();
+
+
+
+                session_completed_background.setAlpha(value/2);
+                big_star.setAlpha(value);
+                small_star1.setAlpha(value);
+                small_star2.setAlpha(value);
+                session_completed.setAlpha(value);
+
+
+
+            }
+        });
+        va.setRepeatMode(ValueAnimator.REVERSE);
+        va.setRepeatCount(1);
+        va.setDuration(2000L);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.start();
+
+
+
+
+    }
+
+    public void sessionCompletedAnimationScale(){
+
+
+        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value  = (float)valueAnimator.getAnimatedValue();
+
+
+
+                session_completed.setScaleX(value);
+                session_completed.setScaleY(value);
+                big_star.setScaleX(value);
+                big_star.setScaleY(value);
+                small_star1.setScaleY(value);
+                small_star1.setScaleY(value);
+                small_star2.setScaleY(value);
+                small_star2.setScaleY(value);
+
+
+
+
+            }
+        });
+
+
+        va.setDuration(2000L);
+        va.setInterpolator(new AnticipateOvershootInterpolator());
+        va.start();
 
 
 
