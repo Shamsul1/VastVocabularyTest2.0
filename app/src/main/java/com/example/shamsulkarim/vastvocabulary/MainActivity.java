@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.words:
+                Wordactivity wordFragment = new Wordactivity();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
 
                 homeView.setImageResource(R.drawable.ic_home);
                 wordsView.setImageResource(R.drawable.ic_learn_active);
@@ -83,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 settingsView.setImageResource(R.drawable.ic_setting);
                 break;
             case R.id.learned:
+                LearnedWords learnedWords = new LearnedWords();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
 
                 homeView.setImageResource(R.drawable.ic_home);
                 wordsView.setImageResource(R.drawable.ic_learn);
@@ -91,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.settings:
+
+                FavoriteWords favoriteWords = new FavoriteWords();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
 
                 homeView.setImageResource(R.drawable.ic_home);
                 wordsView.setImageResource(R.drawable.ic_learn);

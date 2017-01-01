@@ -23,6 +23,11 @@ public class Word {
         this.example3 = example3;
     }
 
+    public Word(String word, String translation, String pronun, String grammar, String example1) {
+        this(word,translation,pronun,grammar,example1,"","");
+
+    }
+
     public String getPronun() {
         return pronun;
     }

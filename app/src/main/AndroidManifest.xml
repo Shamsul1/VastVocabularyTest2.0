@@ -19,7 +19,8 @@
         <activity android:name=".Train" />
         <activity android:name=".DisplayLearningScore" />
         <activity android:name=".NoWordLeft" />
-        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".Wordactivity"></activity>
     </application>
 
 </manifest>
