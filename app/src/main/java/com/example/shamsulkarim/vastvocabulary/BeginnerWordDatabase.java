@@ -50,11 +50,11 @@ public class BeginnerWordDatabase extends SQLiteOpenHelper{
 
     }
 
-    public boolean insertData(String word, String fav, String learned){
+    public boolean insertData(String wordNo, String fav, String learned){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL2,word);
+        cv.put(COL2,wordNo);
         cv.put(COL3,fav);
         cv.put(COL4,learned);
 
