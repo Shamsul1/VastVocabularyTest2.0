@@ -8,15 +8,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private BeginnerWordDatabase beginnerDatabase;
+    private IntermediatewordDatabase intermediateDatabase;
+    private AdvancedWordDatabase advanceDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        addBeginnerWordToSQLite();
+        addIntermediateWordToSQLite();
+        addAdvanceWordToSQLite();
+
         ImageView homeView = (ImageView)findViewById(R.id.home);
 
         HomeFragment homeFragment = new HomeFragment();
@@ -110,6 +124,150 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+    private void addBeginnerWordToSQLite(){
+        beginnerDatabase = new BeginnerWordDatabase(this);
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
+
+
+        if(!sp.contains("beginnerWordCount")){
+            final int beginnerWordLength = getResources().getStringArray(R.array.beginner_words).length;
+            sp.edit().putInt("beginnerWordCount",beginnerWordLength).apply();
+
+            for(int i = 0; i < beginnerWordLength; i++){
+
+                beginnerDatabase.insertData(""+i,"false","false");
+
+            }
+
+        }
+        int PREVIOUSBEGINNERCOUNT = sp.getInt("beginnerWordCount",0);
+        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.beginner_words).length;
+
+
+
+        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
+
+
+            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
+
+                beginnerDatabase.insertData(""+i,"false","false");
+
+
+
+
+            }
+            sp.edit().putInt("beginnerWordCount",CURRENTBEGINNERCOUNT).apply();
+
+
+
+
+        }else {
+
+
+
+        }
+
+
+
+
+
+
+
+    }
+
+    private void addIntermediateWordToSQLite(){
+        intermediateDatabase = new IntermediatewordDatabase(this);
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
+
+        if(!sp.contains("intermediateWordCount")){
+            final int intermediateWordLength = getResources().getStringArray(R.array.intermediate_words).length;
+            sp.edit().putInt("intermediateWordCount",intermediateWordLength).apply();
+
+            for(int i = 0; i < intermediateWordLength; i++){
+
+                intermediateDatabase.insertData(""+i,"false","false");
+
+            }
+
+        }
+        int PREVIOUSBEGINNERCOUNT = sp.getInt("intermediateWordCount",0);
+        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.intermediate_words).length;
+
+        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
+
+            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
+
+                intermediateDatabase.insertData(""+i,"false","false");
+
+            }
+            sp.edit().putInt("intermediateWordCount",CURRENTBEGINNERCOUNT).apply();
+
+
+
+
+        }else {
+
+
+
+
+        }
+
+    }
+
+    private void addAdvanceWordToSQLite(){
+        advanceDatabase = new AdvancedWordDatabase(this);
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
+
+
+        if(!sp.contains("advanceWordCount")){
+            final int advanceWordLength = getResources().getStringArray(R.array.advanced_words).length;
+            sp.edit().putInt("advanceWordCount",advanceWordLength).apply();
+
+            for(int i = 0; i < advanceWordLength; i++){
+
+                advanceDatabase.insertData(""+i,"false","false");
+
+            }
+
+        }
+        int PREVIOUSBEGINNERCOUNT = sp.getInt("advanceWordCount",0);
+        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.advanced_words).length;
+
+
+        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
+
+
+            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
+
+                advanceDatabase.insertData(""+i,"false","false");
+
+
+
+
+            }
+            sp.edit().putInt("advanceWordCount",CURRENTBEGINNERCOUNT).apply();
+
+
+
+
+        }else {
+
+
+
+        }
+
+
+
+
+
+
+
+    }
+
 
 
 

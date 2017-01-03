@@ -4,21 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
+
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Switch;
+
 import android.widget.Toast;
+
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.IntermediateAdapter;
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.WordRecyclerViewAdapter;
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.advanceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +31,7 @@ public class Wordactivity extends Fragment {
 
 MaterialSpinner spinner;
 
-    private BeginnerWordDatabase beginnerDatabase;
-    private IntermediatewordDatabase intermediateDatabase;
-    private AdvancedWordDatabase advanceDatabase;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -44,9 +43,27 @@ MaterialSpinner spinner;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_wordactivity,container,false);
 
+        int spinnerPos = 0;
+        SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
+
         spinnerInitializatin(v);
         beginnerWordInitialization();
-        addBeginnerWordToSQLite();
+
+
+        if(!sp.contains("spinnerPosition")){
+
+            sp.edit().putInt("spinnerPosition",0).apply();
+
+        }else {
+
+            spinnerPos = sp.getInt("spinnerPosition",0);
+            spinner.setSelection(spinnerPos);
+
+        }
+
+
+
+
 
 
 
@@ -57,13 +74,17 @@ MaterialSpinner spinner;
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
+                sp.edit().putInt("spinnerPosition",adapterView.getSelectedItemPosition()).apply();
                 switch (adapterView.getSelectedItemPosition()){
 
                     case 1:
                         beginnerWordInitialization2(getView());
+
                         break;
                     case 2:
                         intermediateWordInitialization(getView());
+
                         break;
                     case 3:
                         advanceWordInitialization(getView());
@@ -101,148 +122,6 @@ MaterialSpinner spinner;
 
 
 
-    private void addBeginnerWordToSQLite(){
-        beginnerDatabase = new BeginnerWordDatabase(getContext());
-        SharedPreferences sp = getActivity().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-
-
-        if(!sp.contains("beginnerWordCount")){
-            final int beginnerWordLength = getResources().getStringArray(R.array.beginner_words).length;
-            sp.edit().putInt("beginnerWordCount",beginnerWordLength).apply();
-
-            for(int i = 0; i < beginnerWordLength; i++){
-
-                beginnerDatabase.insertData(""+i,"false","false");
-
-            }
-
-        }
-        int PREVIOUSBEGINNERCOUNT = sp.getInt("beginnerWordCount",0);
-        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.beginner_words).length;
-
-        Toast.makeText(getContext(),"prev: "+PREVIOUSBEGINNERCOUNT+" current: "+CURRENTBEGINNERCOUNT,Toast.LENGTH_SHORT).show();
-
-        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
-
-
-            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
-
-                beginnerDatabase.insertData(""+i,"false","false");
-
-
-
-
-            }
-            sp.edit().putInt("beginnerWordCount",CURRENTBEGINNERCOUNT).apply();
-
-            Toast.makeText(getContext(),PREVIOUSBEGINNERCOUNT-CURRENTBEGINNERCOUNT+" word added",Toast.LENGTH_SHORT).show();
-
-
-        }else {
-
-            Toast.makeText(getContext(),"NO new words added",Toast.LENGTH_SHORT).show();
-
-
-        }
-
-
-
-
-
-
-
-    }
-
-    private void addIntermediateWordToSQLite(){
-        intermediateDatabase = new IntermediatewordDatabase(getContext());
-        SharedPreferences sp = getActivity().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-
-        if(!sp.contains("intermediateWordCount")){
-            final int intermediateWordLength = getResources().getStringArray(R.array.intermediate_words).length;
-            sp.edit().putInt("intermediateWordCount",intermediateWordLength).apply();
-
-            for(int i = 0; i < intermediateWordLength; i++){
-
-                intermediateDatabase.insertData(""+i,"false","false");
-
-            }
-
-        }
-        int PREVIOUSBEGINNERCOUNT = sp.getInt("intermediateWordCount",0);
-        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.intermediate_words).length;
-
-        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
-
-            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
-
-                intermediateDatabase.insertData(""+i,"false","false");
-
-            }
-            sp.edit().putInt("intermediateWordCount",CURRENTBEGINNERCOUNT).apply();
-
-
-
-
-        }else {
-
-            Toast.makeText(getContext(),"NO new words added intermediate",Toast.LENGTH_SHORT).show();
-
-
-        }
-
-    }
-
-    private void addAdvanceWordToSQLite(){
-        advanceDatabase = new AdvancedWordDatabase(getContext());
-        SharedPreferences sp = getActivity().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-
-
-        if(!sp.contains("advanceWordCount")){
-            final int advanceWordLength = getResources().getStringArray(R.array.advanced_words).length;
-            sp.edit().putInt("advanceWordCount",advanceWordLength).apply();
-
-            for(int i = 0; i < advanceWordLength; i++){
-
-                advanceDatabase.insertData(""+i,"false","false");
-
-            }
-
-        }
-        int PREVIOUSBEGINNERCOUNT = sp.getInt("advanceWordCount",0);
-        int CURRENTBEGINNERCOUNT = getResources().getStringArray(R.array.advanced_words).length;
-
-
-        if(CURRENTBEGINNERCOUNT > PREVIOUSBEGINNERCOUNT){
-
-
-            for(int i = PREVIOUSBEGINNERCOUNT; i < CURRENTBEGINNERCOUNT; i++){
-
-                advanceDatabase.insertData(""+i,"false","false");
-
-
-
-
-            }
-            sp.edit().putInt("advanceWordCount",CURRENTBEGINNERCOUNT).apply();
-
-
-
-
-        }else {
-
-            Toast.makeText(getContext(),"NO new words added advance",Toast.LENGTH_SHORT).show();
-
-
-        }
-
-
-
-
-
-
-
-    }
-
 
 
 
@@ -271,7 +150,7 @@ MaterialSpinner spinner;
 
     private void spinnerInitializatin(View v){
 
-        String[] ITEMS = {"BEGINNER", "INTERMEDIATE", "ADVANCE"};
+        String[] ITEMS = {"Beginner", "Intermediate", "Advance"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ITEMS);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner = (MaterialSpinner)v.findViewById(R.id.spinner);
@@ -294,7 +173,7 @@ MaterialSpinner spinner;
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i]));
+            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginnr"));
 
         }
 
@@ -314,7 +193,7 @@ MaterialSpinner spinner;
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i]));
+            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner"));
 
         }
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_word);
@@ -339,7 +218,7 @@ MaterialSpinner spinner;
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i]));
+            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"intermediate"));
 
         }
 
@@ -348,7 +227,7 @@ MaterialSpinner spinner;
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter = new WordRecyclerViewAdapter(getContext(), words);
+        adapter = new IntermediateAdapter(getContext(), words);
         recyclerView.setAdapter(adapter);
 
 
@@ -365,7 +244,7 @@ MaterialSpinner spinner;
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i]));
+            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"advance"));
 
         }
 
@@ -374,7 +253,7 @@ MaterialSpinner spinner;
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        adapter = new WordRecyclerViewAdapter(getContext(), words);
+        adapter = new advanceAdapter(getContext(), words);
         recyclerView.setAdapter(adapter);
 
     }

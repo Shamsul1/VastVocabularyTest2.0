@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.WordRecyclerViewAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class LearnedWords extends Fragment {
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i]));
+            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"Level"));
 
         }
 

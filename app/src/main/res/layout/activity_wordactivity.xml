@@ -14,11 +14,14 @@
 
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="-10dp"
+        android:layout_below="@+id/actionbar"
         android:id="@+id/recycler_view_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <RelativeLayout
+        android:id="@+id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="56dp">
 
@@ -43,6 +46,19 @@
             app:ms_thickness="0dp"
             app:ms_arrowSize="16dp"
             app:ms_alignLabels="false"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Words"
+            android:textSize="20sp"
+            android:textColor="#191919"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textStyle="normal"
+
             />
 
 
