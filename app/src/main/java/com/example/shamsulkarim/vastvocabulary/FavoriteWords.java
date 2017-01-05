@@ -10,9 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.example.shamsulkarim.vastvocabulary.WordAdapters.advanceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +33,7 @@ public class FavoriteWords extends Fragment {
     IntermediatewordDatabase iDB;
 
     List<String> bWord,aWord,iWord;
+    List<Integer> bWordDatabasePosition, aWordDatabasePosition, iWordDatabasePosition;
 
     @Nullable
     @Override
@@ -50,6 +48,9 @@ public class FavoriteWords extends Fragment {
         bWord = new ArrayList<>();
         aWord = new ArrayList<>();
         iWord = new ArrayList<>();
+        bWordDatabasePosition = new ArrayList<>();
+        aWordDatabasePosition = new ArrayList<>();
+        iWordDatabasePosition = new ArrayList<>();
 
         getFavoriteWordRes();
         addFavoriteWord();
@@ -92,42 +93,87 @@ public class FavoriteWords extends Fragment {
         while (aRes.moveToNext()){
 
             aWord.add(aRes.getString(2));
+            int pos = (Integer) aRes.getInt(0);
+            aWordDatabasePosition.add(pos);
 
         }
 
         while (bRes.moveToNext()){
 
             bWord.add(bRes.getString(2));
+            int pos = (Integer) bRes.getInt(0);
+            bWordDatabasePosition.add(pos);
 
         }
 
         while (iRes.moveToNext()){
 
             iWord.add(iRes.getString(2));
+            int pos = (Integer) iRes.getInt(0);
+            iWordDatabasePosition.add(pos);
 
         }
     }
 
     private void addFavoriteWord(){
 
-        String[] wordArray = getResources().getStringArray(R.array.advanced_words);
-        String[] translationArray = getResources().getStringArray(R.array.advanced_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.advanced_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.advanced_example1);
-        String[] exampleArray2 = getResources().getStringArray(R.array.advanced_example2);
-        String[] exampleArray3 = getResources().getStringArray(R.array.advanced_example3);
+        String[] advanceWordArray = getResources().getStringArray(R.array.advanced_words);
+        String[] advanceTranslationArray = getResources().getStringArray(R.array.advanced_translation);
+        String[] advanceGrammarArray = getResources().getStringArray(R.array.advanced_grammar);
+        String[] advancePronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
+        String[] advanceExampleArray1 = getResources().getStringArray(R.array.advanced_example1);
+        String[] advanceExampleArray2 = getResources().getStringArray(R.array.advanced_example2);
+        String[] advanceExampleArray3 = getResources().getStringArray(R.array.advanced_example3);
+
+        String[] beginnerWordArray = getResources().getStringArray(R.array.beginner_words);
+        String[] beginnerTranslationArray = getResources().getStringArray(R.array.beginner_translation);
+        String[] beginnerGrammarArray = getResources().getStringArray(R.array.beginner_grammar);
+        String[] beginnerPronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
+        String[] beginnerExampleArray1 = getResources().getStringArray(R.array.beginner_example1);
+        String[] beginnerExampleArray2 = getResources().getStringArray(R.array.beginner_example2);
+        String[] beginnerExampleArray3 = getResources().getStringArray(R.array.beginner_example3);
+
+        String[] intermediateWordArray = getResources().getStringArray(R.array.intermediate_words);
+        String[] intermediateTranslationArray = getResources().getStringArray(R.array.intermediate_translation);
+        String[] intermediateGrammarArray = getResources().getStringArray(R.array.intermediate_grammar);
+        String[] intermediatePronunciationArray = getResources().getStringArray(R.array.intermediate_pronunciation);
+        String[] intermediateExampleArray1 = getResources().getStringArray(R.array.intermediate_example1);
+        String[] intermediateExampleArray2 = getResources().getStringArray(R.array.intermediate_example2);
+        String[] intermediateExampleArray3 = getResources().getStringArray(R.array.intermediate_example3);
+
+
 
 
         for(int i = 0; i < aWord.size(); i++){
 
             if(aWord.get(i).equalsIgnoreCase("True")){
 
-                Word word = new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"Advanced");
+                Word word = new Word(advanceWordArray[i],advanceTranslationArray[i],advancePronunciationArray[i],advanceGrammarArray[i],advanceExampleArray1[i],advanceExampleArray2[i],advanceExampleArray3[i],aWordDatabasePosition.get(i),"Advance");
                 words.add(word);
 
             }
 
+        }
+
+        for(int i =0 ; i < bWord.size(); i++){
+
+            if(bWord.get(i).equalsIgnoreCase("True")){
+
+                Word word = new Word(beginnerWordArray[i],beginnerTranslationArray[i],beginnerPronunciationArray[i],beginnerGrammarArray[i],beginnerExampleArray1[i],beginnerExampleArray2[i],beginnerExampleArray3[i],bWordDatabasePosition.get(i),"Beginner");
+
+                words.add(word);
+            }
+
+        }
+
+        for(int i =0 ; i < iWord.size(); i++){
+
+            if(iWord.get(i).equalsIgnoreCase("True")){
+
+                Word word = new Word(intermediateWordArray[i],intermediateTranslationArray[i],intermediatePronunciationArray[i],intermediateGrammarArray[i],intermediateExampleArray1[i],intermediateExampleArray2[i],intermediateExampleArray3[i],iWordDatabasePosition.get(i),"Intermediate");
+                words.add(word);
+
+            }
 
         }
 

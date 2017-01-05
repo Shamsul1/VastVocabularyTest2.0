@@ -24,11 +24,20 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
     List<Boolean> isFav = new ArrayList<>();
     List<Word> words = new ArrayList<>();
     Context context;
+    AdvancedWordDatabase aDb;
+    BeginnerWordDatabase bDb;
+    IntermediatewordDatabase iDb;
 
 
     public FavoriteRecyclerViewAdapter(Context context, List<Word> words) {
         this.context = context;
         this.words = words;
+
+        aDb = new AdvancedWordDatabase(context);
+        bDb = new BeginnerWordDatabase(context);
+        iDb = new IntermediatewordDatabase(context);
+
+
         addFav();
     }
 
@@ -38,7 +47,7 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
         for(int i = 0; i < 12; i++){
 
-            isFav.add(false);
+            isFav.add(true);
 
 
 
@@ -125,22 +134,62 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
 
 
-            Toast.makeText(view.getContext(), "Hello",Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(),"level: "+words.get(getAdapterPosition()).level+ "DatabasePosition: "+words.get(getAdapterPosition()).databasePosition,Toast.LENGTH_SHORT).show();
 
             if(view.getId() == R.id.favorite_favorite){
 
 
                 if(favorite.getTag() == null){
 
-                    isFav.set(getAdapterPosition(),true);
-
-                    favorite.setImageResource(R.drawable.love);
-                    favorite.setTag(R.drawable.love);
-                }else {
-
                     favorite.setImageResource(R.drawable.nolove);
                     favorite.setTag(null);
-                   isFav.set(getAdapterPosition(),false);
+                    isFav.set(getAdapterPosition(),false);
+
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){
+
+                        bDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","False");
+                    }
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("intermediate")){
+                        iDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","False");
+
+                    }
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("advance")){
+
+                        aDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","False");
+
+
+                    }
+
+
+
+
+
+                }else {
+
+                    isFav.set(getAdapterPosition(),true);
+                    favorite.setImageResource(R.drawable.love);
+                    favorite.setTag(R.drawable.love);
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){
+
+                        bDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","True");
+                    }
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("interediate")){
+                        iDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","True");
+
+                    }
+
+                    if(words.get(getAdapterPosition()).level.equalsIgnoreCase("advance")){
+
+                        aDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","True");
+
+
+                    }
+
                 }
 
 
