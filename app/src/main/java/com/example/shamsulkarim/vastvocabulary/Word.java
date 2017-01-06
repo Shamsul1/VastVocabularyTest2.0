@@ -14,7 +14,6 @@ public class Word {
     String level;
     int databasePosition;
 
-
     public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3, int databasePosition, String level) {
         this.word = word;
         this.translation = translation;
@@ -51,6 +50,10 @@ public class Word {
         this.example2 = example2;
         this.example3 = example3;
         this.level = level;
+    }
+
+    public String getLevel() {
+        return level;
     }
 
     public String getPronun() {

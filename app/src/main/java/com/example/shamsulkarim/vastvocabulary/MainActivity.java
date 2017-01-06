@@ -16,9 +16,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BeginnerWordDatabase beginnerDatabase;
-    private IntermediatewordDatabase intermediateDatabase;
-    private AdvancedWordDatabase advanceDatabase;
+    static BeginnerWordDatabase beginnerDatabase;
+    static IntermediatewordDatabase intermediateDatabase;
+    static AdvancedWordDatabase advanceDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

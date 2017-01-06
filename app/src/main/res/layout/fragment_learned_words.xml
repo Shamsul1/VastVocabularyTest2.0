@@ -1,13 +1,71 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.shamsulkarim.vastvocabulary.LearnedWords">
 
     <!-- TODO: Update blank fragment layout -->
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/recycler_view_learned_words"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />
 
-</FrameLayout>
+
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="-10dp"
+        android:layout_below="@+id/actionbar_learned_words"
+        android:id="@+id/recycler_view_learned_words"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/actionbar_learned_words"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:src="@drawable/stipe"
+            android:scaleType="fitXY"/>
+
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/spinner_learned_words"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:ms_multiline="false"
+            app:ms_hint="hint"
+            app:ms_enableFloatingLabel="false"
+            app:ms_enableErrorLabel="false"
+            app:ms_floatingLabelText="floating label"
+            app:ms_thickness="0dp"
+            app:ms_arrowSize="16dp"
+            app:ms_alignLabels="false"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Learned Words"
+            android:textSize="20sp"
+            android:textColor="#191919"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textStyle="normal"
+
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

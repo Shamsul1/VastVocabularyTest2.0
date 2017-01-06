@@ -1,15 +1,19 @@
 package com.example.shamsulkarim.vastvocabulary;
 
 
+import android.animation.ValueAnimator;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +27,12 @@ public class FavoriteWords extends Fragment {
 
 
 
+    private ImageView fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Word> words = new ArrayList<>();
-
-    AdvancedWordDatabase aDB;
-    BeginnerWordDatabase bDB;
-    IntermediatewordDatabase iDB;
+    private float fabY;
 
     List<String> bWord,aWord,iWord;
     List<Integer> bWordDatabasePosition, aWordDatabasePosition, iWordDatabasePosition;
@@ -39,10 +41,9 @@ public class FavoriteWords extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_favorite_words,container,false);
+        fab = (ImageView)v.findViewById(R.id.fab_favorite);
+        fabY = fab.getY();
 
-        aDB = new AdvancedWordDatabase(getContext());
-        iDB= new IntermediatewordDatabase(getContext());
-        bDB = new BeginnerWordDatabase(getContext());
 
 
         bWord = new ArrayList<>();
@@ -56,23 +57,6 @@ public class FavoriteWords extends Fragment {
         addFavoriteWord();
 
 
-
-
-
-
-
-
-
-
-//        for(int i = 0 ; i < wordArray.length; i++){
-//
-//            Word word = new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"Advanced");
-//
-//            words.add(word);
-//
-//        }
-
-
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_favorite_words);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -80,15 +64,43 @@ public class FavoriteWords extends Fragment {
         adapter = new FavoriteRecyclerViewAdapter(getContext(), words);
         recyclerView.setAdapter(adapter);
 
+
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) {
+                    System.out.println("Scrolled Downwards");
+                    fabAnimation(false);
+
+                } else if (dy < 0) {
+                    System.out.println("Scrolled Upwards");
+                    fabAnimation(true);
+
+                } else {
+
+                    System.out.println("No Vertical Scrolled");
+                }
+            }
+        });
+
+
+
         return v;
     }
 
 
     private void getFavoriteWordRes(){
 
-        Cursor aRes = aDB.getData();
-        Cursor bRes = bDB.getData();
-        Cursor iRes = iDB.getData();
+        Cursor aRes = MainActivity.advanceDatabase.getData();
+        Cursor bRes = MainActivity.beginnerDatabase.getData();
+        Cursor iRes = MainActivity.intermediateDatabase.getData();
 
         while (aRes.moveToNext()){
 
@@ -177,6 +189,72 @@ public class FavoriteWords extends Fragment {
 
         }
 
+
+
+    }
+
+
+    protected void fabAnimation(boolean isVisible) {
+        if (isVisible) {
+            fab.animate().cancel();
+            fab.animate().translationY(fabY);
+        } else {
+            fab.animate().cancel();
+            fab.animate().translationY(fabY + 500);
+        }
+    }
+
+
+
+    private void animateInFabFavorite(float pos){
+
+
+        final ValueAnimator va = ValueAnimator.ofFloat(0, pos);
+
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float)valueAnimator.getAnimatedValue();
+
+                fab.setTranslationY(value);
+            }
+        });
+
+        va.setInterpolator(new FastOutSlowInInterpolator());
+        va.setDuration(500L);
+        va.start();
+
+
+    }
+
+
+
+
+    private void animateOutFabFavorite(float pos){
+
+
+        final ValueAnimator va = ValueAnimator.ofFloat(pos, 0f);
+
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float)valueAnimator.getAnimatedValue();
+
+                fab.setTranslationY(value);
+            }
+        });
+
+        va.setInterpolator(new FastOutSlowInInterpolator());
+        va.setDuration(500L);
+        va.start();
 
 
     }

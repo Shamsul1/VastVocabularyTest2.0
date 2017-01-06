@@ -45,7 +45,7 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
     private void addFav(){
 
-        for(int i = 0; i < 12; i++){
+        for(int i = 0; i < words.size(); i++){
 
             isFav.add(true);
 
@@ -72,9 +72,11 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
     public void onBindViewHolder(WordViewHolder holder, int position) {
 
-        Word word = words.get(position);
+        int pos = position;
 
-        if(isFav.get(position) == true){
+        Word word = words.get(pos);
+
+        if(isFav.get(pos) == true){
 
 
             holder.favorite.setImageResource(R.drawable.love);

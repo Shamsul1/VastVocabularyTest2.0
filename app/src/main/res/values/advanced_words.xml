@@ -13,6 +13,9 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
+
     </string-array>
 
     <string-array name="advanced_translation">
@@ -28,6 +31,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
     <string-array name="advanced_grammar">
@@ -43,6 +48,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
     <string-array name="advanced_pronunciation">
@@ -58,6 +65,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
     <string-array name="advanced_example1">
@@ -73,6 +82,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
     <string-array name="advanced_example2">
@@ -88,6 +99,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
     <string-array name="advanced_example3">
@@ -103,6 +116,8 @@
         <item>"Work"</item>
         <item>"Hot"</item>
         <item>"Bot"</item>
+        <item>"Advance"</item>
+        <item>"Advanced"</item>
     </string-array>
 
 

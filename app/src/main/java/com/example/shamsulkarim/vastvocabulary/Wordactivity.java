@@ -61,15 +61,6 @@ MaterialSpinner spinner;
 
         }
 
-
-
-
-
-
-
-
-
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -116,36 +107,6 @@ MaterialSpinner spinner;
 
         return v;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void spinnerInitializatin(View v){

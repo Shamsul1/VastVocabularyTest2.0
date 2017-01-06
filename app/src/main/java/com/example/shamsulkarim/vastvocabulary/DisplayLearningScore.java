@@ -61,6 +61,35 @@ public class DisplayLearningScore extends AppCompatActivity {
         }
 
 
+        if(level.equalsIgnoreCase("beginner")){
+
+            if(sharedLearned > getResources().getStringArray(R.array.beginner_words).length){
+
+                sharedLearned = getResources().getStringArray(R.array.beginner_words).length;
+            }
+
+        }
+
+        if(level.equalsIgnoreCase("intermediate")){
+
+            if(sharedLearned > getResources().getStringArray(R.array.intermediate_words).length){
+
+                sharedLearned = getResources().getStringArray(R.array.intermediate_words).length;
+            }
+
+        }
+
+        if(level.equalsIgnoreCase("advanced")){
+
+            if(sharedLearned > getResources().getStringArray(R.array.advanced_words).length){
+
+                sharedLearned = getResources().getStringArray(R.array.advanced_words).length;
+            }
+
+        }
+
+
+
         
         sharedPreferences.edit().putInt(level,sharedLearned).apply();
 
