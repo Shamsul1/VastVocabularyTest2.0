@@ -20,7 +20,8 @@
         <activity android:name=".DisplayLearningScore" />
         <activity android:name=".NoWordLeft" />
         <activity android:name=".SplashScreen" />
-        <activity android:name=".Wordactivity"></activity>
+        <activity android:name=".Wordactivity" />
+        <activity android:name=".Practice.Practice"></activity>
     </application>
 
 </manifest>

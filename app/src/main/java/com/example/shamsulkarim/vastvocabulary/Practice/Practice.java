@@ -1,4 +1,4 @@
-package com.example.shamsulkarim.vastvocabulary;
+package com.example.shamsulkarim.vastvocabulary.Practice;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,11 +16,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shamsulkarim.vastvocabulary.DisplayLearningScore;
+import com.example.shamsulkarim.vastvocabulary.FavoriteWords;
+import com.example.shamsulkarim.vastvocabulary.MainActivity;
+import com.example.shamsulkarim.vastvocabulary.NoWordLeft;
+import com.example.shamsulkarim.vastvocabulary.R;
+import com.example.shamsulkarim.vastvocabulary.Word;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Train extends AppCompatActivity {
+public class Practice extends AppCompatActivity {
 
 
     boolean firstTime = true;
@@ -48,22 +55,17 @@ public class Train extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
 
-        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        level = sp.getString("level","NOTHING");
 
-        // INITIALIZATION
+
 
         gettingResources();
-        arrayInitializations();
         buttonInitializations();
         textViewInitializations();
 
-        Toast.makeText(this,level,Toast.LENGTH_SHORT).show();
 
         // INITIALIZING WORDS
         addingNewWords();
-        wordCounter[0] = words.size();
-        wordCounter[1] = learnedWords.size();
+
 
         if( !fiveWords.isEmpty()){
 
@@ -80,7 +82,7 @@ public class Train extends AppCompatActivity {
 
         }
 
-         comeInAnimation();
+        comeInAnimation();
 
 
 
@@ -121,11 +123,9 @@ public class Train extends AppCompatActivity {
 
         // To Next Activity
         if (fiveWords.get(fiveWords.size() - 2).getCount() == 2) {
-            addLearnedWordsToSend();
+
             this.finish();
-            Intent intent = new Intent(this, DisplayLearningScore.class);
-            intent.putExtra("word", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
-            this.startActivity(intent);
+
 
         }else{
             //----------
@@ -173,7 +173,7 @@ public class Train extends AppCompatActivity {
             //----------
         }
 
-}
+    }
 
     public void showWords(int index) {
         next.setVisibility(View.VISIBLE);
@@ -293,7 +293,6 @@ public class Train extends AppCompatActivity {
 
     }
 
-
     // DummyNext
     public void dummyNext(View view) {
         translation_layout.setVisibility(View.INVISIBLE);
@@ -303,6 +302,9 @@ public class Train extends AppCompatActivity {
         button4.setVisibility(View.VISIBLE);
         fakeNext.setVisibility(View.INVISIBLE);
     }
+
+
+
 
     private List<Word> settingUpQustion() {
         buttonQuestion.clear();
@@ -341,81 +343,38 @@ public class Train extends AppCompatActivity {
     }
 
 
-    private void addLearnedWordsToSend() {
-        for (int i = 0; i < fiveWords.size(); i++) {
-            sendWord[i] = fiveWords.get(i).getWord();
-            sendTranslation[i] = fiveWords.get(i).getTranslation();
-            learnedWords.add(fiveWords.get(i));
-            if (words.contains(fiveWords.get(i))) {
-                words.remove(words.indexOf(fiveWords.get(i)));
-            }
-        }
-
-        wordCounter[0] = words.size();
-        wordCounter[1] = learnedWords.size();
-    }
-
-
-
-
 
     private void addingNewWords() {
+        fiveWords = new ArrayList<>();
+      fiveWords.clear();
+      if(MainActivity.practice.equalsIgnoreCase("favorite")){
+          fiveWords = FavoriteWords.words;
+          Toast.makeText(this,""+fiveWords.size(),Toast.LENGTH_SHORT).show();
 
-        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        if(!sp.contains(level)){
-            sp.edit().putInt(level,COUNTWORDS).apply();
-        }
-        int countWords = sp.getInt(level,0);
-
-        Toast.makeText(this, level+" "+countWords, Toast.LENGTH_SHORT).show();
-
-
-        for (int i = 0; i < wordArray.length; i++) {
-            words.add(new Word(wordArray[i], translationArray[i],pronunArray[i],grammarArray[i],example1array[i],example2Array[i],example3Array[i]));
-
-        }
-
-        for (int j = 0; j < words.size(); j++) {
-            if (learnedWords.size() > 0) {
-                if (words.contains(learnedWords.get(j))) {
-
-                    words.remove(words.indexOf(learnedWords.get(j)));
-                }
-
-            }
-        }
-        wordsPerSession += countWords;
-
-        if( wordsPerSession > words.size()){
-            wordsPerSession = words.size();
-        }
-
-
-
-        if(wordsPerSession <= words.size()){
-            for ( int k = countWords; k < wordsPerSession; k++) {
-                fiveWords.add(words.get(k));
-            }
-        }
-        if(countWords >= words.size()){
-            Toast.makeText(this, "There are no more Words", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this,NoWordLeft.class);
-            this.startActivity(intent);
-            this.finish();
-        }
+      }
 
 
 
 
 
     }
-    private void arrayInitializations() {
-        words = new ArrayList<>();
-        fiveWords = new ArrayList<>();
-        learnedWords = new ArrayList<>();
-        buttonQuestion = new ArrayList<>();
-        sendWords = new String[5];
+
+
+
+
+
+
+
+
+
+
+
+    private void gettingResources() {
+
+
+        train_land = (ImageView)findViewById(R.id.train_land);
+
+
     }
 
     private void buttonInitializations() {
@@ -457,57 +416,6 @@ public class Train extends AppCompatActivity {
 
 
     }
-
-    private void gettingResources() {
-
-
-        train_land = (ImageView)findViewById(R.id.train_land);
-
-
-        if(level.equalsIgnoreCase("beginner") ){
-
-            train_land.setImageResource(R.drawable.beginner_ful_land2);
-            wordArray = getResources().getStringArray(R.array.beginner_words);
-            translationArray = getResources().getStringArray(R.array.beginner_translation);
-            grammarArray =  getResources().getStringArray(R.array.beginner_grammar);
-            pronunArray =  getResources().getStringArray(R.array.beginner_pronunciation);
-            example1array = getResources().getStringArray(R.array.beginner_example1);
-            example2Array = getResources().getStringArray(R.array.beginner_example2);
-            example3Array = getResources().getStringArray(R.array.beginner_example3);
-
-
-        }
-        else if(level.equalsIgnoreCase("intermediate")){
-
-            train_land.setImageResource(R.drawable.new_intermediate);
-            wordArray = getResources().getStringArray(R.array.intermediate_words);
-            translationArray = getResources().getStringArray(R.array.intermediate_translation);
-            grammarArray =  getResources().getStringArray(R.array.intermediate_grammar);
-            pronunArray =  getResources().getStringArray(R.array.intermediate_pronunciation);
-            example1array = getResources().getStringArray(R.array.intermediate_example1);
-            example2Array = getResources().getStringArray(R.array.intermediate_example2);
-            example3Array = getResources().getStringArray(R.array.intermediate_example3);
-
-        }
-        else if(level.equalsIgnoreCase("advanced")){
-
-            train_land.setImageResource(R.drawable.new_advance);
-            wordArray = getResources().getStringArray(R.array.advanced_words);
-            translationArray = getResources().getStringArray(R.array.advanced_translation);
-            grammarArray =  getResources().getStringArray(R.array.advanced_grammar);
-            pronunArray =  getResources().getStringArray(R.array.advanced_pronunciation);
-            example1array = getResources().getStringArray(R.array.advanced_example1);
-            example2Array = getResources().getStringArray(R.array.advanced_example2);
-            example3Array = getResources().getStringArray(R.array.advanced_example3);
-
-        }
-
-
-
-
-    }
-
-
 
     private void comeInAnimation(){
         DisplayMetrics dm = new DisplayMetrics();
@@ -581,14 +489,6 @@ public class Train extends AppCompatActivity {
         va.start();
     }
 
-
-
-
-
-
-
-
-
     private void wrongAnswerAnimation(){
 
 
@@ -643,7 +543,6 @@ public class Train extends AppCompatActivity {
 
 
     }
-
 
 
 

@@ -2,6 +2,9 @@ package com.example.shamsulkarim.vastvocabulary;
 
 
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +15,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +30,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteWords extends Fragment {
+public class FavoriteWords extends Fragment  {
 
 
 
@@ -31,18 +39,39 @@ public class FavoriteWords extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Word> words = new ArrayList<>();
+    static public List<Word> words = new ArrayList<>();
     private float fabY;
 
     List<String> bWord,aWord,iWord;
     List<Integer> bWordDatabasePosition, aWordDatabasePosition, iWordDatabasePosition;
+    RelativeLayout fab_option1,fab_option2,fab_option3,fab_option4;
+    boolean isFabOptionOn = false;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_favorite_words,container,false);
+
         fab = (ImageView)v.findViewById(R.id.fab_favorite);
+        fab_option1  = (RelativeLayout)v.findViewById(R.id.fab_option1);
+        fab_option2  = (RelativeLayout)v.findViewById(R.id.fab_option2);
+        fab_option3  = (RelativeLayout)v.findViewById(R.id.fab_option3);
+        fab_option4  = (RelativeLayout)v.findViewById(R.id.fab_option4);
+
         fabY = fab.getY();
+
+        fab_option1.setScaleX(0);
+        fab_option1.setScaleY(0);
+
+        fab_option2.setScaleY(0);
+        fab_option2.setScaleX(0);
+
+        fab_option3.setScaleX(0);
+        fab_option3.setScaleY(0);
+
+        fab_option4.setScaleY(0);
+        fab_option4.setScaleX(0);
 
 
 
@@ -79,9 +108,19 @@ public class FavoriteWords extends Fragment {
                     System.out.println("Scrolled Downwards");
                     fabAnimation(false);
 
+                    if(isFabOptionOn){
+                        onFabTransitionBack();
+                        onFabScaleBack();
+                        fab.animate().rotation(-20f);
+                        isFabOptionOn = false;
+
+                    }
+
+
                 } else if (dy < 0) {
                     System.out.println("Scrolled Upwards");
                     fabAnimation(true);
+
 
                 } else {
 
@@ -92,10 +131,36 @@ public class FavoriteWords extends Fragment {
 
 
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!isFabOptionOn){
+
+                    Toast.makeText(getContext(),"fab",Toast.LENGTH_SHORT).show();
+                    onFabTransition();
+                    onFabScale();
+                    isFabOptionOn = true;
+                    MainActivity.practice = "favorite";
+                    getContext().startActivity(new Intent(getContext(), Practice.class));
+
+                }else {
+
+                    onFabScaleBack();
+                    onFabTransitionBack();
+                    isFabOptionOn = false;
+
+                }
+
+            }
+        });
+
+
+
         return v;
     }
 
-
+//----------------------------------------------------------------------------------------------------
     private void getFavoriteWordRes(){
 
         Cursor aRes = MainActivity.advanceDatabase.getData();
@@ -258,5 +323,178 @@ public class FavoriteWords extends Fragment {
 
 
     }
+
+
+    private void onFabTransition(){
+        fab.animate().rotation(40f).setDuration(500L).setInterpolator(new AnticipateOvershootInterpolator());
+
+        float position =  fab.getHeight();
+
+        ValueAnimator va = ValueAnimator.ofFloat(position,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+
+                fab_option1.setTranslationY(value);
+                fab_option2.setTranslationY(value);
+                fab_option3.setTranslationY(value);
+                fab_option4.setTranslationY(value);
+
+
+                fab_option1.setTranslationX(value);
+                fab_option2.setTranslationX(value);
+                fab_option3.setTranslationX(value);
+                fab_option4.setTranslationX(value);
+
+
+
+            }
+        });
+
+
+        va.setDuration(500L);
+        va.setInterpolator(new AnticipateOvershootInterpolator());
+        va.start();
+
+
+    }
+
+    public void onFabScale(){
+
+
+
+
+        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value  = (float)valueAnimator.getAnimatedValue();
+
+
+
+                fab_option1.setScaleX(value);
+                fab_option1.setScaleY(value);
+
+                fab_option2.setScaleY(value);
+                fab_option2.setScaleX(value);
+
+                fab_option3.setScaleX(value);
+                fab_option3.setScaleY(value);
+
+                fab_option4.setScaleY(value);
+                fab_option4.setScaleX(value);
+
+
+
+
+
+            }
+        });
+
+
+        va.setDuration(500L);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.start();
+
+
+
+
+
+
+    }
+
+    private void onFabTransitionBack(){
+
+        fab.animate().rotation(0f).setDuration(500).setInterpolator(new AnticipateOvershootInterpolator());
+        float position =  fab.getHeight();
+
+        ValueAnimator va = ValueAnimator.ofFloat(0,position);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+
+                fab_option1.setTranslationY(value);
+                fab_option2.setTranslationY(value);
+                fab_option3.setTranslationY(value);
+                fab_option4.setTranslationY(value);
+
+
+                fab_option1.setTranslationX(value);
+                fab_option2.setTranslationX(value);
+                fab_option3.setTranslationX(value);
+                fab_option4.setTranslationX(value);
+
+
+
+            }
+        });
+
+
+        va.setDuration(500L);
+        va.setInterpolator(new AnticipateOvershootInterpolator());
+        va.start();
+
+
+    }
+
+
+    public void onFabScaleBack(){
+
+
+
+
+        ValueAnimator va = ValueAnimator.ofFloat(1,0 );
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value  = (float)valueAnimator.getAnimatedValue();
+
+
+
+                fab_option1.setScaleX(value);
+                fab_option1.setScaleY(value);
+
+                fab_option2.setScaleY(value);
+                fab_option2.setScaleX(value);
+
+                fab_option3.setScaleX(value);
+                fab_option3.setScaleY(value);
+
+                fab_option4.setScaleY(value);
+                fab_option4.setScaleX(value);
+
+
+
+
+
+            }
+        });
+
+
+        va.setDuration(500L);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.start();
+
+
+
+
+
+
+    }
+
 
 }

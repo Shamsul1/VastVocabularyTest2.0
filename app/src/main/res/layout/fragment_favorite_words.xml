@@ -10,6 +10,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:id="@+id/fab_option1"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background= "@drawable/red"
+        android:layout_above="@+id/fab_favorite"
+        android:layout_alignRight="@+id/fab_favorite"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Advance"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fab_option2"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option1"
+        android:layout_alignRight="@+id/fab_option1"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Intermediate"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/fab_option3"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option2"
+        android:layout_alignRight="@+id/fab_option2"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Beginner"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fab_option4"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option3"
+        android:layout_alignRight="@+id/fab_option3"
+
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="All"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/fab_favorite"
@@ -20,6 +94,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
+        android:onClick="onFabClick"
         />
 
 </RelativeLayout>
