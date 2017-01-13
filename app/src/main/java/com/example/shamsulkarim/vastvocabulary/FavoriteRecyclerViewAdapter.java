@@ -144,13 +144,15 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
                 if(favorite.getTag() == null){
 
                     favorite.setImageResource(R.drawable.nolove);
-                    favorite.setTag(null);
+                    favorite.setTag(R.drawable.nolove);
                     isFav.set(getAdapterPosition(),false);
+
 
 
                     if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){
 
                         bDb.updateFav(words.get(getAdapterPosition()).databasePosition+"","False");
+
                     }
 
                     if(words.get(getAdapterPosition()).level.equalsIgnoreCase("intermediate")){
@@ -173,7 +175,7 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
                     isFav.set(getAdapterPosition(),true);
                     favorite.setImageResource(R.drawable.love);
-                    favorite.setTag(R.drawable.love);
+                    favorite.setTag(null);
 
                     if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){
 

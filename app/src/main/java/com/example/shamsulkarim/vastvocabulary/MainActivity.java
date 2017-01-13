@@ -1,5 +1,6 @@
 package com.example.shamsulkarim.vastvocabulary;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,8 +8,13 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +25,22 @@ public class MainActivity extends AppCompatActivity {
     static BeginnerWordDatabase beginnerDatabase;
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
+    RelativeLayout fab_option1,fab_option2,fab_option3,fab_option4;
+    private ImageView fab;
+
+    public static String practice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        practice = "";
 
-
+        fab_option1  = (RelativeLayout)findViewById(R.id.fab_option1);
+        fab_option2  = (RelativeLayout)findViewById(R.id.fab_option2);
+        fab_option3  = (RelativeLayout)findViewById(R.id.fab_option3);
+        fab_option4  = (RelativeLayout)findViewById(R.id.fab_option4);
+        fab = (ImageView)findViewById(R.id.fab_favorite);
 
         addBeginnerWordToSQLite();
         addIntermediateWordToSQLite();
@@ -270,6 +285,100 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private void onFabTransition(){
+
+        float position =  fab.getHeight();
+
+        ValueAnimator va = ValueAnimator.ofFloat(position,0);
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value = (float) valueAnimator.getAnimatedValue();
+
+                fab_option1.setTranslationY(value);
+                fab_option2.setTranslationY(value);
+                fab_option3.setTranslationY(value);
+                fab_option4.setTranslationY(value);
+
+                fab_option1.setTranslationX(value);
+                fab_option2.setTranslationX(value);
+                fab_option3.setTranslationX(value);
+                fab_option4.setTranslationX(value);
+
+
+
+            }
+        });
+
+
+        va.setDuration(1000L);
+        va.setInterpolator(new AnticipateOvershootInterpolator());
+        va.start();
+
+
+    }
+
+    public void onFabScale(){
+
+
+
+
+        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
+
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                float value  = (float)valueAnimator.getAnimatedValue();
+
+
+
+                fab_option1.setScaleX(value);
+                fab_option1.setScaleY(value);
+
+                fab_option2.setScaleY(value);
+                fab_option2.setScaleX(value);
+
+                fab_option3.setScaleX(value);
+                fab_option3.setScaleY(value);
+
+                fab_option4.setScaleY(value);
+                fab_option4.setScaleX(value);
+
+
+
+
+
+            }
+        });
+
+
+        va.setDuration(500L);
+        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.start();
+
+
+
+
+
+
+    }
+
+//    public void onFabClick(View view){
+//
+//        Toast.makeText(this,"OnFabClick",Toast.LENGTH_SHORT).show();
+////        onFabScale();
+////        onFabTransition();
+//
+//        fab_option1.animate().rotation(360f).setDuration(100L);
+//
+//
+//
+//    }
 
 
 }

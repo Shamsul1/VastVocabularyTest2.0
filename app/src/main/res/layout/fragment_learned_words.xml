@@ -64,6 +64,95 @@
     </RelativeLayout>
 
 
+    <RelativeLayout
+        android:id="@+id/fab_option1_learned"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background= "@drawable/red"
+        android:layout_above="@+id/fab_favorite_learned"
+        android:layout_alignRight="@+id/fab_favorite_learned"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Advance"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fab_option2_learned"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option1_learned"
+        android:layout_alignRight="@+id/fab_option1_learned"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Intermediate"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/fab_option3_learned"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option2_learned"
+        android:layout_alignRight="@+id/fab_option2_learned"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Beginner"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fab_option4_learned"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:background="@drawable/red"
+        android:layout_above="@+id/fab_option3_learned"
+        android:layout_alignRight="@+id/fab_option3_learned"
+
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="All"
+            android:gravity="center"
+            android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/fab_favorite_learned"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@drawable/fab"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="onFabClick_learned"
+        />
+
+
+
 
 
 
