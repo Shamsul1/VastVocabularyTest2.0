@@ -43,30 +43,14 @@ MaterialSpinner spinner;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_wordactivity,container,false);
 
-        int spinnerPos = 0;
-        SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-
         spinnerInitializatin(v);
         beginnerWordInitialization();
 
-
-        if(!sp.contains("spinnerPosition")){
-
-            sp.edit().putInt("spinnerPosition",0).apply();
-
-        }else {
-
-            spinnerPos = sp.getInt("spinnerPosition",0);
-            spinner.setSelection(spinnerPos);
-
-        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-                sp.edit().putInt("spinnerPosition",adapterView.getSelectedItemPosition()).apply();
                 switch (adapterView.getSelectedItemPosition()){
 
                     case 1:

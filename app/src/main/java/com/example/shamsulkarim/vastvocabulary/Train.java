@@ -510,44 +510,66 @@ public class Train extends AppCompatActivity {
 
 
     private void comeInAnimation(){
+        Handler handler = new Handler();
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         float width = dm.widthPixels;
         float height = dm.heightPixels;
 
-        ValueAnimator va = ValueAnimator.ofFloat(width,0);
+        next.setX(-width);
+        translation_layout.setY(-height);
 
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            public void run() {
 
-                float value = (float)valueAnimator.getAnimatedValue();
-                next.setTranslationX(value);
+
+                DisplayMetrics dm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(dm);
+                float width = dm.widthPixels;
+                float height = dm.heightPixels;
+
+                ValueAnimator va = ValueAnimator.ofFloat(width,0);
+
+                va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                        float value = (float)valueAnimator.getAnimatedValue();
+                        next.setTranslationX(value);
+                    }
+                });
+
+
+                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setDuration(500L);
+                va.start();
+
+                ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
+
+                va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                        float value = (float)valueAnimator.getAnimatedValue();
+                        translation_layout.setTranslationY(value/2);
+                    }
+                });
+
+
+                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setDuration(500L);
+                va.start();
+
+
+
             }
-        });
+        },500L);
 
 
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(500L);
-        va.start();
-
-        ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float)valueAnimator.getAnimatedValue();
-                translation_layout.setTranslationY(value/2);
-            }
-        });
-
-
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(500L);
-        va.start();
 
 
 

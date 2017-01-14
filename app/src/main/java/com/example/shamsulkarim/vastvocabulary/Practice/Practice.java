@@ -32,30 +32,26 @@ import java.util.List;
 public class Practice extends AppCompatActivity {
 
 
-    boolean firstTime = true;
+
     RelativeLayout translation_layout,button1,button2,button3,button4;
-    List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
-    String[] sendWord = new String[5];
-    String[] sendTranslation = new String[5];
+    List<Word> fiveWords, buttonQuestion, wordForQuestions;
 
 
 
-    int[] wordCounter = new int[5];
-    String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
+
     TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
     TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext,train_land;
     int id = 1;
     int ia = 0;
     int question = 4;
-    int COUNTWORDS = 0;
-    int wordsPerSession = 5;
-    String level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_train);
+         id = 1;
+         ia = 0;
 
 
         buttonQuestion = new ArrayList<>();
@@ -68,6 +64,12 @@ public class Practice extends AppCompatActivity {
 
         // INITIALIZING WORDS
         addingNewWords();
+        for(int i = 0; i < fiveWords.size(); i++){
+            fiveWords.get(i).setCountToZero(0);
+
+            Toast.makeText(this,""+fiveWords.get(i).getCount(),Toast.LENGTH_SHORT).show();
+
+        }
 
 
         if( !fiveWords.isEmpty()){
@@ -88,8 +90,7 @@ public class Practice extends AppCompatActivity {
         comeInAnimation();
 
 
-
-
+        Toast.makeText(this,"ia: "+ia+" id: "+id,Toast.LENGTH_SHORT).show();
 
 
     }
@@ -125,7 +126,7 @@ public class Practice extends AppCompatActivity {
 
 
         // To Next Activity
-        if (fiveWords.get(fiveWords.size() - 2).getCount() == 2) {
+        if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
             this.startActivity(new Intent(this, PracticeFinishedActivity.class));
 
             this.finish();
@@ -355,6 +356,7 @@ public class Practice extends AppCompatActivity {
 
 
     private void addingNewWords() {
+
         fiveWords = new ArrayList<>();
       fiveWords.clear();
 
@@ -377,6 +379,7 @@ public class Practice extends AppCompatActivity {
             for(int i = 0; i < fiveWords.size(); i++){
 
                 fiveWords.get(i).setSeen(false);
+
 
 
             }
@@ -449,44 +452,64 @@ public class Practice extends AppCompatActivity {
     }
 
     private void comeInAnimation(){
+        Handler handler = new Handler();
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         float width = dm.widthPixels;
         float height = dm.heightPixels;
 
-        ValueAnimator va = ValueAnimator.ofFloat(width,0);
+        next.setX(-width);
+        translation_layout.setY(-height);
 
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+            public void run() {
 
-                float value = (float)valueAnimator.getAnimatedValue();
-                next.setTranslationX(value);
+
+                DisplayMetrics dm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(dm);
+                float width = dm.widthPixels;
+                float height = dm.heightPixels;
+
+                ValueAnimator va = ValueAnimator.ofFloat(width,0);
+
+                va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                        float value = (float)valueAnimator.getAnimatedValue();
+                        next.setTranslationX(value);
+                    }
+                });
+
+
+                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setDuration(500L);
+                va.start();
+
+                ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
+
+                va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
+
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                        float value = (float)valueAnimator.getAnimatedValue();
+                        translation_layout.setTranslationY(value/2);
+                    }
+                });
+
+
+                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setDuration(500L);
+                va.start();
+
+
+
             }
-        });
-
-
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(500L);
-        va.start();
-
-        ValueAnimator vaheight = ValueAnimator.ofFloat(height,0);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float)valueAnimator.getAnimatedValue();
-                translation_layout.setTranslationY(value/2);
-            }
-        });
-
-
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.setDuration(500L);
-        va.start();
+        },500L);
 
 
 

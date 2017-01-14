@@ -42,7 +42,7 @@ public class LearnedWords extends Fragment {
 
     private MaterialSpinner spinner;
     private RecyclerView recyclerView;
-    RelativeLayout fab_option1, fab_option2,fab_option3,fab_option4;
+    RelativeLayout fab_option1, fab_option2,fab_option3;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Word> words = new ArrayList<>();
@@ -66,30 +66,15 @@ public class LearnedWords extends Fragment {
         fab_option1 = (RelativeLayout)v.findViewById(R.id.fab_option1_learned);
         fab_option2 = (RelativeLayout)v.findViewById(R.id.fab_option2_learned);
         fab_option3 = (RelativeLayout)v.findViewById(R.id.fab_option3_learned);
-        fab_option4 = (RelativeLayout)v.findViewById(R.id.fab_option4_learned);
+
         fabY = fab.getY();
         fab_option1.setVisibility(View.INVISIBLE);
         fab_option2.setVisibility(View.INVISIBLE);
         fab_option3.setVisibility(View.INVISIBLE);
-        fab_option4.setVisibility(View.INVISIBLE);
 
 
 
 
-
-        SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-        int spinnerPos = 0;
-
-        if(!sp.contains("LearnedSpinnerPosition")){
-
-            sp.edit().putInt("LearnedSpinnerPosition",0).apply();
-
-        }else {
-
-            spinnerPos = sp.getInt("LearnedSpinnerPosition",0);
-            spinner.setSelection(spinnerPos);
-
-        }
 
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_learned_words);
         layoutManager = new LinearLayoutManager(getContext());
@@ -112,8 +97,6 @@ public class LearnedWords extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vastvocabulary", Context.MODE_PRIVATE);
-                sp.edit().putInt("LearnedSpinnerPosition",adapterView.getSelectedItemPosition()).apply();
 
                 switch (adapterView.getSelectedItemPosition()){
 
@@ -247,7 +230,7 @@ public class LearnedWords extends Fragment {
             }
         });
 
-        fab_option1.setOnClickListener(new View.OnClickListener() {
+        fab_option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(),"fab opton 3 clicked", Toast.LENGTH_SHORT).show();
@@ -359,13 +342,13 @@ public class LearnedWords extends Fragment {
                 fab_option1.setTranslationY(value);
                 fab_option2.setTranslationY(value);
                 fab_option3.setTranslationY(value);
-                fab_option4.setTranslationY(value);
+
 
 
                 fab_option1.setTranslationX(value);
                 fab_option2.setTranslationX(value);
                 fab_option3.setTranslationX(value);
-                fab_option4.setTranslationX(value);
+
 
 
 
@@ -406,17 +389,15 @@ public class LearnedWords extends Fragment {
                 fab_option3.setScaleX(value);
                 fab_option3.setScaleY(value);
 
-                fab_option4.setScaleY(value);
-                fab_option4.setScaleX(value);
 
                 fab_option1.setAlpha(value);
                 fab_option2.setAlpha(value);
                 fab_option3.setAlpha(value);
-                fab_option4.setAlpha(value);
+
                 fab_option1.setVisibility(View.VISIBLE);
                 fab_option2.setVisibility(View.VISIBLE);
                 fab_option3.setVisibility(View.VISIBLE);
-                fab_option4.setVisibility(View.VISIBLE);
+
 
 
 
@@ -453,13 +434,13 @@ public class LearnedWords extends Fragment {
                 fab_option1.setTranslationY(value);
                 fab_option2.setTranslationY(value);
                 fab_option3.setTranslationY(value);
-                fab_option4.setTranslationY(value);
+
 
 
                 fab_option1.setTranslationX(value);
                 fab_option2.setTranslationX(value);
                 fab_option3.setTranslationX(value);
-                fab_option4.setTranslationX(value);
+
 
 
 
@@ -501,13 +482,8 @@ public class LearnedWords extends Fragment {
                 fab_option3.setScaleX(value);
                 fab_option3.setScaleY(value);
 
-                fab_option4.setScaleY(value);
-                fab_option4.setScaleX(value);
 
-                fab_option1.setVisibility(View.INVISIBLE);
-                fab_option2.setVisibility(View.INVISIBLE);
-                fab_option3.setVisibility(View.INVISIBLE);
-                fab_option4.setVisibility(View.INVISIBLE);
+
 
 
 
@@ -521,7 +497,9 @@ public class LearnedWords extends Fragment {
         va.setInterpolator(new AccelerateDecelerateInterpolator());
         va.start();
 
-
+        fab_option1.setVisibility(View.INVISIBLE);
+        fab_option2.setVisibility(View.INVISIBLE);
+        fab_option3.setVisibility(View.INVISIBLE);
 
 
 
@@ -541,11 +519,14 @@ public class LearnedWords extends Fragment {
         String[] grammarArray = getResources().getStringArray(R.array.advanced_grammar);
         String[] pronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
         String[] exampleArray1 = getResources().getStringArray(R.array.advanced_example1);
+        String[] exampleArray2 = getResources().getStringArray(R.array.advanced_example2);
+        String[] exampleArray3 = getResources().getStringArray(R.array.advanced_example3);
+
 
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"advance"));
+            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"advance"));
 
         }
 
@@ -558,17 +539,19 @@ public class LearnedWords extends Fragment {
         SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         int beginnerLearnedCount = sp.getInt("intermediate",0);
 
-        String[] wordArray = getResources().getStringArray(R.array.beginner_words);
-        String[] translationArray = getResources().getStringArray(R.array.beginner_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
+        String[] wordArray = getResources().getStringArray(R.array.intermediate_words);
+        String[] translationArray = getResources().getStringArray(R.array.intermediate_translation);
+        String[] grammarArray = getResources().getStringArray(R.array.intermediate_grammar);
+        String[] pronunciationArray = getResources().getStringArray(R.array.intermediate_pronunciation);
+        String[] exampleArray1 = getResources().getStringArray(R.array.intermediate_example1);
+        String[] exampleArray2 = getResources().getStringArray(R.array.intermediate_example2);
+        String[] exampleArray3 = getResources().getStringArray(R.array.intermediate_example3);
 
 
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner"));
+            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"intermediate"));
 
         }
 
@@ -589,12 +572,14 @@ public class LearnedWords extends Fragment {
         String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
         String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
         String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
+        String[] exampleArray2 = getResources().getStringArray(R.array.beginner_example2);
+        String[] exampleArray3 = getResources().getStringArray(R.array.beginner_example3);
 
 
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner"));
+            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"beginner"));
 
         }
 

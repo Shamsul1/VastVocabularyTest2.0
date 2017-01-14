@@ -99,6 +99,9 @@ public class Word {
     public void setCount(int count) {
         this.count += count;
     }
+    public void setCountToZero(int count) {
+        this.count = count;
+    }
 
 
 

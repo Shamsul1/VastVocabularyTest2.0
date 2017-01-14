@@ -21,9 +21,11 @@
         android:layout_height="wrap_content" />
 
     <RelativeLayout
+
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
@@ -35,7 +37,7 @@
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinner"
             android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             app:ms_multiline="false"

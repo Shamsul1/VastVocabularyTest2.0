@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home"/>
+            android:src="@drawable/ic_action_home_active"/>
 
         <ImageView
             android:onClick="onBottomClick"
@@ -45,21 +45,28 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_learn"/>
+            android:src="@drawable/ic_book"/>
         <ImageView
             android:onClick="onBottomClick"
             android:id="@+id/learned"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_learned"/>
+            android:src="@drawable/ic_social_school"/>
+        <ImageView
+            android:onClick="onBottomClick"
+            android:id="@+id/favorite_home"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_favorite"/>
         <ImageView
             android:onClick="onBottomClick"
             android:id="@+id/settings"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_setting"/>
+            android:src="@drawable/ic_action_settings"/>
 
 
 

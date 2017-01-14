@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     static BeginnerWordDatabase beginnerDatabase;
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
-    RelativeLayout fab_option1,fab_option2,fab_option3,fab_option4;
     private ImageView fab;
+    ImageView homeView,wordsView,learnedView,settingsView,favoriteView;
 
     public static String practice;
 
@@ -34,12 +27,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        practice = "";
+        homeView = (ImageView)findViewById(R.id.home);
+        wordsView = (ImageView)findViewById(R.id.words);
+        learnedView = (ImageView)findViewById(R.id.learned);
+        settingsView = (ImageView)findViewById(R.id.settings);
+        favoriteView = (ImageView)findViewById(R.id.favorite_home);
 
-        fab_option1  = (RelativeLayout)findViewById(R.id.fab_option1);
-        fab_option2  = (RelativeLayout)findViewById(R.id.fab_option2);
-        fab_option3  = (RelativeLayout)findViewById(R.id.fab_option3);
-        fab_option4  = (RelativeLayout)findViewById(R.id.fab_option4);
+
+
+
+        practice = "";
         fab = (ImageView)findViewById(R.id.fab_favorite);
 
         addBeginnerWordToSQLite();
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         HomeFragment homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
 
-        homeView.setImageResource(R.drawable.ic_home_active);
+        homeView.setImageResource(R.drawable.ic_action_home_active);
 
 
     }
@@ -85,10 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onBottomClick(View view){
-        ImageView homeView = (ImageView)findViewById(R.id.home);
-        ImageView wordsView = (ImageView)findViewById(R.id.words);
-        ImageView learnedView = (ImageView)findViewById(R.id.learned);
-        ImageView settingsView = (ImageView)findViewById(R.id.settings);
+;
 
 
 
@@ -98,40 +92,55 @@ public class MainActivity extends AppCompatActivity {
                 HomeFragment homeFragment = new HomeFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
 
-                homeView.setImageResource(R.drawable.ic_home_active);
-                wordsView.setImageResource(R.drawable.ic_learn);
-                learnedView.setImageResource(R.drawable.ic_learned);
-                settingsView.setImageResource(R.drawable.ic_setting);
+                homeView.setImageResource(R.drawable.ic_action_home_active);
+                wordsView.setImageResource(R.drawable.ic_book);
+                learnedView.setImageResource(R.drawable.ic_social_school);
+                settingsView.setImageResource(R.drawable.ic_action_settings);
+                favoriteView.setImageResource(R.drawable.ic_action_favorite);
                 break;
 
             case R.id.words:
                 Wordactivity wordFragment = new Wordactivity();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
 
-                homeView.setImageResource(R.drawable.ic_home);
-                wordsView.setImageResource(R.drawable.ic_learn_active);
-                learnedView.setImageResource(R.drawable.ic_learned);
-                settingsView.setImageResource(R.drawable.ic_setting);
+                homeView.setImageResource(R.drawable.ic_action_home);
+                wordsView.setImageResource(R.drawable.ic_book_active);
+                learnedView.setImageResource(R.drawable.ic_social_school);
+                settingsView.setImageResource(R.drawable.ic_action_settings);
+                favoriteView.setImageResource(R.drawable.ic_action_favorite);
                 break;
             case R.id.learned:
                 LearnedWords learnedWords = new LearnedWords();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
 
-                homeView.setImageResource(R.drawable.ic_home);
-                wordsView.setImageResource(R.drawable.ic_learn);
-                learnedView.setImageResource(R.drawable.ic_learned_active);
-                settingsView.setImageResource(R.drawable.ic_setting);
+                homeView.setImageResource(R.drawable.ic_action_home);
+                wordsView.setImageResource(R.drawable.ic_book);
+                learnedView.setImageResource(R.drawable.ic_social_school_active);
+                settingsView.setImageResource(R.drawable.ic_action_settings);
+                favoriteView.setImageResource(R.drawable.ic_action_favorite);
                 break;
 
-            case R.id.settings:
+            case R.id.favorite_home:
 
                 FavoriteWords favoriteWords = new FavoriteWords();
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
 
-                homeView.setImageResource(R.drawable.ic_home);
-                wordsView.setImageResource(R.drawable.ic_learn);
-                learnedView.setImageResource(R.drawable.ic_learned);
-                settingsView.setImageResource(R.drawable.ic_setting_active);
+                homeView.setImageResource(R.drawable.ic_action_home);
+                wordsView.setImageResource(R.drawable.ic_book);
+                learnedView.setImageResource(R.drawable.ic_social_school);
+                settingsView.setImageResource(R.drawable.ic_action_settings);
+                favoriteView.setImageResource(R.drawable.ic_action_favorite_active);
+                break;
+
+            case R.id.settings:
+
+
+
+                homeView.setImageResource(R.drawable.ic_action_home);
+                wordsView.setImageResource(R.drawable.ic_book);
+                learnedView.setImageResource(R.drawable.ic_social_school);
+                settingsView.setImageResource(R.drawable.ic_action_settings_active);
+                favoriteView.setImageResource(R.drawable.ic_action_favorite);
                 break;
 
 
@@ -275,91 +284,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
-
-
-    }
-
-
-
-    private void onFabTransition(){
-
-        float position =  fab.getHeight();
-
-        ValueAnimator va = ValueAnimator.ofFloat(position,0);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float) valueAnimator.getAnimatedValue();
-
-                fab_option1.setTranslationY(value);
-                fab_option2.setTranslationY(value);
-                fab_option3.setTranslationY(value);
-                fab_option4.setTranslationY(value);
-
-                fab_option1.setTranslationX(value);
-                fab_option2.setTranslationX(value);
-                fab_option3.setTranslationX(value);
-                fab_option4.setTranslationX(value);
-
-
-
-            }
-        });
-
-
-        va.setDuration(1000L);
-        va.setInterpolator(new AnticipateOvershootInterpolator());
-        va.start();
-
-
-    }
-
-    public void onFabScale(){
-
-
-
-
-        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value  = (float)valueAnimator.getAnimatedValue();
-
-
-
-                fab_option1.setScaleX(value);
-                fab_option1.setScaleY(value);
-
-                fab_option2.setScaleY(value);
-                fab_option2.setScaleX(value);
-
-                fab_option3.setScaleX(value);
-                fab_option3.setScaleY(value);
-
-                fab_option4.setScaleY(value);
-                fab_option4.setScaleX(value);
-
-
-
-
-
-            }
-        });
-
-
-        va.setDuration(500L);
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.start();
 
 
 

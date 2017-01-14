@@ -7,11 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-
-
-
-
-
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="-10dp"
         android:layout_below="@+id/actionbar_learned_words"
@@ -22,7 +17,8 @@
     <RelativeLayout
         android:id="@+id/actionbar_learned_words"
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize">
 
         <ImageView
             android:layout_width="match_parent"
@@ -31,27 +27,13 @@
             android:scaleType="fitXY"/>
 
 
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/spinner_learned_words"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            app:ms_multiline="false"
-            app:ms_hint="hint"
-            app:ms_enableFloatingLabel="false"
-            app:ms_enableErrorLabel="false"
-            app:ms_floatingLabelText="floating label"
-            app:ms_thickness="0dp"
-            app:ms_arrowSize="16dp"
-            app:ms_alignLabels="false"
-            />
+
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Learned Words"
+            android:text="Learned"
             android:textSize="20sp"
             android:textColor="#191919"
             android:layout_marginLeft="10dp"
@@ -62,6 +44,22 @@
 
 
     </RelativeLayout>
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/spinner_learned_words"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        app:ms_floatingLabelText="floating label"
+        app:ms_thickness="0dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        />
 
 
     <RelativeLayout
@@ -120,24 +118,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/fab_option4_learned"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:background="@drawable/red"
-        android:layout_above="@+id/fab_option3_learned"
-        android:layout_alignRight="@+id/fab_option3_learned"
 
-
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="All"
-            android:gravity="center"
-            android:textSize="18dp"/>
-
-    </RelativeLayout>
 
     <ImageView
         android:id="@+id/fab_favorite_learned"
