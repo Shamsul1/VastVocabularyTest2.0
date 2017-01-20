@@ -37,7 +37,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     Button singOut;
     FirebaseAuth firebaseAuth;
     StringBuilder states;
-
+    List<Integer>  savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
+    int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
     DatabaseReference ref;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
@@ -56,6 +57,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.fragment_setting,container,false);
 
+
          sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         states = new StringBuilder();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -69,6 +71,16 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         singOut.setOnClickListener(this);
         getFirebase();
         gettingNumsFromSharedPreference();
+
+        savedBeginnerFav =  builderToNums(beginnerFavNum);
+//        savedBeginnerLearned = builderToNums(beginnerLearnedNum);
+        savedIntermediateFav = builderToNums(intermediateFavNum);
+//        savedIntemediateLearned = builderToNums(intermediateLearnedNum);
+        savedAdvanceFav  = builderToNums(advanceFavNum);
+//        savedAdvanceLearned = builderToNums(advanceLearnedNum);
+
+
+        printSavedNums();
 
 
         return v;
@@ -176,17 +188,80 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private void gettingNumsFromSharedPreference(){
 
         advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","kkk"));
-        advanceLearnedNum = new StringBuilder( sp.getString("advanceLearnedNum","kkk"));
+
+        savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","kkk").trim());
+
         beginnerFavNum = new StringBuilder( sp.getString("beginnerFavNum","kkk"));
-        beginnerLearnedNum = new StringBuilder( sp.getString("beginnerLearnedNum","kkk"));
+
+        savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","kkk").trim());
+
         intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","kkk"));
-        intermediateLearnedNum = new StringBuilder(sp.getString("intermediateLearnedNum","kkk"));
+
+        savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","kkk").trim());
 
         Toast.makeText(getContext(),""+beginnerFavNum+ beginnerLearnedNum+ intermediateFavNum+ intermediateLearnedNum+ advanceFavNum+advanceLearnedNum,Toast.LENGTH_SHORT).show();
 
     }
 
 
+    private List<Integer> builderToNums(StringBuilder numBuilder){
+        List<Integer> backToNums = new ArrayList<>();
+        int plusCount = 0;
+        int plusI = 0;
+
+        for(int i = 0; i < numBuilder.length(); i++){
+
+            if(numBuilder.charAt(i) == '+'){
+
+                plusCount++;
+            }
+        }
+
+        int plusPosition[] = new int[plusCount];
+
+        for(int j = 0; j < numBuilder.length(); j++){
+
+            if(numBuilder.charAt(j) == '+'){
+                plusPosition[plusI] = j;
+
+                plusI++;
+
+            }
+
+        }
+
+        for( int k = 0; k < plusPosition.length-1; k++){
+
+
+            if(numBuilder.charAt(plusPosition[k]) == '+'){
+
+                String strNum = numBuilder.substring(plusPosition[k]+1, plusPosition[k+1]);
+                backToNums.add(Integer.parseInt(strNum));
+            }
+        }
+
+
+        if( numBuilder.length() > 0 && numBuilder != null){
+
+            String lastNum = numBuilder.substring(plusPosition[plusCount-1]+1, numBuilder.length());
+            backToNums.add(Integer.parseInt(lastNum));
+
+        }
+
+        return backToNums;
+    }
+
+    private void printSavedNums(){
+
+        Toast.makeText(getContext(),"beginner fav: "+savedBeginnerFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"beginner learned: "+savedBeginnerLearned,Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(),"intermediate fav: "+savedIntermediateFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"intermediate learned: "+savedIntemediateLearned,Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(),"advance fav: "+savedAdvanceFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"advance learned: "+savedAdvanceLearned,Toast.LENGTH_SHORT);
+
+
+    }
 
 
 }
