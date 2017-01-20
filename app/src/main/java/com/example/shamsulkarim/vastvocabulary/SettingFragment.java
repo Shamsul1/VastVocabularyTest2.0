@@ -21,11 +21,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Handler;
 
 
 /**
@@ -42,7 +44,11 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     DatabaseReference ref;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
-    StringBuilder beginnerFavNum, beginnerLearnedNum, intermediateFavNum, intermediateLearnedNum, advanceFavNum, advanceLearnedNum;
+
+
+    StringBuilder beginnerFavNum, intermediateFavNum, advanceFavNum;
+
+
     SharedPreferences sp ;
 
 
@@ -59,6 +65,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
 
          sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+
         states = new StringBuilder();
         firebaseDatabase = FirebaseDatabase.getInstance();
         ref = firebaseDatabase.getReference();
@@ -70,17 +77,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
         singOut.setOnClickListener(this);
         getFirebase();
-        gettingNumsFromSharedPreference();
 
-        savedBeginnerFav =  builderToNums(beginnerFavNum);
-//        savedBeginnerLearned = builderToNums(beginnerLearnedNum);
-        savedIntermediateFav = builderToNums(intermediateFavNum);
-//        savedIntemediateLearned = builderToNums(intermediateLearnedNum);
-        savedAdvanceFav  = builderToNums(advanceFavNum);
-//        savedAdvanceLearned = builderToNums(advanceLearnedNum);
-
-
-        printSavedNums();
+        delay();
 
 
         return v;
@@ -117,7 +115,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 String state = dataSnapshot.getValue(String.class);
 
                 strData[i] = state;
-//                sp.edit().putString("strData",str).apply();
+
 
                 if(strData[5] != null){
 
@@ -187,19 +185,21 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
     private void gettingNumsFromSharedPreference(){
 
-        advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","kkk"));
 
-        savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","kkk").trim());
+                advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","0"));
 
-        beginnerFavNum = new StringBuilder( sp.getString("beginnerFavNum","kkk"));
+                savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","0").trim());
 
-        savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","kkk").trim());
+                beginnerFavNum = new StringBuilder( sp.getString("beginnerFavNum","0"));
 
-        intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","kkk"));
+                savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","0").trim());
 
-        savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","kkk").trim());
+                intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","0"));
 
-        Toast.makeText(getContext(),""+beginnerFavNum+ beginnerLearnedNum+ intermediateFavNum+ intermediateLearnedNum+ advanceFavNum+advanceLearnedNum,Toast.LENGTH_SHORT).show();
+                savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","0").trim());
+
+
+
 
     }
 
@@ -253,15 +253,46 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
     private void printSavedNums(){
 
+
         Toast.makeText(getContext(),"beginner fav: "+savedBeginnerFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"beginner learned: "+savedBeginnerLearned,Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(),"beginner learned: "+savedBeginnerLearned,Toast.LENGTH_SHORT).show();
         Toast.makeText(getContext(),"intermediate fav: "+savedIntermediateFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"intermediate learned: "+savedIntemediateLearned,Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(),"intermediate learned: "+savedIntemediateLearned,Toast.LENGTH_SHORT).show();
         Toast.makeText(getContext(),"advance fav: "+savedAdvanceFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"advance learned: "+savedAdvanceLearned,Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(),"advance learned: "+savedAdvanceLearned,Toast.LENGTH_SHORT).show();
 
 
     }
 
+    private void addingBuilderToNums(){
 
-}
+
+        savedBeginnerFav =  builderToNums(beginnerFavNum);
+////        savedBeginnerLearned = builderToNums(beginnerLearnedNum);
+        savedIntermediateFav = builderToNums(intermediateFavNum);
+////        savedIntemediateLearned = builderToNums(intermediateLearnedNum);
+        savedAdvanceFav  = builderToNums(advanceFavNum);
+//       savedAdvanceLearned = builderToNums(advanceLearnedNum);
+
+    }
+
+    private void delay(){
+
+        android.os.Handler handler = new android.os.Handler();
+
+
+    handler.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+            gettingNumsFromSharedPreference();
+            addingBuilderToNums();
+            printSavedNums();
+        }
+    }, 1000L);
+
+
+
+
+
+
+}}
