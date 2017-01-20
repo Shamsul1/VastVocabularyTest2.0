@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,12 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,20 +26,37 @@ public class MainActivity extends AppCompatActivity {
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
     private ImageView fab;
+    DatabaseReference ref;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseUser user;
+    StringBuilder beginnerFavNumBuilder, intermediateFavNumBuilder, advanceFavNumBuilder;
     ImageView homeView,wordsView,learnedView,settingsView,favoriteView;
 
     public static String practice;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference();
+        user = firebaseAuth.getCurrentUser();
+
+        if(firebaseAuth.getCurrentUser() == null){
+            finish();
+            startActivity(new Intent(this, RegisterActivity.class));
+        }
+
         homeView = (ImageView)findViewById(R.id.home);
         wordsView = (ImageView)findViewById(R.id.words);
         learnedView = (ImageView)findViewById(R.id.learned);
         settingsView = (ImageView)findViewById(R.id.settings);
         favoriteView = (ImageView)findViewById(R.id.favorite_home);
-
+        beginnerFavNumBuilder = new StringBuilder();
+        intermediateFavNumBuilder = new StringBuilder();
+        advanceFavNumBuilder  = new StringBuilder();
 
 
 
@@ -49,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
 
         homeView.setImageResource(R.drawable.ic_action_home_active);
+
+        updateFirebase();
 
 
     }
@@ -134,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.settings:
 
-
+                SettingFragment setting = new SettingFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
 
                 homeView.setImageResource(R.drawable.ic_action_home);
                 wordsView.setImageResource(R.drawable.ic_book);
@@ -285,14 +312,62 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void addFavNumber(){
+
+        Cursor beginner = MainActivity.beginnerDatabase.getData();
+        Cursor intermediate = MainActivity.intermediateDatabase.getData();
+        Cursor advance = MainActivity.advanceDatabase.getData();
+
+        while (beginner.moveToNext()){
+
+            if(beginner.getString(2).equalsIgnoreCase("true")){
+                beginnerFavNumBuilder.append("+"+beginner.getString(1));
+            }
+        }
+
+        while (intermediate.moveToNext()){
+
+            if(intermediate.getString(2).equalsIgnoreCase("true")){
+                intermediateFavNumBuilder.append("+"+intermediate.getString(1));
+            }
+        }
+
+        while (advance.moveToNext()){
+
+            if(advance.getString(2).equalsIgnoreCase("true")){
+                advanceFavNumBuilder.append("+"+advance.getString(1));
+            }
+        }
 
 
+    }
+
+    private void updateFirebase(){
+        addFavNumber();
+        SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+
+        String advanceLearnedNum = String.valueOf(sp.getInt("advanced",0));
+        String beginnerLearnedNum = String.valueOf(sp.getInt("beginner",0));
+        String intermediateLearnedNum = String.valueOf(sp.getInt("intermediate",0));
+
+        String advanceFavNumString = String.valueOf(advanceFavNumBuilder);
+        String intermediateNumString = String.valueOf(intermediateFavNumBuilder);
+        String beginnerNumString  = String.valueOf(beginnerFavNumBuilder);
+
+        FavLearnedState favLearnedState = new FavLearnedState(advanceLearnedNum,beginnerLearnedNum,intermediateLearnedNum,beginnerNumString,intermediateNumString,advanceFavNumString);
+
+        ref.child(user.getUid()).setValue(favLearnedState);
+
+        Toast.makeText(this, "Saving states....", Toast.LENGTH_SHORT).show();
+    }
 
 
 
     }
 
-//    public void onFabClick(View view){
+    //    public void onFabClick(View view){
 //
 //        Toast.makeText(this,"OnFabClick",Toast.LENGTH_SHORT).show();
 ////        onFabScale();
@@ -305,4 +380,4 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-}
+

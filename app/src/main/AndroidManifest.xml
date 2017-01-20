@@ -26,6 +26,8 @@
             android:name=".PracticeFinishedActivity"
             android:label="@string/title_activity_practice_finished"
             android:theme="@style/AppTheme" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SignInActivity"></activity>
     </application>
 
 </manifest>
