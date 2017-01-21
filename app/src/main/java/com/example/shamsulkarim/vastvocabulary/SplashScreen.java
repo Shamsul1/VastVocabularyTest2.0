@@ -14,13 +14,22 @@ public class SplashScreen extends AppCompatActivity {
     static BeginnerWordDatabase beginnerDatabase;
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        sp.edit().putString("advanceFavNum","").apply();
+        sp.edit().putString("advanceLearnedNum","").apply();
+        sp.edit().putString("beginnerFavNum","").apply();
+        sp.edit().putString("beginnerLearnedNum","").apply();
+        sp.edit().putString("intermediateFavNum", "").apply();
+        sp.edit().putString("intermediateLearnedNum","").apply();
 
-      initializingSQLDatabase();
+
+        initializingSQLDatabase();
         addBeginnerWordToSQLite();
         addIntermediateWordToSQLite();
         addAdvanceWordToSQLite();

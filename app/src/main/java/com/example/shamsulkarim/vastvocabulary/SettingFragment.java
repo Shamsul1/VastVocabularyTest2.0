@@ -37,6 +37,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
     TextView userName;
     Button singOut;
+
     FirebaseAuth firebaseAuth;
     StringBuilder states;
     List<Integer>  savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
@@ -44,12 +45,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     DatabaseReference ref;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
-
-
     StringBuilder beginnerFavNum, intermediateFavNum, advanceFavNum;
-
-
-    SharedPreferences sp ;
+    SharedPreferences sp;
 
 
     public SettingFragment() {
@@ -66,8 +63,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
          sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
 
-
-
         savedIntermediateFav = new ArrayList<>();
         savedAdvanceFav = new ArrayList<>();
         savedBeginnerFav = new ArrayList<>();
@@ -77,6 +72,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         ref = firebaseDatabase.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
         userName = (TextView)v.findViewById(R.id.userName);
         singOut = (Button)v.findViewById(R.id.signOut);
         userName.setText(user.getEmail());
