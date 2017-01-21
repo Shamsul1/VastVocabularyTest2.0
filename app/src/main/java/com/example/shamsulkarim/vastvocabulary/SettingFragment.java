@@ -66,6 +66,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
          sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
 
+
+
+        savedIntermediateFav = new ArrayList<>();
+        savedAdvanceFav = new ArrayList<>();
+        savedBeginnerFav = new ArrayList<>();
+
         states = new StringBuilder();
         firebaseDatabase = FirebaseDatabase.getInstance();
         ref = firebaseDatabase.getReference();
@@ -186,6 +192,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private void gettingNumsFromSharedPreference(){
 
 
+
                 advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","0"));
 
                 savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","0").trim());
@@ -266,6 +273,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
     private void addingBuilderToNums(){
 
+
+        savedAdvanceFav.clear();
+        savedBeginnerFav.clear();
+        savedIntermediateFav.clear();
 
         savedBeginnerFav =  builderToNums(beginnerFavNum);
 ////        savedBeginnerLearned = builderToNums(beginnerLearnedNum);

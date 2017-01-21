@@ -145,9 +145,9 @@ public class FavoriteWords extends Fragment  {
 //----------------------------------------------------------------------------------------------------
     private void getFavoriteWordRes(){
 
-        Cursor aRes = MainActivity.advanceDatabase.getData();
-        Cursor bRes = MainActivity.beginnerDatabase.getData();
-        Cursor iRes = MainActivity.intermediateDatabase.getData();
+        Cursor aRes = SplashScreen.advanceDatabase.getData();
+        Cursor bRes = SplashScreen.beginnerDatabase.getData();
+        Cursor iRes = SplashScreen.intermediateDatabase.getData();
 
         while (aRes.moveToNext()){
 
