@@ -101,7 +101,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                         if(task.isSuccessful()){
 
                             Toast.makeText(SignInActivity.this, "Login Successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                            startActivity(new Intent(SignInActivity.this, SyncingFirebaseToSQL.class));
                             finish();
                         }else {
 

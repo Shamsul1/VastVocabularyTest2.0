@@ -201,6 +201,10 @@ public class MainActivity extends AppCompatActivity {
         Cursor beginner = SplashScreen.beginnerDatabase.getData();
         Cursor intermediate = SplashScreen.intermediateDatabase.getData();
         Cursor advance = SplashScreen.advanceDatabase.getData();
+        beginnerFavNumBuilder = new StringBuilder();
+        intermediateFavNumBuilder = new StringBuilder();
+        advanceFavNumBuilder = new StringBuilder();
+
 
         while (beginner.moveToNext()){
 
