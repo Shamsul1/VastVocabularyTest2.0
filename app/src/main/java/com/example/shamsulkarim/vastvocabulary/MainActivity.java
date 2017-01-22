@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(firebaseAuth.getCurrentUser() == null){
             finish();
-            startActivity(new Intent(this, RegisterActivity.class));
+            startActivity(new Intent(this, SignInActivity.class));
         }
 
         homeView = (ImageView)findViewById(R.id.home);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeView.setImageResource(R.drawable.ic_action_home_active);
 
-
+        syncSQL();
 
 
 
@@ -258,6 +259,79 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         updateFirebase();
+
+    }
+
+
+    private void syncSQL(){
+
+        Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+//                int begi = SplashScreen.savedBeginnerLearned;
+//                int inte = SplashScreen.savedIntemediateLearned;
+//                int adva = SplashScreen.savedAdvanceLearned;
+//
+//                sp.edit().putInt("beginner", begi);
+//                sp.edit().putInt("intermediate", inte);
+//                sp.edit().putInt("advanced", adva);
+
+
+
+
+
+                if(SplashScreen.savedBeginnerFav.size() > 0){
+
+                    for(int i = 0; i < SplashScreen.savedBeginnerFav.size(); i++){
+
+                        int begi = SplashScreen.savedBeginnerFav.get(i)+1;
+
+                        SplashScreen.beginnerDatabase.updateFav(""+begi,"True");
+
+                    }
+
+
+                }
+
+                if(SplashScreen.savedIntermediateFav.size() > 0){
+
+                    for(int j = 0; j < SplashScreen.savedIntermediateFav.size(); j++){
+
+                        int inte = SplashScreen.savedIntermediateFav.get(j)+1;
+
+                        SplashScreen.intermediateDatabase.updateFav(""+inte,"True");
+
+
+                    }
+
+                }
+
+                if(SplashScreen.savedAdvanceFav.size() > 0){
+
+                    for(int k = 0; k < SplashScreen.savedAdvanceFav.size(); k++){
+
+                        int adva = SplashScreen.savedAdvanceFav.get(k)+1;
+                        SplashScreen.advanceDatabase.updateFav(""+adva,"True");
+
+
+
+                    }
+
+                }
+
+
+
+                Toast.makeText(getApplicationContext(), "syncing sql...", Toast.LENGTH_SHORT).show();
+            }
+        }, 1000L);
+
+
+
+
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.shamsulkarim.vastvocabulary;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,13 +25,13 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     StringBuilder states;
-    List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
-    int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
+
     DatabaseReference ref;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     StringBuilder beginnerFavNum, intermediateFavNum, advanceFavNum;
     SharedPreferences sp;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,10 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
 
 
         sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Syncing your progress...");
+        progressDialog.show();
 
-        savedIntermediateFav = new ArrayList<>();
-        savedAdvanceFav = new ArrayList<>();
-        savedBeginnerFav = new ArrayList<>();
 
         states = new StringBuilder();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -55,9 +56,8 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
         delay();
 
 
-        updateSQL();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+//        updateSQL();
+
 
 
     }
@@ -93,6 +93,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                         if(j == 1){
 
                             sp.edit().putString("advanceLearnedNum",strData[1]).apply();
+                            sp.edit().putInt("advanced", Integer.parseInt(strData[1])).apply();
 
                         }
                         if(j == 2){
@@ -103,6 +104,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                         if(j == 3){
 
                             sp.edit().putString("beginnerLearnedNum",strData[3]).apply();
+                            sp.edit().putInt("beginner", Integer.parseInt(strData[3])).apply();
 
                         }
                         if(j == 4){
@@ -112,6 +114,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                         if(j == 5){
 
                             sp.edit().putString("intermediateLearnedNum",strData[5]).apply();
+                            sp.edit().putInt("intermediate", Integer.parseInt(strData[5])).apply();
 
                         }
 
@@ -153,15 +156,15 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
 
         advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","0"));
 
-        savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","0").trim());
+        SplashScreen.savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","0").trim());
 
         beginnerFavNum = new StringBuilder( sp.getString("beginnerFavNum","0"));
 
-        savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","0").trim());
+        SplashScreen.savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","0").trim());
 
         intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","0"));
 
-        savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","0").trim());
+        SplashScreen.savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","0").trim());
 
 
 
@@ -219,12 +222,12 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
     private void printSavedNums(){
 
 
-        Toast.makeText(this,"beginner fav: "+savedBeginnerFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"beginner learned: "+savedBeginnerLearned,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"intermediate fav: "+savedIntermediateFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"intermediate learned: "+savedIntemediateLearned,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"advance fav: "+savedAdvanceFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"advance learned: "+savedAdvanceLearned,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"beginner fav: "+SplashScreen.savedBeginnerFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"beginner learned: "+SplashScreen.savedBeginnerLearned,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"intermediate fav: "+SplashScreen.savedIntermediateFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"intermediate learned: "+SplashScreen.savedIntemediateLearned,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"advance fav: "+SplashScreen.savedAdvanceFav,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"advance learned: "+SplashScreen.savedAdvanceLearned,Toast.LENGTH_SHORT).show();
 
 
     }
@@ -232,15 +235,15 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
     private void addingBuilderToNums(){
 
 
-        savedAdvanceFav.clear();
-        savedBeginnerFav.clear();
-        savedIntermediateFav.clear();
+        SplashScreen.savedAdvanceFav.clear();
+        SplashScreen.savedBeginnerFav.clear();
+        SplashScreen.savedIntermediateFav.clear();
 
-        savedBeginnerFav =  builderToNums(beginnerFavNum);
+        SplashScreen.savedBeginnerFav =  builderToNums(beginnerFavNum);
 ////        savedBeginnerLearned = builderToNums(beginnerLearnedNum);
-        savedIntermediateFav = builderToNums(intermediateFavNum);
+        SplashScreen.savedIntermediateFav = builderToNums(intermediateFavNum);
 ////        savedIntemediateLearned = builderToNums(intermediateLearnedNum);
-        savedAdvanceFav  = builderToNums(advanceFavNum);
+        SplashScreen.savedAdvanceFav  = builderToNums(advanceFavNum);
 //       savedAdvanceLearned = builderToNums(advanceLearnedNum);
 
     }
@@ -257,8 +260,16 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                 addingBuilderToNums();
                 printSavedNums();
             }
-        }, 1000L);
+        }, 5000L);
 
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        }, 5000L);
 
 
 
@@ -266,16 +277,18 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
 
     }
 
-    private void updateSQL(){
-
-//        for(int i = 0; i < state.length; i++){
+//    private void updateSQL(){
 //
-//            SplashScreen.beginnerDatabase.updateFav(state[i]+"", "true");
+//        for(int i = 0; i < savedBeginnerFav.size(); i++){
+//
+//            SplashScreen.beginnerDatabase.updateFav(savedBeginnerFav.get(i)+"", "true");
 //
 //
 //        }
-
-
-
-    }
+//
+//        Toast.makeText(this, "sql updated",Toast.LENGTH_SHORT).show();
+//
+//
+//
+//    }
 }

@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SplashScreen extends AppCompatActivity {
 
 //    SQL Database Initialization
@@ -15,6 +18,9 @@ public class SplashScreen extends AppCompatActivity {
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
     SharedPreferences sp;
+    static List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
+    static int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +28,18 @@ public class SplashScreen extends AppCompatActivity {
 
         sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         sp.edit().putString("advanceFavNum","").apply();
-        sp.edit().putString("advanceLearnedNum","").apply();
+        sp.edit().putString("advanceLearnedNum","0").apply();
         sp.edit().putString("beginnerFavNum","").apply();
-        sp.edit().putString("beginnerLearnedNum","").apply();
+        sp.edit().putString("beginnerLearnedNum","0").apply();
         sp.edit().putString("intermediateFavNum", "").apply();
-        sp.edit().putString("intermediateLearnedNum","").apply();
+        sp.edit().putString("intermediateLearnedNum","0").apply();
 
+        savedBeginnerLearned = 0;
+        savedIntemediateLearned = 0;
+        savedAdvanceLearned = 0;
+        savedIntermediateFav = new ArrayList<>();
+        savedAdvanceFav = new ArrayList<>();
+        savedBeginnerFav = new ArrayList<>();
 
         initializingSQLDatabase();
         addBeginnerWordToSQLite();
@@ -50,7 +62,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
 
                 finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
 
 
             }

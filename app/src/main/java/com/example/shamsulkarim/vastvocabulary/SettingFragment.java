@@ -78,9 +78,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         userName.setText(user.getEmail());
 
         singOut.setOnClickListener(this);
-        getFirebase();
-
-        delay();
+//        getFirebase();
+//
+//        delay();
 
 
         return v;
