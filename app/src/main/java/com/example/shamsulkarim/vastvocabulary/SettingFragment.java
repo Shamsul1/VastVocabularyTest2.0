@@ -74,10 +74,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         user = firebaseAuth.getCurrentUser();
 
         userName = (TextView)v.findViewById(R.id.userName);
-        singOut = (Button)v.findViewById(R.id.signOut);
+        //singOut = (Button)v.findViewById(R.id.signOut);
         userName.setText(user.getEmail());
 
-        singOut.setOnClickListener(this);
+//        singOut.setOnClickListener(this);
 //        getFirebase();
 //
 //        delay();
@@ -92,13 +92,13 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
 
-        if(singOut == view){
-
-            firebaseAuth.signOut();
-
-            this.startActivity(new Intent(getContext(), SignInActivity.class));
-            getActivity().finish();
-        }
+//        if(singOut == view){
+//
+//            firebaseAuth.signOut();
+//
+//            this.startActivity(new Intent(getContext(), SignInActivity.class));
+//            getActivity().finish();
+//        }
 
     }
 
