@@ -35,18 +35,9 @@ import java.util.logging.Handler;
  */
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
-    TextView userName;
-    Button singOut;
-
-    FirebaseAuth firebaseAuth;
-    StringBuilder states;
-    List<Integer>  savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
-    int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
-    DatabaseReference ref;
-    FirebaseDatabase firebaseDatabase;
-    FirebaseUser user;
-    StringBuilder beginnerFavNum, intermediateFavNum, advanceFavNum;
+    TextView userName, totalLearned, totalWord, totalFavorite;
     SharedPreferences sp;
+    int totalFavCount;
 
 
     public SettingFragment() {
@@ -58,30 +49,28 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_setting,container,false);
+        View v = inflater.inflate(R.layout.fragment_setting, container, false);
 
 
-         sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
 
-        savedIntermediateFav = new ArrayList<>();
-        savedAdvanceFav = new ArrayList<>();
-        savedBeginnerFav = new ArrayList<>();
 
-        states = new StringBuilder();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        ref = firebaseDatabase.getReference();
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
+        sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        userName = (TextView)v.findViewById(R.id.userNameProfile);
+        totalLearned = (TextView)v.findViewById(R.id.total_learned_count_view);
+        totalFavorite = (TextView)v.findViewById(R.id.total_favorite_count_view);
+        totalWord = (TextView)v.findViewById(R.id.total_word_count_view);
 
-        userName = (TextView)v.findViewById(R.id.userName);
-        //singOut = (Button)v.findViewById(R.id.signOut);
-        userName.setText(user.getEmail());
+        int totalWordCount = getResources().getStringArray(R.array.beginner_words).length+getResources().getStringArray(R.array.intermediate_words).length+getResources().getStringArray(R.array.advanced_words).length;
+        int totalLearnedCount = sp.getInt("beginner",0)+sp.getInt("intermediate",0)+sp.getInt("advanced",0);
 
-//        singOut.setOnClickListener(this);
-//        getFirebase();
-//
-//        delay();
 
+        int totalFavCount = getFavCount();
+        userName.setText(sp.getString("userName", "Boo Boo"));
+
+
+        totalWord.setText(""+totalWordCount);
+        totalLearned.setText(""+totalLearnedCount);
+        totalFavorite.setText(""+totalFavCount);
 
         return v;
 
@@ -92,214 +81,51 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
 
 
-//        if(singOut == view){
-//
-//            firebaseAuth.signOut();
-//
-//            this.startActivity(new Intent(getContext(), SignInActivity.class));
-//            getActivity().finish();
-//        }
-
-    }
-
-    public void getFirebase(){
-
-        ref.child(user.getUid()).addChildEventListener(new ChildEventListener() {
-
-            int i = 0;
-            String[] strData = new String[6];
-            StringBuilder sb = new StringBuilder();
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-
-                String state = dataSnapshot.getValue(String.class);
-
-                strData[i] = state;
-
-
-                if(strData[5] != null){
-
-                    for(int j = 0; j < strData.length; j++){
-
-                        if(j == 0){
-
-                            sp.edit().putString("advanceFavNum",strData[0]).apply();
-
-                        }
-                        if(j == 1){
-
-                            sp.edit().putString("advanceLearnedNum",strData[1]).apply();
-
-                        }
-                        if(j == 2){
-
-                            sp.edit().putString("beginnerFavNum",strData[2]).apply();
-
-                        }
-                        if(j == 3){
-
-                            sp.edit().putString("beginnerLearnedNum",strData[3]).apply();
-
-                        }
-                        if(j == 4){
-
-                            sp.edit().putString("intermediateFavNum", strData[4]).apply();
-                        }
-                        if(j == 5){
-
-                            sp.edit().putString("intermediateLearnedNum",strData[5]).apply();
-
-                        }
-
-                    }
-
-                }
-                i++;
-
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
 
-    private void gettingNumsFromSharedPreference(){
+    private int getFavCount() {
+        int count = 0;
 
 
-
-                advanceFavNum = new StringBuilder(sp.getString("advanceFavNum","0"));
-
-                savedAdvanceLearned = Integer.parseInt( sp.getString("advanceLearnedNum","0").trim());
-
-                beginnerFavNum = new StringBuilder( sp.getString("beginnerFavNum","0"));
-
-                savedBeginnerLearned = Integer.parseInt( sp.getString("beginnerLearnedNum","0").trim());
-
-                intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","0"));
-
-                savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","0").trim());
+        Cursor res = SplashScreen.advanceDatabase.getData();
+        Cursor res1 = SplashScreen.beginnerDatabase.getData();
+        Cursor res2 = SplashScreen.advanceDatabase.getData();
 
 
+        while (res.moveToNext()) {
 
+            if (res.getString(2).equalsIgnoreCase("true")) {
 
-    }
-
-
-    private List<Integer> builderToNums(StringBuilder numBuilder){
-        List<Integer> backToNums = new ArrayList<>();
-        int plusCount = 0;
-        int plusI = 0;
-
-        for(int i = 0; i < numBuilder.length(); i++){
-
-            if(numBuilder.charAt(i) == '+'){
-
-                plusCount++;
+                count++;
             }
-        }
 
-        int plusPosition[] = new int[plusCount];
-
-        for(int j = 0; j < numBuilder.length(); j++){
-
-            if(numBuilder.charAt(j) == '+'){
-                plusPosition[plusI] = j;
-
-                plusI++;
-
-            }
 
         }
 
-        for( int k = 0; k < plusPosition.length-1; k++){
+        while (res1.moveToNext()) {
 
+            if (res1.getString(2).equalsIgnoreCase("true")) {
 
-            if(numBuilder.charAt(plusPosition[k]) == '+'){
-
-                String strNum = numBuilder.substring(plusPosition[k]+1, plusPosition[k+1]);
-                backToNums.add(Integer.parseInt(strNum));
+                count++;
             }
-        }
 
-
-        if( numBuilder.length() > 0 && numBuilder != null){
-
-            String lastNum = numBuilder.substring(plusPosition[plusCount-1]+1, numBuilder.length());
-            backToNums.add(Integer.parseInt(lastNum));
 
         }
 
-        return backToNums;
-    }
+        while (res2.moveToNext()) {
 
-    private void printSavedNums(){
+            if (res2.getString(2).equalsIgnoreCase("true")) {
 
-
-        Toast.makeText(getContext(),"beginner fav: "+savedBeginnerFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"beginner learned: "+savedBeginnerLearned,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"intermediate fav: "+savedIntermediateFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"intermediate learned: "+savedIntemediateLearned,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"advance fav: "+savedAdvanceFav,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(),"advance learned: "+savedAdvanceLearned,Toast.LENGTH_SHORT).show();
+                count++;
+            }
 
 
-    }
-
-    private void addingBuilderToNums(){
 
 
-        savedAdvanceFav.clear();
-        savedBeginnerFav.clear();
-        savedIntermediateFav.clear();
-
-        savedBeginnerFav =  builderToNums(beginnerFavNum);
-////        savedBeginnerLearned = builderToNums(beginnerLearnedNum);
-        savedIntermediateFav = builderToNums(intermediateFavNum);
-////        savedIntemediateLearned = builderToNums(intermediateLearnedNum);
-        savedAdvanceFav  = builderToNums(advanceFavNum);
-//       savedAdvanceLearned = builderToNums(advanceLearnedNum);
-
-    }
-
-    private void delay(){
-
-        android.os.Handler handler = new android.os.Handler();
-
-
-    handler.postDelayed(new Runnable() {
-        @Override
-        public void run() {
-            gettingNumsFromSharedPreference();
-            addingBuilderToNums();
-            printSavedNums();
         }
-    }, 1000L);
 
+        return count;
+    }
 
-
-
-
-
-}}
+}

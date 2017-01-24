@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         String intermediateNumString = String.valueOf(intermediateFavNumBuilder);
         String beginnerNumString  = String.valueOf(beginnerFavNumBuilder);
 
-        FavLearnedState favLearnedState = new FavLearnedState(beginnerLearnedNum,intermediateLearnedNum,advanceLearnedNum,beginnerNumString,intermediateNumString,advanceFavNumString);
+        FavLearnedState favLearnedState = new FavLearnedState(sp.getString("userName","Boo Boo"),beginnerLearnedNum,intermediateLearnedNum,advanceLearnedNum,beginnerNumString,intermediateNumString,advanceFavNumString);
 
         ref.child(user.getUid()).setValue(favLearnedState);
 

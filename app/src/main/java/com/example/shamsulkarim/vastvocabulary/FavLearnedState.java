@@ -9,16 +9,25 @@ public class FavLearnedState {
 
     String beginnerLearnedCount, intermediateLearnedCount, advanceLearnedCount;
     String beginnerFavCount, intermediateFavCount, advanceFavCount;
+    String name;
 
-    public FavLearnedState(String beginnerLearnedCount, String intermediateLearnedCount, String advanceLearnedCount, String beginnerFavCount, String intermediateFavCount, String advanceFavCount) {
+    public FavLearnedState(String name, String beginnerLearnedCount, String intermediateLearnedCount, String advanceLearnedCount, String beginnerFavCount, String intermediateFavCount, String advanceFavCount) {
         this.beginnerLearnedCount = beginnerLearnedCount;
         this.intermediateLearnedCount = intermediateLearnedCount;
         this.advanceLearnedCount = advanceLearnedCount;
         this.beginnerFavCount = beginnerFavCount;
         this.intermediateFavCount = intermediateFavCount;
         this.advanceFavCount = advanceFavCount;
+        this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getBeginnerLearnedCount() {
         return beginnerLearnedCount;

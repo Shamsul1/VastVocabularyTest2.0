@@ -145,6 +145,7 @@ public class FavoriteWords extends Fragment  {
 //----------------------------------------------------------------------------------------------------
     private void getFavoriteWordRes(){
 
+
         Cursor aRes = SplashScreen.advanceDatabase.getData();
         Cursor bRes = SplashScreen.beginnerDatabase.getData();
         Cursor iRes = SplashScreen.intermediateDatabase.getData();
@@ -172,9 +173,10 @@ public class FavoriteWords extends Fragment  {
             iWordDatabasePosition.add(pos);
 
         }
+
     }
 
-    private void addFavoriteWord(){
+    public   void addFavoriteWord(){
 
         words.clear();
         String[] advanceWordArray = getResources().getStringArray(R.array.advanced_words);

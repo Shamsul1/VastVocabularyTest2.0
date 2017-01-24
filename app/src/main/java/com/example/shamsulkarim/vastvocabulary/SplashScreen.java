@@ -17,7 +17,7 @@ public class SplashScreen extends AppCompatActivity {
     static BeginnerWordDatabase beginnerDatabase;
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
-    SharedPreferences sp;
+    static SharedPreferences sp;
     static List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
     static int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
 
