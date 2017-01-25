@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import java.util.logging.Handler;
 public class SettingFragment extends Fragment implements View.OnClickListener {
 
     TextView userName, totalLearned, totalWord, totalFavorite;
+    ImageView setting;
     SharedPreferences sp;
     int totalFavCount;
 
@@ -54,6 +56,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
 
 
+        setting = (ImageView)v.findViewById(R.id.profile_setting) ;
         sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         userName = (TextView)v.findViewById(R.id.userNameProfile);
         totalLearned = (TextView)v.findViewById(R.id.total_learned_count_view);
@@ -72,6 +75,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         totalLearned.setText(""+totalLearnedCount);
         totalFavorite.setText(""+totalFavCount);
 
+        setting.setOnClickListener(this);
+
         return v;
 
         //------------------------------------------------------------------------------------------------------
@@ -80,6 +85,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
+
+        if(view == setting ){
+
+            startActivity(new Intent(getContext(), SettingActivity.class));
+
+        }
 
     }
 

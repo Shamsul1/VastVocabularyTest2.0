@@ -28,7 +28,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".SyncingFirebaseToSQL"></activity>
+        <activity android:name=".SyncingFirebaseToSQL" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

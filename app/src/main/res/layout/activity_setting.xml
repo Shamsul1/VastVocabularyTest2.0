@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:background="#34495e"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shamsulkarim.vastvocabulary.SettingActivity">
+
+
+
+    <RelativeLayout
+        android:layout_margin="15dp"
+        android:layout_below="@+id/actionbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="fitXY"/>
+
+        <TextView
+
+            android:id="@+id/chooseLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose a Language"
+            android:textSize="18sp"
+
+            android:layout_margin="21dp"
+
+            />
+
+        <View
+            android:id="@+id/topLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/chooseLanguage"
+            android:background="#000000"
+            ></View>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/recycler_view_setting"
+            android:layout_below="@+id/topLine"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+
+            android:id="@+id/bottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/recycler_view_setting"
+            android:background="#000000"
+            ></View>
+
+
+
+        <ImageView
+            android:id="@+id/languageIcon"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="21dp"
+            android:layout_below="@+id/bottomLine"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+        <TextView
+
+
+            android:textColor="#000000"
+            android:id="@+id/languageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/languageIcon"
+            android:layout_alignTop="@+id/languageIcon"
+            android:layout_toRightOf="@+id/languageIcon"
+            />
+
+        <TextView
+
+
+
+            android:id="@+id/locationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/locationIcon"
+            android:layout_alignTop="@+id/locationIcon"
+            android:layout_toRightOf="@+id/locationIcon"
+            />
+
+        <TextView
+
+
+            android:id="@+id/speakersCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/speakersIcon"
+            android:layout_alignTop="@+id/speakersIcon"
+            android:layout_toRightOf="@+id/speakersIcon"
+            />
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="21dp"
+            android:id="@+id/locationIcon"
+            android:layout_below="@+id/languageIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="21dp"
+            android:id="@+id/speakersIcon"
+            android:layout_below="@id/locationIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+        <TextView
+            android:id="@+id/noLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/speakersCount"
+            android:layout_centerHorizontal="true"
+            android:text="No language picked"
+            android:textSize="18sp"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/actionbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="62dp">
+
+        <ImageView
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stipe"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="21dp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
