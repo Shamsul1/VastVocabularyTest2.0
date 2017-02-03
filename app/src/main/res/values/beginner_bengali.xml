@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="beginner_bengali">
+        <item>"প্রতিরক্ষা"</item>
+        <item>"প্রভাব"</item>
+        <item>"দূষণ"</item>
+        <item>"কঠোর"</item>
+        <item>"গ্রাস করা"</item>
+        <item>"অংশ"</item>
+        <item>"বিদেশে"</item>
+        <item>"রন্ধনপ্রণালী"</item>
+        <item>"উপাদান"</item>
+        <item>"চরিত্রগত"</item>
+
+        <item>"বিশেষ"</item>
+        <item>"খ্যাতি"</item>
+        <item>"খুঁত"</item>
+        <item>"দারিদ্র্য"</item>
+        <item>"দমন করা"</item>
+        <item>"পর্যাপ্ত"</item>
+        <item>"ক্ষতিপূরণ করা"</item>
+        <item>"অত্যন্ত গুরুত্বপূর্ণ"</item>
+        <item>"নিছক"</item>
+        <item>"সুস্পষ্ট"</item>
+
+
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

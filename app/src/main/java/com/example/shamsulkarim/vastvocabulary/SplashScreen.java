@@ -20,6 +20,7 @@ public class SplashScreen extends AppCompatActivity {
     static SharedPreferences sp;
     static List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
     static int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
+    public static int languageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,15 @@ public class SplashScreen extends AppCompatActivity {
         sp.edit().putString("beginnerLearnedNum","0").apply();
         sp.edit().putString("intermediateFavNum", "").apply();
         sp.edit().putString("intermediateLearnedNum","0").apply();
+
+        if(!SplashScreen.sp.contains("language")){
+
+
+            SplashScreen.sp.edit().putInt("language",-1).apply();
+
+
+        }
+        languageId = sp.getInt("language",0);
 
         savedBeginnerLearned = 0;
         savedIntemediateLearned = 0;

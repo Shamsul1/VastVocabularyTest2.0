@@ -3,163 +3,177 @@
 
 
     <string-array name="beginner_words">
-        <item>"Frank"</item>
-        <item>"Rival"</item>
-        <item>"Commence"</item>
-        <item>"Unruly"</item>
-        <item>"Vicious"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
-        <item>"got"</item>
-        <item>"dot"</item>
+        <item>"defense"</item>
+        <item>"impact"</item>
+        <item>"pollution"</item>
+        <item>"harsh"</item>
+        <item>"consume"</item>
+        <item>"aspect"</item>
+        <item>"abroad"</item>
+        <item>"cuisine"</item>
+        <item>"ingredient"</item>
+        <item>"characteristic"</item>
 
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>"particular"</item>
+        <item>"reputation"</item>
+        <item>"defect"</item>
+        <item>"poverty"</item>
+        <item>"inhibit"</item>
+        <item>"adequate"</item>
+        <item>"compensate"</item>
+        <item>"crucial"</item>
+        <item>"merely"</item>
+        <item>"obvious"</item>
+
 
 
     </string-array>
 
     <string-array name="beginner_translation">
-        <item>"Honest"</item>
-        <item>"Competitor"</item>
-        <item>"start"</item>
-        <item>"Hard to rule or control"</item>
-        <item>"evil"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
-        <item>"got"</item>
-        <item>"dot"</item>
+        <item>"protection from harm"</item>
+        <item>"a strong effect"</item>
+        <item>"harmful stuff contaminating an environment"</item>
+        <item>"unpleasantly rough, unkind"</item>
+        <item>"eat, drink , use up"</item>
+        <item>"part or feature of something"</item>
+        <item>"a foreign country"</item>
+        <item>"a style or method of cooking"</item>
+        <item>"a part of a mixture"</item>
+        <item>"a feature or quality belonging typically to a person, place or thing"</item>
 
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>"specific details or circumstances"</item>
+        <item>"general belief or opinion that other people have about something and someone"</item>
+        <item>"flaw, fault"</item>
+        <item>"the state of being extremely poor"</item>
+        <item>"prevent an action or process"</item>
+        <item>"acceptable in quanlity or quantity, enough"</item>
+        <item>"give someone something or money in recognition of loss, suffering or injury incurred"</item>
+        <item>"very important."</item>
+        <item>"just, only"</item>
+        <item>"easily perceived or understood"</item>
 
     </string-array>
 
     <string-array name="beginner_grammar">
-        <item>"adjective"</item>
-        <item>"noun"</item>
-        <item>"verb"</item>
-        <item>"adjective"</item>
-        <item>"adjective"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
-        <item>"got"</item>
-        <item>"dot"</item>
+        <item>"n."</item>
+        <item>"n."</item>
+        <item>"n."</item>
+        <item>"adj."</item>
+        <item>"v."</item>
+        <item>"n."</item>
+        <item>"adv."</item>
+        <item>"n."</item>
+        <item>"n"</item>
+        <item>"n"</item>
 
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>"adj"</item>
+        <item>"n."</item>
+        <item>"n."</item>
+        <item>"n."</item>
+        <item>"v."</item>
+        <item>"adj."</item>
+        <item>"v."</item>
+        <item>"adj."</item>
+        <item>"adv."</item>
+        <item>"adj."</item>
     </string-array>
 
     <string-array name="beginner_pronunciation">
-        <item>"/fraŋk/"</item>
-        <item>"/ˈrʌɪv(ə)l/"</item>
-        <item>"/kəˈmɛns/"</item>
-        <item>"/ʌnˈruːli/"</item>
-        <item>"/ˈvɪʃəs/"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
-        <item>"got"</item>
-        <item>"dot"</item>
+        <item>"/dəˈfens,ˈdēˌfens"</item>
+        <item>"/ˈimˌpakt/"</item>
+        <item>"/pəˈlo͞oSH(ə)n/"</item>
+        <item>"/härSH/"</item>
+        <item>"/kənˈso͞om/"</item>
+        <item>"/ˈaspekt/"</item>
+        <item>"/əˈbrôd/"</item>
+        <item>"/kwəˈzēn/"</item>
+        <item>"/inˈɡrēdēənt/"</item>
+        <item>"/ˌker(ə)ktəˈristik/"</item>
 
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>"/pə(r)ˈtikyələr/"</item>
+        <item>"/ˌrepyəˈtāSH(ə)n/"</item>
+        <item>"/ˈdēfekt/"</item>
+        <item>"/ˈpävərdē"</item>
+        <item>"/inˈhibit/"</item>
+        <item>"/ˈadəkwət/"</item>
+        <item>"/ˈkämpənˌsāt/"</item>
+        <item>"/ˈkro͞oSHəl/"</item>
+        <item>"/ˈmirlē/"</item>
+        <item>"/ˈäbvēəs/"</item>
     </string-array>
 
     <string-array name="beginner_example1">
-        <item>"I will be frank with you."</item>
-        <item>"Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming " two truths.""</item>
-        <item>"Aphides are born, as a rule, alive, and the young soon commence to reproduce again."</item>
-        <item>"One face stood out, a shock of unruly red hair waving in the wind."</item>
-        <item>"She thinks she is some kind of vicious animal."</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
+        <item>"You should learn self-defense."</item>
+        <item>"The storm had a bad impact on the crops."</item>
+        <item>"Pollution is damaging our earth."</item>
+        <item>"I think Tom is harsh."</item>
+        <item>"Tom consumes a lot of wine."</item>
+        <item>"Imagination affects every aspect of our lives."</item>
+        <item>"I study abroad."</item>
+        <item>"his restaurant serves authentic French cuisine."</item>
+        <item>"What's the secret ingredient?"</item>
+        <item>"A polite manner is characteristic of Japanese people."</item>
 
-        <item>"got"</item>
-        <item>"dot"</item>
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>"I had nothing in particular to say."</item>
+        <item>"He has a good reputation."</item>
+        <item>"They checked the machine for defects."</item>
+        <item>"Some people blame poverty for crime. "</item>
+        <item>"The young woman was so shy that it inhibited her ability to make friends."</item>
+        <item>"Is your salary adequate to support your family?"</item>
+        <item>"Who will compensate for the loss?"</item>
+        <item>"Sunday's match will be crucial."</item>
+        <item>"It's merely a joke."</item>
+        <item>"She saw only the most obvious differences."</item>
 
     </string-array>
 
     <string-array name="beginner_example2">
-        <item>"frank and open-hearted."</item>
-        <item>"The ancient rival of Venice, Genoa, was likewise far gone in decline."</item>
-        <item>"Aphides are born, as a rule, alive, and the young soon commence to reproduce again."</item>
-        <item>"Adults are bad enough, but when they bring their unruly offspring, it's unbearable."</item>
-        <item>"Subsequently this vicious principle was extended still further."</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
+        <item>"I killed Tom in self-defense.."</item>
+        <item>"The impact of science on society is great."</item>
+        <item>"Air pollution is a major problem."</item>
+        <item>"Don't use harsh language."</item>
+        <item>"Japan consumes a lot of paper."</item>
+        <item>"We must consider every aspect of the problem."</item>
+        <item>"She is living abroad."</item>
+        <item>"Do you like French cuisine?"</item>
+        <item>"Flour is the main ingredient in cakes."</item>
+        <item>"It's characteristic of him to behave like that."</item>
 
-        <item>"got"</item>
-        <item>"dot"</item>
-
-        <item>"rot"</item>
-        <item>"rod"</item>
+        <item>" Tom did it for no particular reason."</item>
+        <item>"Do you really think this will ruin my reputation?"</item>
+        <item>"Why have you not inquired about the cause of the defect?"</item>
+        <item>"The government promised to wipe out poverty."</item>
+        <item>"Investment in this country is inhibited by the unstable political climate."</item>
+        <item>"The national health service was far from adequate."</item>
+        <item>"She was not compensated for the damage done to her car."</item>
+        <item>"It's crucial that we arrive before 8 o'clock."</item>
+        <item>"She was merely stating a fact."</item>
+        <item>"He was the obvious candidate for president"</item>
     </string-array>
 
     <string-array name="beginner_example3">
-        <item>"Yet this young man's frank appraisal was none of those."</item>
-        <item>"He had heard of the swiftness of Ilagin's borzois, and in that beautiful bitch saw a rival to his own Milka."</item>
-        <item>"2 was ordered to fall back to the Hindenburg line, and to commence the move that same evening."</item>
-        <item>"And yet, like an unruly child, she had rebelled, causing him endless worry and stress."</item>
-        <item>"It is a vicious circle from which we must break a way out."</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Lot"</item>
-        <item>"Pot"</item>
+        <item>"Attack is the best form of defense."</item>
+        <item>"Brace yourselves for impact."</item>
+        <item>"Our cities create serious pollution problems."</item>
+        <item>"I really spoke too harshly."</item>
+        <item>"This engine consumes the most oil."</item>
+        <item>"Education is one of the most essential aspects of life."</item>
+        <item>"He just returned from abroad."</item>
+        <item>"I like Korean cuisine. "</item>
+        <item>"Mary mixed the ingredients to make a cake."</item>
+        <item>"A green color is a characteristic of that type of apple."</item>
 
-        <item>"got"</item>
-        <item>"dot"</item>
+        <item>"Do you have anything particular in mind? "</item>
+        <item>"She has a bad reputation."</item>
+        <item>"The product is guaranteed to be free from defects."</item>
+        <item>"The country's main social problem is poverty."</item>
+        <item>"You shouldn't allow fear of failure to inhibit you."</item>
+        <item>"The garden hasn't been getting adequate water."</item>
+        <item>"The price of the item has been reduced to compensate for a defect."</item>
+        <item>"Vitamins are crucial for maintaining good health."</item>
+        <item>"A job is not merely a means to earn a living."</item>
+        <item>"It's obvious Tom doesn't like Mary."</item>
 
-        <item>"rot"</item>
-        <item>"rod"</item>
 
     </string-array>
 

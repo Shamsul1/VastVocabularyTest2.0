@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="beginner_spanish">
+        <item>"defensa"</item>
+        <item>"impacto"</item>
+        <item>"contaminación"</item>
+        <item>"duro"</item>
+        <item>"consumir"</item>
+        <item>"aspecto"</item>
+        <item>"en el extranjero"</item>
+        <item>"cocina"</item>
+        <item>"ingrediente"</item>
+        <item>"característica"</item>
+
+        <item>"especial"</item>
+        <item>"reputación"</item>
+        <item>"defecto"</item>
+        <item>"pobreza"</item>
+        <item>"inhibir"</item>
+        <item>"adecuado"</item>
+        <item>"compensar"</item>
+        <item>"crucial"</item>
+        <item>"simplemente"</item>
+        <item>"obvio"</item>
+
+
+    </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

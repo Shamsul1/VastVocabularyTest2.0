@@ -23,7 +23,7 @@ import java.util.List;
 public class SyncingFirebaseToSQL extends AppCompatActivity {
 
 
-    FirebaseAuth firebaseAuth;
+   static FirebaseAuth firebaseAuth;
     StringBuilder states;
 
     DatabaseReference ref;
@@ -69,7 +69,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
         ref.child(user.getUid()).addChildEventListener(new ChildEventListener() {
 
             int i = 0;
-            String[] strData = new String[6];
+            String[] strData = new String[7];
             StringBuilder sb = new StringBuilder();
 
             @Override

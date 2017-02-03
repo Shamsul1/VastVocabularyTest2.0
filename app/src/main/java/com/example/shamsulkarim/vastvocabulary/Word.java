@@ -8,11 +8,16 @@ public class Word {
 
 
     int count;
-    String word, translation,pronun,grammar,example1,example2,example3;
+    String word, translation,extra,pronun,grammar,example1,example2,example3;
     boolean seen;
     boolean removable;
     String level;
     int databasePosition;
+
+
+
+
+
 
     public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3, int databasePosition, String level) {
         this.word = word;
@@ -27,17 +32,29 @@ public class Word {
     }
 
     public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3) {
+        this(word,translation,pronun,grammar,example1,example2,example3,"");
+
+    }
+
+    public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String level,int nothing) {
         this.word = word;
         this.translation = translation;
         this.pronun = pronun;
         this.grammar = grammar;
         this.example1 = example1;
-        this.example2 = example2;
-        this.example3 = example3;
+        this.level = level;
+        this.extra = extra;
+
     }
 
     public Word(String word, String translation, String pronun, String grammar, String example1, String level) {
-        this(word,translation,pronun,grammar,example1,"","",level);
+        this.word = word;
+        this.translation = translation;
+        this.pronun = pronun;
+        this.grammar = grammar;
+        this.example1 = example1;
+        this.level = level;
+        this.extra = extra;
 
     }
 
@@ -119,5 +136,13 @@ public class Word {
 
     public String getTranslation() {
         return translation;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
     }
 }

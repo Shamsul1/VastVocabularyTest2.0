@@ -1,6 +1,7 @@
 package com.example.shamsulkarim.vastvocabulary;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,6 +84,8 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
 
         @Override
         public void onClick(View view) {
+            SplashScreen.sp.edit().putInt("language",getAdapterPosition()).apply();
+            SplashScreen.languageId = getAdapterPosition();
 
 
             if(getAdapterPosition() == 0){
@@ -99,11 +102,11 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
 
             }else {
 
-
+                noLanguage.setText("");
                 languageIcon.setImageResource(R.drawable.language);
                 locationIcon.setImageResource(R.drawable.location);
                 speakersIcon.setImageResource(R.drawable.speakers);
-                noLanguage.setText("");
+
                 language.setText(languageInfo.get(getAdapterPosition()).getName());
                 location.setText(languageInfo.get(getAdapterPosition()).getLocation());
                 speakers.setText(languageInfo.get(getAdapterPosition()).getSpeakers());

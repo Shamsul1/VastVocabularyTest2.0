@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+    <string-array name="beginner_hindi">
+        <item>"raksha"</item>
+        <item>"prabhaav"</item>
+        <item>"pradooshan"</item>
+        <item>"kathor"</item>
+        <item>"upabhog karana"</item>
+        <item>"ansh"</item>
+        <item>"videsh mein"</item>
+        <item>"vyanjanon"</item>
+        <item>"ang"</item>
+        <item>"visheshata"</item>
+
+        <item>"vishesh"</item>
+        <item>"pratishtha"</item>
+        <item>"dosh"</item>
+        <item>"daridrata"</item>
+        <item>"rokana"</item>
+        <item>"paryaapt"</item>
+        <item>"kamee poorti"</item>
+        <item>"mahatvapoorn"</item>
+        <item>"keval"</item>
+        <item>"zaahir"</item>
+
+
+    </string-array>
+
+</resources>

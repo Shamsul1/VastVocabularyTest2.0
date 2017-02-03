@@ -20,7 +20,6 @@
             android:layout_height="match_parent">
 
 
-
             <ImageView
                 android:id="@+id/favorite"
                 android:layout_marginRight="10dp"
@@ -71,16 +70,61 @@
                 android:gravity="center"
                 />
 
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_language"
+                android:text="english"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:layout_below="@id/card_word"
+                />
+
 
             <TextView
                 android:id="@+id/card_translation"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="-7dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/card_word"
+                android:layout_toRightOf="@+id/card_language"
+                android:layout_alignTop="@+id/card_language"
+                android:textSize="16sp"
+                android:text="Yet this young man's frank appraisal was none of those."
+                />
+
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_language_extra"
+                android:text="spanish"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                android:layout_below="@id/card_translation"
+                />
+
+            <TextView
+                android:id="@+id/card_translation_extra"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="-7dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/card_language_extra"
+                android:layout_alignTop="@+id/card_language_extra"
                 android:textSize="16sp"
                 android:text="Yet this young man's frank appraisal was none of those."
                 />
@@ -94,7 +138,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/card_translation"
+                android:layout_below="@+id/card_translation_extra"
                 android:textSize="12sp"
                 android:text="Yet this young man's frank appraisal was none of those.Yet this young man's frank appraisal was none of those."
                 />

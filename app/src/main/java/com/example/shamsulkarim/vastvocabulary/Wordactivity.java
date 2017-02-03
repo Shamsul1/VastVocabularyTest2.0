@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -36,6 +37,7 @@ MaterialSpinner spinner;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Word> words = new ArrayList<>();
+
 
 
     @Nullable
@@ -129,16 +131,42 @@ MaterialSpinner spinner;
     private void beginnerWordInitialization2(View v){
 
         words.clear();
-
+        Toast.makeText(getContext(),SplashScreen.languageId+"",Toast.LENGTH_SHORT).show();
         String[] wordArray = getResources().getStringArray(R.array.beginner_words);
         String[] translationArray = getResources().getStringArray(R.array.beginner_translation);
         String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
         String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
         String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = getResources().getStringArray(R.array.beginner_spanish);
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = getResources().getStringArray(R.array.beginner_bengali);
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = getResources().getStringArray(R.array.beginner_hindi);
+        }
+
+
 
         for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner"));
+            words.add(new Word(wordArray[i],translationArray[i],extraArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner",0));
 
         }
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_word);

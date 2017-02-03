@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.shamsulkarim.vastvocabulary.BeginnerWordDatabase;
 import com.example.shamsulkarim.vastvocabulary.R;
+import com.example.shamsulkarim.vastvocabulary.SplashScreen;
 import com.example.shamsulkarim.vastvocabulary.Word;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     List<Word> words = new ArrayList<>();
     List<String> beginnerFav = new ArrayList<>();
     Context context;
+    String languageName[] = {"","spanish","bangeli","hindi"};
     BeginnerWordDatabase beginnerDatabase;
 
     public WordRecyclerViewAdapter(Context context, List<Word> words) {
@@ -36,7 +38,16 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+
+        View view;
+        if(SplashScreen.languageId == 0){
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+        }else {
+
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+        }
+
+
 
 
         WordViewHolder viewHolder = new WordViewHolder(view);
@@ -61,10 +72,33 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
         }
 
+        if(SplashScreen.languageId>= 1){
+
+            holder.translationView.setText(word.getTranslation());
+            holder.translationViewExtra.setText(word.getExtra());
+        }else{
+
+            holder.translationView.setText(word.getTranslation());
+        }
+        if(SplashScreen.languageId == 1){
+
+
+            holder.languageExtra.setText(languageName[1]);
+        }
+
+        if(SplashScreen.languageId == 2){
+
+
+            holder.languageExtra.setText(languageName[2]);
+        }
+        if(SplashScreen.languageId == 3){
+
+
+            holder.languageExtra.setText(languageName[3]);
+        }
 
 
         holder.wordView.setText(word.getWord());
-        holder.translationView.setText(word.getTranslation());
         holder.grammarView.setText(word.getGrammar());
         holder.pronunciationView.setText(word.getPronun());
         holder.exampleView1.setText(word.getExample1());
@@ -98,7 +132,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-       TextView wordView,translationView, grammarView, pronunciationView, exampleView1;
+       TextView wordView,translationView, grammarView, pronunciationView, exampleView1, translationViewExtra, languageExtra;
         ImageView favorite;
 
 
@@ -110,6 +144,10 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);
+            translationViewExtra = (TextView) itemView.findViewById(R.id.card_translation_extra);
+            languageExtra = (TextView)itemView.findViewById(R.id.card_language_extra);
+
+
 
             favorite = (ImageView)itemView.findViewById(R.id.favorite);
             favorite.setTag(null);
