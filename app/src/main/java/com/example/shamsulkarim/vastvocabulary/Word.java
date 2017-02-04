@@ -35,6 +35,11 @@ public class Word {
         this(word,translation,pronun,grammar,example1,example2,example3,"");
 
     }
+    public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String example2, String example3,String nothing) {
+        this(word,translation,pronun,grammar,example1,example2,example3,"");
+        this.extra = extra;
+
+    }
 
     public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String level,int nothing) {
         this.word = word;

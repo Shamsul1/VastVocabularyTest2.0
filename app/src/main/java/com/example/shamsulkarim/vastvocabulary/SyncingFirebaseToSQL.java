@@ -81,7 +81,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                 strData[i] = state;
 
 
-                if(strData[5] != null){
+                if(strData[6] != null){
 
                     for(int j = 0; j < strData.length; j++){
 
@@ -165,7 +165,6 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
         intermediateFavNum = new StringBuilder(sp.getString("intermediateFavNum","0"));
 
         SplashScreen.savedIntemediateLearned = Integer.parseInt(sp.getString("intermediateLearnedNum","0").trim());
-
 
 
 
@@ -260,7 +259,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                 addingBuilderToNums();
                 printSavedNums();
             }
-        }, 5000L);
+        }, 10000L);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -269,7 +268,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
-        }, 5000L);
+        }, 10000L);
 
 
 

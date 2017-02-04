@@ -32,8 +32,8 @@ public class Train extends AppCompatActivity {
 
 
     int[] wordCounter = new int[5];
-    String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array;
-    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
+    String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array, beginnerTranslationExtra;
+    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3, translationExtraView;
     TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext,train_land;
     int id = 0;
@@ -46,7 +46,16 @@ public class Train extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_train);
+
+
+        // picking layout
+        if(SplashScreen.languageId >= 1){
+
+            setContentView(R.layout.activity_train_extra);
+        }else {
+            setContentView(R.layout.activity_train);
+        }
+
 
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         level = sp.getString("level","NOTHING");
@@ -67,6 +76,10 @@ public class Train extends AppCompatActivity {
 
         if( !fiveWords.isEmpty()){
 
+            if(SplashScreen.languageId >= 1){
+
+                translationExtraView.setText(fiveWords.get(ia).getExtra());
+            }
             wordView.setText(fiveWords.get(ia).getWord());
             translationView.setText(fiveWords.get(ia).getTranslation());
             pronunView.setText(fiveWords.get(ia).getPronun());
@@ -140,6 +153,12 @@ public class Train extends AppCompatActivity {
                     button2.setVisibility(View.VISIBLE);
                     button3.setVisibility(View.VISIBLE);
                     button4.setVisibility(View.VISIBLE);
+
+                    if(SplashScreen.languageId >= 1){
+
+                        translationExtraView.setText("");
+                    }
+
                     translationView.setText("");
                     grammarView.setText("");
                     pronunView.setText("");
@@ -183,6 +202,10 @@ public class Train extends AppCompatActivity {
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
+        if(SplashScreen.languageId >= 1){
+            translationExtraView.setText(fiveWords.get(index).getExtra());
+        }
+
         wordView.setText(fiveWords.get(index).getWord());
 
         pronunView.setText(fiveWords.get(index).getPronun());
@@ -280,6 +303,9 @@ public class Train extends AppCompatActivity {
         button4.setVisibility(View.INVISIBLE);
         fakeNext.setVisibility(View.VISIBLE);
 
+        if(SplashScreen.languageId >= 1){
+            translationExtraView.setText(wordAnswer.getExtra());
+        }
         translationView.setText(wordAnswer.getTranslation());
         pronunView.setText(wordAnswer.getPronun());
         grammarView.setText(wordAnswer.getGrammar());
@@ -371,7 +397,7 @@ public class Train extends AppCompatActivity {
 
 
         for (int i = 0; i < wordArray.length; i++) {
-            words.add(new Word(wordArray[i], translationArray[i],pronunArray[i],grammarArray[i],example1array[i],example2Array[i],example3Array[i]));
+            words.add(new Word(wordArray[i], translationArray[i],beginnerTranslationExtra[i], pronunArray[i],grammarArray[i],example1array[i],example2Array[i],example3Array[i],""));
 
         }
 
@@ -452,6 +478,11 @@ public class Train extends AppCompatActivity {
         exampleView1 = (TextView) findViewById(R.id.example1);
         exampleView2 = (TextView) findViewById(R.id.example2);
         exampleView3 = (TextView) findViewById(R.id.example3);
+        if(SplashScreen.languageId >= 1){
+            translationExtraView = (TextView) findViewById(R.id.translationExtra_train);
+        }
+
+
 
 
 
@@ -459,7 +490,7 @@ public class Train extends AppCompatActivity {
     }
 
     private void gettingResources() {
-
+         beginnerTranslationExtra = new String[getResources().getStringArray(R.array.beginner_words).length];
 
         train_land = (ImageView)findViewById(R.id.train_land);
 
@@ -475,6 +506,29 @@ public class Train extends AppCompatActivity {
             example2Array = getResources().getStringArray(R.array.beginner_example2);
             example3Array = getResources().getStringArray(R.array.beginner_example3);
 
+            if(SplashScreen.languageId == 1){
+
+
+                beginnerTranslationExtra = getResources().getStringArray(R.array.beginner_spanish);
+            }
+            else if(SplashScreen.languageId == 2){
+
+
+                beginnerTranslationExtra = getResources().getStringArray(R.array.beginner_bengali);
+            }
+            else if(SplashScreen.languageId == 3){
+
+
+                beginnerTranslationExtra = getResources().getStringArray(R.array.beginner_hindi);
+            }else {
+
+                for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+                    beginnerTranslationExtra[i] = "";
+
+                }
+
+            }
 
         }
         else if(level.equalsIgnoreCase("intermediate")){

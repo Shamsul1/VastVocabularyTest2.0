@@ -25,7 +25,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     List<Word> words = new ArrayList<>();
     List<String> beginnerFav = new ArrayList<>();
     Context context;
-    String languageName[] = {"","spanish","bangeli","hindi"};
+    String languageName[] = {"","spanish","bengali","hindi"};
     BeginnerWordDatabase beginnerDatabase;
 
     public WordRecyclerViewAdapter(Context context, List<Word> words) {

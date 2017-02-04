@@ -232,7 +232,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:textSize="15dp"
-            android:layout_below="@+id/translation"
+            android:layout_below="@+id/translationExtra_train"
             android:text="Thomas' great rival, Duns Scotus, does this to a large extent, at times affirming."
             />
 
@@ -250,7 +250,19 @@
             android:layout_height="wrap_content"
             android:text="Hard to rule or control"/>
 
-
+        <TextView
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/translation"
+            android:id="@+id/translationExtra_train"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hard to rule or control"/>
 
 
         <TextView
