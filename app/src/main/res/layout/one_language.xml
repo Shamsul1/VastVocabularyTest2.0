@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <RelativeLayout
+        android:background="#ffffff"
+        android:id="@+id/row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        >
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#673AB7"
+            >
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/card_word"
+                android:layout_margin="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Word"
+                android:textColor="#ffffff"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:textColor="#ffffff"
+                android:textStyle="italic"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="v."
+                android:textSize="12sp"
+                android:id="@+id/card_grammar"
+                android:layout_toRightOf="@+id/card_word"
+                android:layout_centerVertical="true"
+
+                />
+            <TextView
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pronunciation"
+                android:id="@+id/card_pronunciation"
+                android:layout_toRightOf="@+id/card_grammar"
+                android:layout_centerVertical="true"
+
+                />
+
+            <ImageView
+                android:id="@+id/favorite"
+                android:layout_alignParentRight="true"
+                android:layout_margin="18dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:src="@drawable/ic_favorite"/>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/card_translation"
+            android:layout_margin="18dp"
+            android:layout_below="@+id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is an translation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        <TextView
+
+            android:layout_marginBottom="30dp"
+            android:id="@+id/card_example1"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+
+            android:layout_below="@+id/card_translation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is an translation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#44000000"
+        android:layout_alignLeft="@+id/row"
+        android:layout_alignRight="@+id/row"
+        android:layout_alignBottom="@+id/row"
+        ></View>
+
+
+    <View
+
+        android:layout_width="1dp"
+        android:background="#44000000"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/row"
+        android:layout_alignTop="@+id/row"
+        android:layout_alignRight="@+id/row"
+        ></View>
+
+
+
+
+</RelativeLayout>

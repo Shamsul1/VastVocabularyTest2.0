@@ -5,9 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
@@ -15,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.HomeRecyclerViewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -26,8 +32,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements BottomNavigation.OnMenuItemSelectionListener {
 
 
     private ImageView fab;
@@ -35,18 +43,17 @@ public class MainActivity extends AppCompatActivity {
     // getting database instances
     //-------------------------------
 
-    StringBuilder beginnerFavNum, intermediateFavNum, advanceFavNum;
-    int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
-    List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
-    StringBuilder states;
+    BottomNavigation bottomNavigation;
     SharedPreferences sp ;
+
+
 
     //-------------------------------
     DatabaseReference ref;
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
     StringBuilder beginnerFavNumBuilder, intermediateFavNumBuilder, advanceFavNumBuilder;
-    ImageView homeView,wordsView,learnedView,settingsView,favoriteView;
+    ImageView homeView,wordsView,learnedView,settingsView,favoriteView, bottomBarBackground;
 
     public static String practice;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
 
@@ -67,11 +75,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, SignInActivity.class));
         }
 
+        bottomNavigation = (BottomNavigation)findViewById(R.id.BottomNavigation);
+        bottomNavigation.setOnMenuItemClickListener(this);
+
         homeView = (ImageView)findViewById(R.id.home);
         wordsView = (ImageView)findViewById(R.id.words);
         learnedView = (ImageView)findViewById(R.id.learned);
         settingsView = (ImageView)findViewById(R.id.settings);
         favoriteView = (ImageView)findViewById(R.id.favorite_home);
+        bottomBarBackground = (ImageView)findViewById(R.id.bottom_bar_backgroung);
         beginnerFavNumBuilder = new StringBuilder();
         intermediateFavNumBuilder = new StringBuilder();
         advanceFavNumBuilder  = new StringBuilder();
@@ -84,12 +96,17 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView homeView = (ImageView)findViewById(R.id.home);
 
-        HomeFragment homeFragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
-
-        homeView.setImageResource(R.drawable.ic_action_home_active);
+//        HomeFragment homeFragment = new HomeFragment();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
+//
+//        homeView.setImageResource(R.drawable.ic_home_active);
+//        wordsView.setImageResource(R.drawable.ic_wods);
+//        learnedView.setImageResource(R.drawable.ic_school);
+//        settingsView.setImageResource(R.drawable.ic_person);
+//        favoriteView.setImageResource(R.drawable.ic_favorite);
 
         syncSQL();
+
 
 
 
@@ -98,21 +115,20 @@ public class MainActivity extends AppCompatActivity {
     public void onStartTrainingActivity(View view){
         Intent intent = new Intent(this,StartTrainingActivity.class);
         sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        sp.edit().putString("Hello","hello").apply();
 
-        if(view.getId() == R.id.beginner){
+        if(view.getId() == R.id.beginner_text_home){
             sp.edit().putString("level","beginner").apply();
             this.startActivity(intent);
 
 
         }
-        if(view.getId() == R.id.intermediate){
+        if(view.getId() == R.id.intermediate_text_home){
             sp.edit().putString("level","intermediate").apply();
             this.startActivity(intent);
 
 
         }
-        if(view.getId() == R.id.advanced){
+        if(view.getId() == R.id.advance_text_home){
             sp.edit().putString("level","advanced").apply();
             this.startActivity(intent);
 
@@ -123,77 +139,79 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public void onBottomClick(View view){
-;
-
-
-
-        switch (view.getId()){
-
-            case R.id.home:
-                HomeFragment homeFragment = new HomeFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
-
-                homeView.setImageResource(R.drawable.ic_action_home_active);
-                wordsView.setImageResource(R.drawable.ic_book);
-                learnedView.setImageResource(R.drawable.ic_social_school);
-                settingsView.setImageResource(R.drawable.ic_action_settings);
-                favoriteView.setImageResource(R.drawable.ic_action_favorite);
-                break;
-
-            case R.id.words:
-                Wordactivity wordFragment = new Wordactivity();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
-
-                homeView.setImageResource(R.drawable.ic_action_home);
-                wordsView.setImageResource(R.drawable.ic_book_active);
-                learnedView.setImageResource(R.drawable.ic_social_school);
-                settingsView.setImageResource(R.drawable.ic_action_settings);
-                favoriteView.setImageResource(R.drawable.ic_action_favorite);
-                break;
-            case R.id.learned:
-                LearnedWords learnedWords = new LearnedWords();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
-
-                homeView.setImageResource(R.drawable.ic_action_home);
-                wordsView.setImageResource(R.drawable.ic_book);
-                learnedView.setImageResource(R.drawable.ic_social_school_active);
-                settingsView.setImageResource(R.drawable.ic_action_settings);
-                favoriteView.setImageResource(R.drawable.ic_action_favorite);
-                break;
-
-            case R.id.favorite_home:
-
-                FavoriteWords favoriteWords = new FavoriteWords();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
-
-                homeView.setImageResource(R.drawable.ic_action_home);
-                wordsView.setImageResource(R.drawable.ic_book);
-                learnedView.setImageResource(R.drawable.ic_social_school);
-                settingsView.setImageResource(R.drawable.ic_action_settings);
-                favoriteView.setImageResource(R.drawable.ic_action_favorite_active);
-                break;
-
-            case R.id.settings:
-
-                SettingFragment setting = new SettingFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
-
-                homeView.setImageResource(R.drawable.ic_action_home);
-                wordsView.setImageResource(R.drawable.ic_book);
-                learnedView.setImageResource(R.drawable.ic_social_school);
-                settingsView.setImageResource(R.drawable.ic_action_settings_active);
-                favoriteView.setImageResource(R.drawable.ic_action_favorite);
-                break;
-
-
-        }
-
-
-    }
-
-
+//
+//    public void onBottomClick(View view){
+//
+//
+//
+//
+//        switch (view.getId()){
+//
+//            case R.id.home:
+//                HomeFragment homeFragment = new HomeFragment();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
+//
+//                homeView.setImageResource(R.drawable.ic_home_active );
+//                wordsView.setImageResource(R.drawable.ic_wods);
+//                learnedView.setImageResource(R.drawable.ic_school);
+//                settingsView.setImageResource(R.drawable.ic_person);
+//                favoriteView.setImageResource(R.drawable.ic_favorite);
+//                break;
+//
+//            case R.id.words:
+//                Wordactivity wordFragment = new Wordactivity();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
+//
+//                homeView.setImageResource(R.drawable.ic_home);
+//                wordsView.setImageResource(R.drawable.ic_wods_active);
+//                learnedView.setImageResource(R.drawable.ic_school);
+//                settingsView.setImageResource(R.drawable.ic_person);
+//                favoriteView.setImageResource(R.drawable.ic_favorite);
+//
+//                break;
+//            case R.id.learned:
+//                LearnedWords learnedWords = new LearnedWords();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
+//
+//                homeView.setImageResource(R.drawable.ic_home);
+//                wordsView.setImageResource(R.drawable.ic_wods);
+//                learnedView.setImageResource(R.drawable.ic_school_active);
+//                settingsView.setImageResource(R.drawable.ic_person);
+//                favoriteView.setImageResource(R.drawable.ic_favorite);
+//                break;
+//
+//            case R.id.favorite_home:
+//
+//                FavoriteWords favoriteWords = new FavoriteWords();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
+//
+//                homeView.setImageResource(R.drawable.ic_home);
+//                wordsView.setImageResource(R.drawable.ic_wods);
+//                learnedView.setImageResource(R.drawable.ic_school);
+//                settingsView.setImageResource(R.drawable.ic_person);
+//                favoriteView.setImageResource(R.drawable.ic_favorite_active);
+//
+//                break;
+//
+//            case R.id.settings:
+//
+//                SettingFragment setting = new SettingFragment();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
+//
+//                homeView.setImageResource(R.drawable.ic_home);
+//                wordsView.setImageResource(R.drawable.ic_wods);
+//                learnedView.setImageResource(R.drawable.ic_school);
+//                settingsView.setImageResource(R.drawable.ic_person_active);
+//                favoriteView.setImageResource(R.drawable.ic_favorite);
+//                break;
+//
+//
+//        }
+//
+//
+//    }
+//
+//
 
 
 
@@ -332,6 +350,76 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    @Override
+    public void onMenuItemSelect(@IdRes int i, int i1, boolean b) {
+        Handler handler = new Handler();
+                switch (i1){
+
+            case 0:
+                HomeFragment homeFragment = new HomeFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
+
+                break;
+
+            case 1:
+
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Wordactivity wordFragment = new Wordactivity();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
+
+                    }
+                },150L);
+
+
+                break;
+            case 2:
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LearnedWords learnedWords = new LearnedWords();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
+
+                    }
+                },150L);
+
+                break;
+
+            case 3:
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        FavoriteWords favoriteWords = new FavoriteWords();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
+
+
+                    }
+                },150L);
+
+                break;
+
+            case 4:
+
+                SettingFragment setting = new SettingFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
+
+
+                break;
+
+
+        }
+
+    }
+
+    @Override
+    public void onMenuItemReselect(@IdRes int i, int i1, boolean b) {
 
     }
 }

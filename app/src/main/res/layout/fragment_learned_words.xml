@@ -9,58 +9,73 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="-10dp"
-        android:layout_below="@+id/actionbar_learned_words"
+        android:layout_below="@+id/learned_toolbar"
         android:id="@+id/recycler_view_learned_words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
-        android:id="@+id/actionbar_learned_words"
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/actionbar_learned_words"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:minHeight="?attr/actionBarSize">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="56dp"-->
+            <!--android:src="@drawable/actionbar"-->
+            <!--android:scaleType="fitXY"/>-->
+
+
+
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Learned"-->
+            <!--android:layout_marginLeft="18dp"-->
+            <!--android:layout_centerVertical="true"-->
+
+            <!--android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />-->
+
+        <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+            <!--android:id="@+id/spinner_learned_words"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--app:ms_multiline="false"-->
+            <!--app:ms_enableFloatingLabel="false"-->
+            <!--app:ms_enableErrorLabel="false"-->
+            <!--app:ms_floatingLabelText="floating label"-->
+            <!--app:ms_thickness="0dp"-->
+            <!--app:ms_arrowSize="16dp"-->
+            <!--app:ms_alignLabels="false"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--/>-->
+
+    <!--</RelativeLayout>-->
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize">
+        android:background="#ffffff"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignTop="@+id/profile_setting"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/learned_toolbar" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:src="@drawable/stipe"
-            android:scaleType="fitXY"/>
-
-
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Learned"
-            android:textSize="20sp"
-            android:textColor="#191919"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:textStyle="normal"
-
-            />
-
-
-    </RelativeLayout>
-
-    <fr.ganfra.materialspinner.MaterialSpinner
-        android:id="@+id/spinner_learned_words"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        app:ms_multiline="false"
-        app:ms_hint="hint"
-        app:ms_enableFloatingLabel="false"
-        app:ms_enableErrorLabel="false"
-        app:ms_floatingLabelText="floating label"
-        app:ms_thickness="0dp"
-        app:ms_arrowSize="16dp"
-        app:ms_alignLabels="false"
-        />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/dropshadow"
+        android:layout_below="@id/learned_toolbar"
+        ></View>
 
     <RelativeLayout
         android:id="@+id/fab_option1_learned"

@@ -25,7 +25,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     List<Word> words = new ArrayList<>();
     List<String> beginnerFav = new ArrayList<>();
     Context context;
-    String languageName[] = {"","spanish","bengali","hindi"};
+
     BeginnerWordDatabase beginnerDatabase;
 
     public WordRecyclerViewAdapter(Context context, List<Word> words) {
@@ -41,7 +41,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
         View view;
         if(SplashScreen.languageId == 0){
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_language,parent,false);
         }else {
 
              view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
@@ -64,18 +64,19 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
         if(beginnerFav.get(position).equalsIgnoreCase("true")){
 
-            holder.favorite.setImageResource(R.drawable.love);
+            holder.favorite.setImageResource(R.drawable.favorite_card_view);
 
         }else {
 
-            holder.favorite.setImageResource(R.drawable.nolove);
+            holder.favorite.setImageResource(R.drawable.ic_favorite_border);
 
         }
+        //------------------------------------------------------------
 
         if(SplashScreen.languageId>= 1){
 
             holder.translationView.setText(word.getTranslation());
-            holder.translationViewExtra.setText(word.getExtra());
+            holder.secondTranslation.setText(word.getExtra());
         }else{
 
             holder.translationView.setText(word.getTranslation());
@@ -83,18 +84,18 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         if(SplashScreen.languageId == 1){
 
 
-            holder.languageExtra.setText(languageName[1]);
+            holder.secondLanguage.setText(SplashScreen.languageName[1]);
         }
 
         if(SplashScreen.languageId == 2){
 
 
-            holder.languageExtra.setText(languageName[2]);
+            holder.secondLanguage.setText(SplashScreen.languageName[2]);
         }
         if(SplashScreen.languageId == 3){
 
 
-            holder.languageExtra.setText(languageName[3]);
+            holder.secondLanguage.setText(SplashScreen.languageName[3]);
         }
 
 
@@ -132,7 +133,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-       TextView wordView,translationView, grammarView, pronunciationView, exampleView1, translationViewExtra, languageExtra;
+       TextView wordView,translationView, grammarView, pronunciationView, exampleView1, secondTranslation, secondLanguage;
         ImageView favorite;
 
 
@@ -144,8 +145,8 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);
-            translationViewExtra = (TextView) itemView.findViewById(R.id.card_translation_extra);
-            languageExtra = (TextView)itemView.findViewById(R.id.card_language_extra);
+            secondTranslation = (TextView) itemView.findViewById(R.id.card_translation_extra);
+            secondLanguage = (TextView)itemView.findViewById(R.id.card_language_extra);
 
 
 
@@ -170,8 +171,8 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
 
                     beginnerFav.set(getAdapterPosition(),"True");
                     beginnerDatabase.updateFav(position+"","True");
-                    favorite.setImageResource(R.drawable.love);
-                    favorite.setTag(R.drawable.love);
+                    favorite.setImageResource(R.drawable.favorite_card_view);
+                    favorite.setTag(R.drawable.favorite_card_view);
 
                 }
                 else {
@@ -180,7 +181,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
                     beginnerFav.set(getAdapterPosition(),"False");
 
                     beginnerDatabase.updateFav(position+"","False");
-                    favorite.setImageResource(R.drawable.nolove);
+                    favorite.setImageResource(R.drawable.ic_favorite_border);
                     favorite.setTag(null);
 
 

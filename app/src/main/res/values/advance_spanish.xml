@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="advance_spanish">
+        <item>"acuático"</item>
+        <item>"la colección"</item>
+        <item>"miríada"</item>
+        <item>"terrestre"</item>
+        <item>"vegetación"</item>
+        <item>"anfibio"</item>
+        <item>"residuo"</item>
+        <item>"obliterar"</item>
+        <item>"Biodiversidad"</item>
+        <item>"hemisferio"</item>
+
+        <item>"imperativo"</item>
+        <item>"nocturno"</item>
+        <item>"oscuro"</item>
+        <item>"Infaliblemente"</item>
+        <item>"exposición"</item>
+        <item>"diluido"</item>
+        <item>"elástico"</item>
+
+    </string-array>
+
+
+
+
+
+
+
+</resources>

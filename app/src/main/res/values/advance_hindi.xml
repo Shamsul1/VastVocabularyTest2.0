@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="advance_hindi">
+        <item>"jaleey"</item>
+        <item>"saranee "</item>
+        <item>"anant"</item>
+        <item>"laukik"</item>
+        <item>"vanaspatiyaan"</item>
+        <item>"ubhayachar"</item>
+        <item>"bacha hua"</item>
+        <item>"nasht করা"</item>
+        <item>"jaiv vividhata"</item>
+        <item>"golaarddh"</item>
+
+        <item>"aavashyak"</item>
+        <item>"raat ka"</item>
+        <item>"agyaat"</item>
+        <item>"galatee ke bina"</item>
+        <item>"pradarshit karna"</item>
+        <item>"kamajor karna"</item>
+        <item>"jaldee se theek hona"</item>
+
+    </string-array>
+
+
+
+</resources>

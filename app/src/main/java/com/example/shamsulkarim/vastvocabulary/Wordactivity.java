@@ -1,21 +1,26 @@
 package com.example.shamsulkarim.vastvocabulary;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.IntermediateAdapter;
@@ -37,6 +42,7 @@ MaterialSpinner spinner;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Word> words = new ArrayList<>();
+    Toolbar toolbar;
 
 
 
@@ -45,34 +51,68 @@ MaterialSpinner spinner;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_wordactivity,container,false);
 
-        spinnerInitializatin(v);
-        beginnerWordInitialization();
+//        beginnerWordInitialization();
 
+
+        toolbar = (Toolbar)v.findViewById(R.id.word_toolbar);
+        toolbar.setTitle("Words");
+        toolbar.setTitleTextColor(Color.parseColor("#673AB7"));
+        setHasOptionsMenu(true);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
+
+
+
+//
+//        recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_word);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        adapter = new WordRecyclerViewAdapter(getContext(), words);
+//        recyclerView.setAdapter(adapter);
+
+        return v;
+    }
+
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.learned_toolbar_menus,menu);
+
+        MenuItem item = menu.findItem(R.id.spinner_learned);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+
+
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.spinner_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                switch (adapterView.getSelectedItemPosition()){
+                Toast.makeText(getContext(),"i: "+i+" l: "+l,Toast.LENGTH_SHORT).show();
 
-                    case 1:
-                        beginnerWordInitialization2(getView());
 
-                        break;
-                    case 2:
-                        intermediateWordInitialization(getView());
 
-                        break;
-                    case 3:
-                        advanceWordInitialization(getView());
-                        break;
-                    default:
-                        beginnerWordInitialization2(getView());
-                        break;
+                if(i == 0){
 
+
+                    beginnerWordInitialization2(getView());
+                }
+                if(i == 1){
+
+
+                    intermediateWordInitialization(getView());
                 }
 
-                Toast.makeText(getContext(),adapterView.getSelectedItemPosition()+" Selected",Toast.LENGTH_SHORT).show();
+                if(i == 2){
+
+                    advanceWordInitialization(getView());
+                }
             }
 
             @Override
@@ -84,59 +124,16 @@ MaterialSpinner spinner;
 
 
 
-        recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_word);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        adapter = new WordRecyclerViewAdapter(getContext(), words);
-        recyclerView.setAdapter(adapter);
-
-        return v;
-    }
-
-
-    private void spinnerInitializatin(View v){
-
-        String[] ITEMS = {"Beginner", "Intermediate", "Advance"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ITEMS);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner = (MaterialSpinner)v.findViewById(R.id.spinner);
-        spinner.setHint(ITEMS[0]);
-        spinner.setAdapter(arrayAdapter);
 
 
     }
+
 
 
     private void beginnerWordInitialization(){
 
         words.clear();
 
-        String[] wordArray = getResources().getStringArray(R.array.beginner_words);
-        String[] translationArray = getResources().getStringArray(R.array.beginner_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
-
-        for(int i = 0 ; i < wordArray.length; i++){
-
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginnr"));
-
-        }
-
-
-
-    }
-
-    private void beginnerWordInitialization2(View v){
-
-        words.clear();
-        Toast.makeText(getContext(),SplashScreen.languageId+"",Toast.LENGTH_SHORT).show();
-        String[] wordArray = getResources().getStringArray(R.array.beginner_words);
-        String[] translationArray = getResources().getStringArray(R.array.beginner_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
         String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
 
         if(SplashScreen.languageId == 0){
@@ -151,22 +148,62 @@ MaterialSpinner spinner;
 
         if(SplashScreen.languageId == 1){
 
-            extraArray = getResources().getStringArray(R.array.beginner_spanish);
+            extraArray = SplashScreen.beginnerSpanish;
         }
         if(SplashScreen.languageId == 2){
 
-            extraArray = getResources().getStringArray(R.array.beginner_bengali);
+            extraArray = SplashScreen.beginnerBengali;
         }
         if(SplashScreen.languageId == 3){
 
-            extraArray = getResources().getStringArray(R.array.beginner_hindi);
+            extraArray = SplashScreen.beginnerHindi;
+        }
+
+
+        for(int i = 0 ; i < SplashScreen.beginnerWordArray.length; i++){
+
+            words.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i], SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0));
+
         }
 
 
 
-        for(int i = 0 ; i < wordArray.length; i++){
+    }
 
-            words.add(new Word(wordArray[i],translationArray[i],extraArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"beginner",0));
+    private void beginnerWordInitialization2(View v){
+
+        words.clear();
+
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.beginnerSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.beginnerBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.beginnerHindi;
+        }
+
+        int len = SplashScreen.beginnerWordArray.length;
+
+        for(int i = 0 ; i < len; i++){
+
+            words.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i], SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0));
 
         }
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_word);
@@ -183,15 +220,38 @@ MaterialSpinner spinner;
     private void intermediateWordInitialization(View v){
         words.clear();
 
-        String[] wordArray = getResources().getStringArray(R.array.intermediate_words);
-        String[] translationArray = getResources().getStringArray(R.array.intermediate_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.intermediate_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.intermediate_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.intermediate_example1);
 
-        for(int i = 0 ; i < wordArray.length; i++){
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"intermediate"));
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.intermediateSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.intermediateBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.intermediateHindi;
+        }
+
+
+
+
+        for(int i = 0 ; i < SplashScreen.intermediateWordArray.length; i++){
+
+            words.add(new Word(SplashScreen.intermediateWordArray[i],SplashScreen.intermediateTranslationArray[i],extraArray[i],SplashScreen.intermediatePronunciationArray[i],SplashScreen.intermediateGrammarArray[i],SplashScreen.intermediateExampleArray1[i],"intermediate",0));
 
         }
 
@@ -209,15 +269,41 @@ MaterialSpinner spinner;
     private void advanceWordInitialization(View v){
 
         words.clear();
-        String[] wordArray = getResources().getStringArray(R.array.advanced_words);
-        String[] translationArray = getResources().getStringArray(R.array.advanced_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.advanced_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.advanced_example1);
 
-        for(int i = 0 ; i < wordArray.length; i++){
 
-            words.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],"advance"));
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.advanceSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.advanceBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.advanceHindi;
+        }
+
+
+
+
+
+
+        for(int i = 0 ; i < SplashScreen.advanceWordArray.length; i++){
+
+            words.add(new Word(SplashScreen.advanceWordArray[i],SplashScreen.advanceTranslationArray[i],extraArray[i],SplashScreen.advancePronunciationArray[i], SplashScreen.advanceGrammarArray[i],SplashScreen.advanceExampleArray1[i],"advance",0));
 
         }
 

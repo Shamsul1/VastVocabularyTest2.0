@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="advance_bengali">
+        <item>"জলজ"</item>
+        <item>"শ্রেণীবিন্যাস "</item>
+        <item>"সংখ্যাতীত"</item>
+        <item>"পৃথিবীবাসী, পৃথিবীজ"</item>
+        <item>"উদ্ভিদসমূহ"</item>
+        <item>"উভচর"</item>
+        <item>"অবশিষ্ট"</item>
+        <item>"ধ্বংস করা"</item>
+        <item>"জীব বৈচিত্র্য"</item>
+        <item>"গোলার্ধ"</item>
+
+        <item>"অপরিহার্য"</item>
+        <item>"নিশাচর"</item>
+        <item>"অজ্ঞাত"</item>
+        <item>"নির্ভুলভাবে"</item>
+        <item>"প্রদর্শন করা"</item>
+        <item>"পাতলা করা, হালকা করা"</item>
+        <item>"দ্রুত পুনরুদ্ধার করা"</item>
+
+    </string-array>
+
+
+
+
+
+</resources>

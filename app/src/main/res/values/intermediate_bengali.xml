@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+    <string-array name="intermediate_bengali">
+        <item>"ক্ষয় করা"</item>
+        <item>"প্রসারিত করা"</item>
+        <item>"পথিমধ্যে রোধ করা"</item>
+        <item>"পরিপোষক"</item>
+        <item>"অধ: পতিত হওয়া"</item>
+        <item>"ঝাঁজরা"</item>
+        <item>"উৎপাদনে অক্ষম"</item>
+        <item>"খরা"</item>
+        <item>"নির্গমন"</item>
+        <item>"সহজতর করা"</item>
+
+        <item>"অপূরণীয়"</item>
+        <item>"দিবাকালীন অথবা দৈনিক"</item>
+        <item>"সহ্য করা অথবা স্থায়ী"</item>
+        <item>"কৃতিত্ব"</item>
+        <item>"সন্তোষজনক"</item>
+        <item>"প্রজাতি"</item>
+        <item>"বিপথগামী বা পথভ্রষ্ট হওয়া"</item>
+        <item>"বিচিত্র, বিভিন্ন"</item>
+        <item>"চরম"</item>
+
+
+    </string-array>
+
+
+
+</resources>

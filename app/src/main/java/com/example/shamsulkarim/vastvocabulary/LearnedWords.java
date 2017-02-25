@@ -5,13 +5,20 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -20,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
@@ -40,6 +48,7 @@ public class LearnedWords extends Fragment {
 
 
 
+    Toolbar toolbar;
     private MaterialSpinner spinner;
     private RecyclerView recyclerView;
     RelativeLayout fab_option1, fab_option2,fab_option3;
@@ -61,7 +70,7 @@ public class LearnedWords extends Fragment {
         View v = inflater.inflate(R.layout.fragment_learned_words,container,false);
         practiceWords = new ArrayList<>();
 
-        spinnerInitializatin(v);
+//        spinnerInitializatin(v);
         fab = (ImageView)v.findViewById(R.id.fab_favorite_learned);
         fab_option1 = (RelativeLayout)v.findViewById(R.id.fab_option1_learned);
         fab_option2 = (RelativeLayout)v.findViewById(R.id.fab_option2_learned);
@@ -75,6 +84,13 @@ public class LearnedWords extends Fragment {
 
 
 
+
+        toolbar = (Toolbar)v.findViewById(R.id.learned_toolbar);
+        toolbar.setTitle("Learned");
+        toolbar.setTitleTextColor(Color.parseColor("#673AB7"));
+        setHasOptionsMenu(true);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
 
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_learned_words);
         layoutManager = new LinearLayoutManager(getContext());
@@ -92,41 +108,41 @@ public class LearnedWords extends Fragment {
 
 
 
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                switch (adapterView.getSelectedItemPosition()){
-
-                    case 0:
-                        beginnerWordInitialization();
-                        break;
-
-                    case 1:
-                        intermediateWordInitialization();
-
-                        break;
-                    case 2:
-                        advanceWordInitialization();
-
-                        break;
-
-                    default:
-                        beginnerWordInitialization();
-                        break;
-
-                }
-
-                Toast.makeText(getContext(),adapterView.getSelectedItemPosition()+" Selected",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//
+//                switch (adapterView.getSelectedItemPosition()){
+//
+//                    case 0:
+//                        beginnerWordInitialization();
+//                        break;
+//
+//                    case 1:
+//                        intermediateWordInitialization();
+//
+//                        break;
+//                    case 2:
+//                        advanceWordInitialization();
+//
+//                        break;
+//
+//                    default:
+//                        beginnerWordInitialization();
+//                        break;
+//
+//                }
+//
+//                Toast.makeText(getContext(),adapterView.getSelectedItemPosition()+" Selected",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
  @Override
@@ -265,6 +281,64 @@ public class LearnedWords extends Fragment {
         //---------------------------------------------------------------------------------------------------
     }
 
+
+    ///// Spinner--------------------------
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.learned_toolbar_menus,menu);
+
+        MenuItem item = menu.findItem(R.id.spinner_learned);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+
+
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.spinner_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Toast.makeText(getContext(),"i: "+i+" l: "+l,Toast.LENGTH_SHORT).show();
+
+
+
+                if(i == 0){
+
+
+                    beginnerWordInitialization();
+                }
+                if(i == 1){
+
+
+                    intermediateWordInitialization();
+                }
+
+                if(i == 2){
+
+                    advanceWordInitialization();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+
+
+    }
+
     protected void fabAnimation(boolean isVisible) {
         if (isVisible) {
             fab.animate().cancel();
@@ -275,16 +349,16 @@ public class LearnedWords extends Fragment {
         }
     }
 
-    private void spinnerInitializatin(View v){
-
-        String[] ITEMS = {"Intermediate", "Advance"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ITEMS);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner = (MaterialSpinner)v.findViewById(R.id.spinner_learned_words);
-        spinner.setHint("Beginner");
-        spinner.setAdapter(arrayAdapter);
-
-    }
+//    private void spinnerInitializatin(View v){
+//
+//        String[] ITEMS = {"Intermediate", "Advance"};
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ITEMS);
+//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner = (MaterialSpinner)v.findViewById(R.id.spinner_learned_words);
+//        spinner.setHint("Beginner");
+//        spinner.setAdapter(arrayAdapter);
+//
+//    }
 
 
     private void beginnerWordInitialization(){
@@ -510,23 +584,42 @@ public class LearnedWords extends Fragment {
 
 
     public List<Word> getAdvanceWords(){
-        SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        int beginnerLearnedCount = sp.getInt("advanced",0);
+        int advanceLearnedCount = SplashScreen.sp.getInt("advanced",0);
          List<Word> getWords = new ArrayList<>();
 
-        String[] wordArray = getResources().getStringArray(R.array.advanced_words);
-        String[] translationArray = getResources().getStringArray(R.array.advanced_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.advanced_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.advanced_example1);
-        String[] exampleArray2 = getResources().getStringArray(R.array.advanced_example2);
-        String[] exampleArray3 = getResources().getStringArray(R.array.advanced_example3);
+        String[] extraArray = new String[getResources().getStringArray(R.array.advanced_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.advanced_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.advanceSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.advanceBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.advanceHindi;
+        }
 
 
 
-        for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"advance"));
+
+
+        for(int i = 0 ; i < advanceLearnedCount; i++){
+
+            getWords.add(new Word(SplashScreen.advanceWordArray[i],SplashScreen.advanceTranslationArray[i],extraArray[i],SplashScreen.advancePronunciationArray[i],SplashScreen.advanceGrammarArray[i],SplashScreen.advanceExampleArray1[i],"advance",0));
 
         }
 
@@ -536,22 +629,41 @@ public class LearnedWords extends Fragment {
 
     public List<Word> getIntermediateWords(){
         List<Word> getWords = new ArrayList<>();
-        SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
-        int beginnerLearnedCount = sp.getInt("intermediate",0);
+        int beginnerLearnedCount = SplashScreen.sp.getInt("intermediate",0);
 
-        String[] wordArray = getResources().getStringArray(R.array.intermediate_words);
-        String[] translationArray = getResources().getStringArray(R.array.intermediate_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.intermediate_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.intermediate_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.intermediate_example1);
-        String[] exampleArray2 = getResources().getStringArray(R.array.intermediate_example2);
-        String[] exampleArray3 = getResources().getStringArray(R.array.intermediate_example3);
+
+        String[] extraArray = new String[getResources().getStringArray(R.array.intermediate_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.intermediate_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.intermediateSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.intermediateBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.intermediateHindi;
+        }
+
+
 
 
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"intermediate"));
+            getWords.add(new Word(SplashScreen.intermediateWordArray[i],SplashScreen.intermediateTranslationArray[i],extraArray[i],SplashScreen.intermediatePronunciationArray[i],SplashScreen.intermediateGrammarArray[i],SplashScreen.intermediateExampleArray1[i],"intermediate",0));
 
         }
 
@@ -567,19 +679,37 @@ public class LearnedWords extends Fragment {
         SharedPreferences sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         int beginnerLearnedCount = sp.getInt("beginner",0);
 
-        String[] wordArray = getResources().getStringArray(R.array.beginner_words);
-        String[] translationArray = getResources().getStringArray(R.array.beginner_translation);
-        String[] grammarArray = getResources().getStringArray(R.array.beginner_grammar);
-        String[] pronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
-        String[] exampleArray1 = getResources().getStringArray(R.array.beginner_example1);
-        String[] exampleArray2 = getResources().getStringArray(R.array.beginner_example2);
-        String[] exampleArray3 = getResources().getStringArray(R.array.beginner_example3);
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
+
+        if(SplashScreen.languageId == 0){
+
+            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+
+
+                extraArray[i] = "";
+            }
+
+        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = getResources().getStringArray(R.array.beginner_spanish);
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = getResources().getStringArray(R.array.beginner_bengali);
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = getResources().getStringArray(R.array.beginner_hindi);
+        }
+
 
 
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(wordArray[i],translationArray[i],pronunciationArray[i],grammarArray[i],exampleArray1[i],exampleArray2[i],exampleArray3[i],"beginner"));
+            getWords.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i],SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0));
 
         }
 

@@ -1,123 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="advanced_words">
-        <item>"Frank"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"Aquatic"</item>
+        <item>"array"</item>
+        <item>"myriad"</item>
+        <item>"terrestrial"</item>
+        <item>"vegetation"</item>
+        <item>"amphibian"</item>
+        <item>"residue"</item>
+        <item>"obliterate"</item>
+        <item>"biodiversity"</item>
+        <item>"hemisphere"</item>
+
+        <item>"imperative"</item>
+        <item>"Nocturnal"</item>
+        <item>"obscure"</item>
+        <item>"unerringly"</item>
+        <item>"exhibit"</item>
+        <item>"dilute"</item>
+        <item>"resilient"</item>
+
+
 
     </string-array>
 
     <string-array name="advanced_translation">
-        <item>"Honest"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"operating or living or growing in water"</item>
+        <item>"an impressive display or an ordered series."</item>
+        <item>"a countless or extremely great number."</item>
+        <item>"relating to the earth or its inhabitants"</item>
+        <item>"all the plants or plant life of a place, taken as a whole"</item>
+        <item>"cold-blooded vertebrate typically living on land but breeding in water"</item>
+        <item>"something that remains after a part is removed"</item>
+        <item>"to completely wiped out."</item>
+        <item>"the variety of plants and animals in a particular  place"</item>
+        <item>"a half of a sphere or a half of the earth"</item>
+        <item>"very important or essential"</item>
+
+        <item>"done, occurring, or active at night."</item>
+        <item>"unknown, keep from being seen"</item>
+        <item>"without making errors"</item>
+        <item>"to display for the public"</item>
+        <item>"To make weaker, thinner or lessen the strength"</item>
+        <item>"recovering quickly from damage"</item>
+
     </string-array>
 
     <string-array name="advanced_grammar">
         <item>"adjective"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"noun"</item>
+        <item>"noun/adjective"</item>
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"verb"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+
+        <item>"noun/adjective"</item>
+        <item>"adjective"</item>
+        <item>"adjective/verb"</item>
+        <item>"adverb"</item>
+        <item>"verb"</item>
+        <item>"verb"</item>
+        <item>"adjective"</item>
+
     </string-array>
 
     <string-array name="advanced_pronunciation">
-        <item>"/fraŋk/"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"a·quat·ic"</item>
+        <item>"ar·ray"</item>
+        <item>"myr·i·ad"</item>
+        <item>"ter·res·tri·al"</item>
+        <item>"veg·e·ta·tion"</item>
+        <item>"am·phib·i·an"</item>
+        <item>"res·i·due"</item>
+        <item>"ob·lit·er·ate"</item>
+        <item>"bi·o·di·ver·si·ty"</item>
+        <item>"hem·i·sphere"</item>
+
+        <item>"im·per·a·tive"</item>
+        <item>"noc·tur·nal"</item>
+        <item>"ob·scure"</item>
+        <item>"un·err·ing·ly"</item>
+        <item>"ex·hib·it"</item>
+        <item>"di·lute"</item>
+        <item>"re·sil·ient"</item>
     </string-array>
 
     <string-array name="advanced_example1">
-        <item>"I will be frank with you."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"Fish are aquatic animals."</item>
+        <item>"there is a vast array of literature on the topic."</item>
+        <item>"networks connecting a myriad(n.) of computers."</item>
+        <item>"increased ultraviolet radiation may disrupt terrestrial ecosystems."</item>
+        <item>"the local vegetation is flourishing as a result of the recent rains"</item>
+        <item>"Amphibians live partly in water and partly on land."</item>
+        <item>"The grill was covered in a greasy residue from the hamburgers."</item>
+        <item>"The heavy rain obliterated all footprints."</item>
+        <item>"The Amazon rain forest is rich in biodiversity."</item>
+        <item>"a half of the earth, usually as divided into northern and southern halves by the equator, or into western and eastern halves by an imaginary line passing through the poles."</item>
+        <item>"It's imperative that I speak with Jeremiah immediately"</item>
+        <item>"A nocturnal animal hunts its food at night."</item>
+        <item>"his origins and parentage are obscure(n.)"</item>
+        <item>"he unerringly fixed things for us"</item>
+        <item>"The Metropolitan Museum is exhibiting Goya's works this month"</item>
+        <item>"You can dilute the medicine with water."</item>
+        <item>" If you're rough on your toys, the ones that don't break are resilient."</item>
+        <item>"It's imperative that I speak with Jeremiah immediately"</item>
     </string-array>
 
     <string-array name="advanced_example2">
-        <item>"frank and open-hearted."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"If you prefer your volleyball net in a pool, it sounds like you're into aquatic sports."</item>
+        <item>"several arrays of solar panels will help provide power."</item>
+        <item>"the myriad(adj.) lights of the city"</item>
+        <item>"Terrestrial latitude is measured in degrees north or south from the equator."</item>
+        <item>"the dense vegetation of the jungle"</item>
+        <item>"Frog is an amphibian with sturdy life."</item>
+        <item>"The divorce left a residue of pain in the family."</item>
+        <item>"The entire village was obliterated by the tornado."</item>
+        <item>"a high level of biodiversity is desirable."</item>
+        <item>"The United States is in the Northern Hemisphere."</item>
+
+        <item>"immediate action was imperative."</item>
+        <item>"most owls are nocturnal."</item>
+        <item>"The cause of the accident is still obscure."</item>
+        <item>"He has an unerring sense of good taste."</item>
+        <item>"Tom asked Mary if she'd go to Goya's art exhibit."</item>
+        <item>"The hiring of the new CEO diluted the power of the company's president."</item>
+        <item>"babies are generally far more resilient than new parents realize."</item>
+
     </string-array>
 
     <string-array name="advanced_example3">
-        <item>"Yet this young man's frank appraisal was none of those."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Advance"</item>
-        <item>"Advanced"</item>
+        <item>"a lifelong fascination with sharks and other fearsome aquatic creatures"</item>
+        <item>"an array of bathing suits on the beach."</item>
+        <item>"There are a myriad(n.) of possibilities."</item>
+        <item>"He struggled with the problem of how to treat the gravitational pull of the earth on terrestrial objects."</item>
+        <item>"The vegetation in your backyard might look very lush and green in the springtime."</item>
+        <item>"The void lord is a large amphibian alien."</item>
+        <item>"There was some kind of sticky residue on the floor."</item>
+        <item>"the memory was so painful that he obliterated it from his mind"</item>
+        <item>"Biodiversity continues to decline each year. "</item>
+        <item>"Zika is waning virtually everywhere in the Western Hemisphere."</item>
+
+        <item>"Job creation has become an imperative for the government."</item>
+        <item>"he bought a new telescope so he could pursue his favorite nocturnal hobby of astronomy."</item>
+        <item>"The veil she was wearing obscured(v.) her features."</item>
+        <item>"A large, soft tomato, unerringly aimed, stuck the chairman in the face."</item>
+        <item>"He hopes to exhibit his paintings in Japan. "</item>
+        <item>"diluting the quality of our products."</item>
+        <item>"The local economy is remarkably resilient."</item>
     </string-array>
 
 

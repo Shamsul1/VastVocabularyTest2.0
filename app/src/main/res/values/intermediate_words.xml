@@ -2,115 +2,172 @@
 <resources>
 
     <string-array name="intermediate_words">
-        <item>"Frank"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"erode"</item>
+        <item>"extend"</item>
+        <item>"intercept"</item>
+        <item>"nutrient"</item>
+        <item>"degenerate"</item>
+        <item>"Porous"</item>
+        <item>"infertile"</item>
+        <item>"drought"</item>
+        <item>"emission"</item>
+        <item>"facilitate"</item>
+
+        <item>"irreplaceable"</item>
+        <item>"diurnal"</item>
+        <item>"endure"</item>
+        <item>"feat"</item>
+        <item>"optimal"</item>
+        <item>"species"</item>
+        <item>"stray"</item>
+        <item>"diverse"</item>
+        <item>"extreme"</item>
+
     </string-array>
 
     <string-array name="intermediate_translation">
-        <item>"Honest"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"destroy by slow consumption"</item>
+        <item>"to make longer or wider"</item>
+        <item>"to stop something from reaching its intended destination"</item>
+        <item>"anything that nourishes a living being"</item>
+        <item>"having lost the physical, mental, or moral qualities considered normal"</item>
+        <item>"something is full of tiny holes or openings or easily penetrated"</item>
+        <item>"a person, animal, or plant unable to reproduce"</item>
+        <item>"lack of rain"</item>
+        <item>"act of releasing gas or radiation"</item>
+        <item>"to make something easier"</item>
+
+        <item>"no substitute or alternative"</item>
+        <item>"something that takes place in the daytime or has a daily cycle"</item>
+        <item>"suffer or something that remain in existence"</item>
+        <item>"n achievement that requires great courage, skill, or strength."</item>
+        <item>"best or most favorable for a given situation"</item>
+        <item>"a specific kind of animals or plants that can breed with each other"</item>
+        <item>"to go in a direction that is away from the place where you should be"</item>
+        <item>"things that are very different from each other"</item>
+        <item>"very serious"</item>
     </string-array>
 
     <string-array name="intermediate_grammar">
+        <item>"verb"</item>
+        <item>"verb"</item>
+        <item>"verb"</item>
+        <item>"noun"</item>
         <item>"adjective"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"adjective"</item>
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"verb"</item>
+
+        <item>"adjective"</item>
+        <item>"adjective"</item>
+        <item>"verb"</item>
+        <item>"noun"</item>
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"verb"</item>
+        <item>"adjective"</item>
+        <item>"adjective"</item>
+
     </string-array>
 
     <string-array name="intermediate_pronunciation">
-        <item>"/fraŋk/"</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"e·rode"</item>
+        <item>"ex·tend"</item>
+        <item>"in·ter·cept"</item>
+        <item>"nu·tri·ent"</item>
+        <item>"de·gen·er·ate"</item>
+        <item>"po·rous"</item>
+        <item>"in·fer·tile"</item>
+        <item>"drought"</item>
+        <item>"e·mis·sion"</item>
+        <item>"fa·cil·i·tate"</item>
+
+        <item>"ir·re·place·a·ble"</item>
+        <item>"di·ur·nal"</item>
+        <item>"en·dure"</item>
+        <item>"feat"</item>
+        <item>"op·ti·mal"</item>
+        <item>"spe·cies"</item>
+        <item>"stray"</item>
+        <item>"di·verse"</item>
+        <item>"ex·treme"</item>
+
+
+
     </string-array>
 
     <string-array name="intermediate_example1">
-        <item>"I will be frank with you."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"Crashing waves have eroded the cliffs along the beach."</item>
+        <item>"sitting with both legs fully extended"</item>
+        <item>"The police intercepted him as he was walking out."</item>
+        <item>"Fruits and vegetables have important nutrients."</item>
+        <item>"The morale of the soldiers degenerated, and they were unable to fight."</item>
+        <item>"he ran through a porous defense to score easily"</item>
+        <item>"All too often, infertile women are considered cursed."</item>
+        <item>"The drought caused serious damage to crops."</item>
+        <item>"the emission of poisonous gas has many negative health effects."</item>
+        <item>"Careful planning facilitates any kind of work."</item>
+
+        <item>"You are a treasure , beyond price , one of a kind , irreplaceable."</item>
+        <item>"A diurnal animal hunts its food during daylight ."</item>
+        <item>"She wasn't able to endure being at a disadvantage."</item>
+        <item>"a performer known for her astonishing acrobatic feats"</item>
+        <item>"He keeps his engine tuned for optimal performance."</item>
+        <item>"There are approximately 8,000 species of ants."</item>
+        <item>"Both of her cats were strays that she found wandering in the neighborhood."</item>
+        <item>"His message appealed to a diverse audience."</item>
+        <item>"The plant is sensitive to extreme heat and cold."</item>
     </string-array>
 
     <string-array name="intermediate_example2">
-        <item>"frank and open-hearted."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"Different types of rock will normally erode at vastly different rates."</item>
+        <item>"His popularity extends from city to city"</item>
+        <item>"intelligence agencies intercepted a series of telephone calls"</item>
+        <item>"Blood is the ﬂuid responsible for the circulation of nutrients."</item>
+        <item>"The mad cow disease caused many unfortunate cows to degenerate, forcing many to avoid eating beef."</item>
+        <item>"the police found a porous dead body at the middle of the city."</item>
+        <item>"My wife and I tried very hard to have children, but apparently she's infertile."</item>
+        <item>"Many peasants died during the drought. "</item>
+        <item>"At current emission levels, we will suffer Total Weather Apocalypse by 2050."</item>
+        <item>"It was to facilitate my studies that i came here."</item>
+
+        <item>"He is irreplaceable in her heart, she feels pampered , spoiled and loved."</item>
+        <item>"Pikas are diurnal, active throughout the year, and have a characteristic call, "chickck-chickck.""</item>
+        <item>"I cannot endure that noise a moment longer."</item>
+        <item>"Writing that whole report in one night was quite a feat."</item>
+        <item>"Under optimal conditions, these plants grow quite tall."</item>
+        <item>"All European domestic cattle belong to the same species."</item>
+        <item>"Don't stray from the main point of the question."</item>
+        <item>"The surface of mars is remarkably diverse."</item>
+        <item>"They are living in extreme poverty."</item>
+
+
     </string-array>
 
     <string-array name="intermediate_example3">
-        <item>"Yet this young man's frank appraisal was none of those."</item>
-        <item>"Good"</item>
-        <item>"Stop"</item>
-        <item>"Care"</item>
-        <item>"Like"</item>
-        <item>"Love"</item>
-        <item>"Don"</item>
-        <item>"Laough"</item>
-        <item>"Busy"</item>
-        <item>"Work"</item>
-        <item>"Hot"</item>
-        <item>"Bot"</item>
-        <item>"Intermediate"</item>
+        <item>"Battery acid had eroded the engine."</item>
+        <item>"A giraffe extends its neck to get food. "</item>
+        <item>"“The fighter plane was ordered to intercept an aircraft that had entered the country's airspace”"</item>
+        <item>"You need more nutrients in your diet."</item>
+        <item>"Your boyfriend ran off with another woman and took your best jewelry?! Why, that degenerate-!"</item>
+        <item>"Since the small nation had porous borders, it was an easy target for invasion."</item>
+        <item>"infertile soil can't sustain agricultural plant growth."</item>
+        <item>"During droughts, farmers are barely able to make out a living."</item>
+        <item>"many companies are trying to reduce the emission of greenhouse gases"</item>
+        <item>"Our trade and development program will facilitate our progress ."</item>
+
+        <item>"Government has an irreplaceable responsibility in enhancing the social justice."</item>
+        <item>"I could only spare two or three hours, from my numerous diurnal occupations."</item>
+        <item>"She wants to make sure her legacy will endure."</item>
+        <item>"It was quite a feat to move that piano by yourself."</item>
+        <item>"If one really wants to go for optimal health the answer is the more the better"</item>
+        <item>"The chimpanzee is an endangered species."</item>
+        <item>"The kind lady's house was always open to strays."</item>
+        <item>"Today's businesses are increasingly complex and diverse."</item>
+        <item>"He has extreme opinions when it comes to politics."</item>
+
     </string-array>
 
 

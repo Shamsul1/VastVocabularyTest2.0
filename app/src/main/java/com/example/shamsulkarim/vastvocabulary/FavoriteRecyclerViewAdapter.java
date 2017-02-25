@@ -3,6 +3,7 @@ package com.example.shamsulkarim.vastvocabulary;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,16 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite,parent,false);
+        View view;
+        if(SplashScreen.languageId >= 1){
+
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite_second_language,parent,false);
+
+        }else {
+
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite,parent,false);
+        }
+
 
 
         WordViewHolder viewHolder = new WordViewHolder(view);
@@ -86,11 +96,40 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
         }
 
+        if(SplashScreen.languageId == 1){
 
 
+            holder.secondLanguageName.setText(SplashScreen.languageName[1]);
+        }
+
+        if(SplashScreen.languageId == 2){
+
+
+            holder.secondLanguageName.setText(SplashScreen.languageName[2]);
+        }
+
+        if(SplashScreen.languageId == 3){
+
+
+            holder.secondLanguageName.setText(SplashScreen.languageName[3]);
+        }
+
+
+
+
+        if(SplashScreen.languageId >= 1){
+
+            holder.translationView.setText(word.getTranslation());
+            holder.secondTranslation.setText(word.getExtra());
+
+
+        }else {
+
+            holder.translationView.setText(word.getTranslation());
+        }
 
         holder.wordView.setText(word.getWord());
-        holder.translationView.setText(word.getTranslation());
+
         holder.grammarView.setText(word.getGrammar());
         holder.pronunciationView.setText(word.getPronun());
         holder.exampleView1.setText(word.getExample1());
@@ -110,13 +149,15 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView wordView,translationView, grammarView, pronunciationView, exampleView1,exampleView2,exampleView3;
+        TextView wordView,translationView, grammarView, pronunciationView, exampleView1,exampleView2,exampleView3,secondLanguageName,secondTranslation;
         ImageView favorite;
 
 
         public WordViewHolder(View itemView) {
             super(itemView);
 
+            secondLanguageName = (TextView)itemView.findViewById(R.id.favorite_second_language2);
+            secondTranslation = (TextView)itemView.findViewById(R.id.favorite_second_translation);
             wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
             translationView = (TextView)itemView.findViewById(R.id.favorite_card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.favorite_card_grammar);

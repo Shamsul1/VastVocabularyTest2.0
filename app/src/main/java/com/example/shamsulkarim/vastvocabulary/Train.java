@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class Train extends AppCompatActivity {
 
     int[] wordCounter = new int[5];
     String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array, beginnerTranslationExtra;
-    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3, translationExtraView;
+    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3, translationExtraView,secondLanguageName;
     TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext,train_land;
     int id = 0;
@@ -79,6 +80,7 @@ public class Train extends AppCompatActivity {
             if(SplashScreen.languageId >= 1){
 
                 translationExtraView.setText(fiveWords.get(ia).getExtra());
+                secondLanguageName.setText(SplashScreen.languageName[SplashScreen.languageId]);
             }
             wordView.setText(fiveWords.get(ia).getWord());
             translationView.setText(fiveWords.get(ia).getTranslation());
@@ -221,10 +223,23 @@ public class Train extends AppCompatActivity {
     public void settingQuestionButton() {
         buttonQuestion = settingUpQustion();
 
-        answer1.setText(buttonQuestion.get(0).getTranslation());
-        answer2.setText(buttonQuestion.get(1).getTranslation());
-        answer3.setText(buttonQuestion.get(2).getTranslation());
-        answer4.setText(buttonQuestion.get(3).getTranslation());
+        if(SplashScreen.languageId >= 1){
+
+
+            answer1.setText(buttonQuestion.get(0).getExtra());
+            answer2.setText(buttonQuestion.get(1).getExtra());
+            answer3.setText(buttonQuestion.get(2).getExtra());
+            answer4.setText(buttonQuestion.get(3).getExtra());
+        }else{
+
+            answer1.setText(buttonQuestion.get(0).getTranslation());
+            answer2.setText(buttonQuestion.get(1).getTranslation());
+            answer3.setText(buttonQuestion.get(2).getTranslation());
+            answer4.setText(buttonQuestion.get(3).getTranslation());
+
+        }
+
+
         wordView.setText(fiveWords.get(id).getWord());
         countView.setText(fiveWords.get(id).getCount() + " ");
 
@@ -239,53 +254,155 @@ public class Train extends AppCompatActivity {
 
         if (view.getId() == button1.getId()) {
             answer = answer1.getText().toString();
-            if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
-                // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
-                fiveWords.get(id).setCount(1);
-                countView.setText(fiveWords.get(id).getCount() + " ");
-                id++;
-            } else {
-                showAnswer(fiveWords.get(id));
-                // Toast.makeText(this,"Wrong ",Toast.LENGTH_SHORT).show();
+
+            if(SplashScreen.languageId >= 1){
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
+                    // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+                } else {
+                    showAnswer(fiveWords.get(id));
+                    // Toast.makeText(this,"Wrong ",Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            }else {
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
+                    // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+                } else {
+                    showAnswer(fiveWords.get(id));
+                    // Toast.makeText(this,"Wrong ",Toast.LENGTH_SHORT).show();
+
+                }
+
+
 
             }
+
+
+
+
         }
+        // Button 2
 
         if (view.getId() == button2.getId()) {
             answer = answer2.getText().toString();
 
-            if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
-                fiveWords.get(id).setCount(1);
-                countView.setText(fiveWords.get(id).getCount() + " ");
-                id++;
 
-            } else {
-                showAnswer(fiveWords.get(id));
+            if (SplashScreen.languageId >= 1){
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
+            }else {
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
             }
+
+
         }
+
+
+
+        // Button 3
         if (view.getId() == button3.getId()) {
             answer = answer3.getText().toString();
 
-            if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
-                fiveWords.get(id).setCount(1);
-                countView.setText(fiveWords.get(id).getCount() + " ");
-                id++;
 
-            } else {
-                showAnswer(fiveWords.get(id));
+            if(SplashScreen.languageId >= 1){
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
+
+
+            }else {
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + " ");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
             }
+
+
         }
+
+
+        // Button 4
         if (view.getId() == button4.getId()) {
             answer = answer4.getText().toString();
 
-            if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
-                fiveWords.get(id).setCount(1);
-                countView.setText(fiveWords.get(id).getCount() + "");
-                id++;
 
-            } else {
-                showAnswer(fiveWords.get(id));
+            if(SplashScreen.languageId >= 1 ){
+
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + "");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
+            }else {
+
+
+
+                if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
+                    fiveWords.get(id).setCount(1);
+                    countView.setText(fiveWords.get(id).getCount() + "");
+                    id++;
+
+                } else {
+                    showAnswer(fiveWords.get(id));
+                }
+
+
             }
+
+
         }
         if (id == fiveWords.size()) {
             id = 0;
@@ -480,6 +597,7 @@ public class Train extends AppCompatActivity {
         exampleView3 = (TextView) findViewById(R.id.example3);
         if(SplashScreen.languageId >= 1){
             translationExtraView = (TextView) findViewById(R.id.translationExtra_train);
+            secondLanguageName = (TextView) findViewById(R.id.second_language_name);
         }
 
 
@@ -542,8 +660,61 @@ public class Train extends AppCompatActivity {
             example2Array = getResources().getStringArray(R.array.intermediate_example2);
             example3Array = getResources().getStringArray(R.array.intermediate_example3);
 
+
+            if(SplashScreen.languageId == 1){
+
+
+                beginnerTranslationExtra =SplashScreen.intermediateSpanish;
+            }
+            else if(SplashScreen.languageId == 2){
+
+
+                beginnerTranslationExtra = SplashScreen.intermediateBengali;
+            }
+            else if(SplashScreen.languageId == 3){
+
+
+                beginnerTranslationExtra = SplashScreen.intermediateHindi;
+            }else {
+
+                for(int i = 0; i < getResources().getStringArray(R.array.intermediate_words).length; i++){
+
+                    beginnerTranslationExtra[i] = "";
+
+                }
+
+            }
+
         }
         else if(level.equalsIgnoreCase("advanced")){
+
+
+            if(SplashScreen.languageId == 1){
+
+
+                beginnerTranslationExtra =SplashScreen.advanceSpanish;
+            }
+            else if(SplashScreen.languageId == 2){
+
+
+                beginnerTranslationExtra = SplashScreen.advanceBengali;
+            }
+            else if(SplashScreen.languageId == 3){
+
+
+                beginnerTranslationExtra = SplashScreen.advanceHindi;
+            }else {
+
+                for(int i = 0; i < getResources().getStringArray(R.array.advanced_words).length; i++){
+
+                    beginnerTranslationExtra[i] = "";
+
+                }
+
+            }
+
+
+
 
             train_land.setImageResource(R.drawable.new_advance);
             wordArray = getResources().getStringArray(R.array.advanced_words);

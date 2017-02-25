@@ -19,7 +19,7 @@ public class Word {
 
 
 
-    public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3, int databasePosition, String level) {
+    public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String example2, String example3, int databasePosition, String level) {
         this.word = word;
         this.translation = translation;
         this.pronun = pronun;
@@ -29,6 +29,7 @@ public class Word {
         this.example3 = example3;
         this.databasePosition = databasePosition;
         this.level = level;
+        this.extra = extra;
     }
 
     public Word(String word, String translation, String pronun, String grammar, String example1, String example2, String example3) {

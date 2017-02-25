@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+    <string-array name="intermediate_hindi">
+        <item>"kha jaana"</item>
+        <item>"vistaar"</item>
+        <item>"avarodhan"</item>
+        <item>"pushtikar"</item>
+        <item>"patit"</item>
+        <item>"jharajhara"</item>
+        <item>"anupajaoo"</item>
+        <item>"sookha"</item>
+        <item>"utsarjan"</item>
+        <item>"aasaan banaana"</item>
+
+        <item>"jo badalee nahin sakte"</item>
+        <item>"din ke samay ya dainik"</item>
+        <item>"sahana ya sthaayee"</item>
+        <item>"karatab"</item>
+        <item>"santoshajanak"</item>
+        <item>"prajati"</item>
+        <item>"bhataka hua ya bikhara hua"</item>
+        <item>"vividh, alag"</item>
+        <item>"charam"</item>
+
+
+    </string-array>
+
+
+
+
+
+</resources>

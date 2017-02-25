@@ -5,4 +5,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_practice_finished">PracticeFinishedActivity</string>
 
+    <string-array name="spinner_options">
+
+
+        <item> "Beginner"</item>
+        <item> "Intermediate"</item>
+        <item>"Advance"</item>
+    </string-array>
+
 </resources>

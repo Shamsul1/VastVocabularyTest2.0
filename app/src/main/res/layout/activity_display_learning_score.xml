@@ -220,7 +220,7 @@
             android:layout_centerVertical="true"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_home_active"/>
+            android:src="@drawable/ic_home"/>
 
         <TextView
             android:layout_centerHorizontal="true"

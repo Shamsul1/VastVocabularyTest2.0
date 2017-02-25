@@ -30,7 +30,13 @@ public class LearnedWordAdapter extends RecyclerView.Adapter<LearnedWordAdapter.
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+        View view;
+        if(SplashScreen.languageId == 0){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+        }else {
+
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+        }
 
 
         WordViewHolder viewHolder = new WordViewHolder(view);
@@ -43,6 +49,33 @@ public class LearnedWordAdapter extends RecyclerView.Adapter<LearnedWordAdapter.
     public void onBindViewHolder(WordViewHolder holder, int position) {
 
         Word word = words.get(position);
+
+        if(SplashScreen.languageId>= 1){
+
+            holder.translationView.setText(word.getTranslation());
+            holder.translationExtra.setText(word.getExtra());
+        }else{
+
+            holder.translationView.setText(word.getTranslation());
+        }
+
+
+        if(SplashScreen.languageId == 1){
+
+
+            holder.secondLanguageName.setText(SplashScreen.languageName[1]);
+        }
+
+        if(SplashScreen.languageId == 2){
+
+
+            holder.secondLanguageName.setText(SplashScreen.languageName[2]);
+        }
+        if(SplashScreen.languageId == 3){
+
+
+            holder.secondLanguageName.setText(SplashScreen.languageName[3]);
+        }
 
         holder.favorite.setImageResource(R.drawable.nolove);
         holder.wordView.setText(word.getWord());
@@ -64,13 +97,15 @@ public class LearnedWordAdapter extends RecyclerView.Adapter<LearnedWordAdapter.
 
     class WordViewHolder extends RecyclerView.ViewHolder{
 
-        TextView wordView,translationView, grammarView, pronunciationView, exampleView1;
+        TextView wordView,translationView, grammarView, pronunciationView, exampleView1, secondLanguageName, translationExtra;
         ImageView favorite;
 
 
         public WordViewHolder(View itemView) {
             super(itemView);
 
+            secondLanguageName = (TextView)itemView.findViewById(R.id.card_translation_extra);
+            secondLanguageName = (TextView)itemView.findViewById(R.id.card_language_extra);
             wordView = (TextView)itemView.findViewById(R.id.card_word);
             translationView = (TextView)itemView.findViewById(R.id.card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);

@@ -35,10 +35,6 @@ public class Practice extends AppCompatActivity {
 
     RelativeLayout translation_layout,button1,button2,button3,button4;
     List<Word> fiveWords, buttonQuestion, wordForQuestions;
-
-
-
-
     TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
     TextView answer1, answer2, answer3, answer4;
     ImageView next, fakeNext,train_land;

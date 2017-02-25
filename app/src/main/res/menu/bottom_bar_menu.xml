@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:bbn_badgeColor="#FFFF0000"
+    app:bbn_rippleColor="#33ffffff"
+    android:background="#ffffff"
+    android:textColor="@color/colorPrimary"
+    app:bbn_itemColorActive="#673AB7"
+    app:bbn_itemColorInactive="#9E9E9E"
+    >
+    <item
+        android:id="@+id/home"
+        android:orderInCategory="100"
+        android:title="Home"
+        android:icon="@drawable/ic_home_active"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/words"
+        android:orderInCategory="200"
+        android:title="Words"
+        android:icon="@drawable/ic_wods_active"
+        app:showAsAction="always"
+        ></item>
+    <item
+        android:id="@+id/learned"
+        android:orderInCategory="300"
+        android:title="Learned"
+        android:icon="@drawable/ic_school_active"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/favorite"
+        android:orderInCategory="300"
+        android:title="Favorite"
+        android:icon="@drawable/ic_favorite_active"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/profile"
+        android:orderInCategory="300"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_active"
+        app:showAsAction="always"></item>
+
+</menu>

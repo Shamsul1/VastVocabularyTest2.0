@@ -5,9 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,6 +45,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     TextView userName, totalLearned, totalWord, totalFavorite;
     ImageView setting;
     SharedPreferences sp;
+    Toolbar toolbar;
     int totalFavCount;
 
 
@@ -53,6 +60,14 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
 
+
+
+        toolbar = (Toolbar)v.findViewById(R.id.profileToolbar);
+        toolbar.setTitleTextColor(Color.parseColor("#673AB7"));
+        toolbar.setTitle("Profile");
+        setHasOptionsMenu(true);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
 
 
 
@@ -82,13 +97,36 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         //------------------------------------------------------------------------------------------------------
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.profile_toolbar_menus,menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+      switch (item.getItemId()){
+
+          case R.id.profile_menu_settings:
+
+              getActivity().startActivity(new Intent(getContext(), SettingActivity.class));
+      }
+
+        return super.onOptionsItemSelected(item);
+
+
+    }
+
     @Override
     public void onClick(View view) {
 
 
         if(view == setting ){
 
-            startActivity(new Intent(getContext(), SettingActivity.class));
+
 
         }
 

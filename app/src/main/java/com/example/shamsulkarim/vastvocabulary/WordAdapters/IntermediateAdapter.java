@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.IntermediatewordDatabase;
 import com.example.shamsulkarim.vastvocabulary.R;
+import com.example.shamsulkarim.vastvocabulary.SplashScreen;
 import com.example.shamsulkarim.vastvocabulary.Word;
 
 import java.util.ArrayList;
@@ -56,8 +57,13 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout,parent,false);
+        View view;
+        if(SplashScreen.languageId == 0){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_language,parent,false);
+        }else {
 
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+        }
 
         WordViewHolder viewHolder = new WordViewHolder(view);
         return viewHolder;
@@ -72,19 +78,49 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
 
         if(isFav.get(position).equalsIgnoreCase("true")){
 
-            holder.favorite.setImageResource(R.drawable.love);
+            holder.favorite.setImageResource(R.drawable.favorite_card_view);
 
         }else {
 
-            holder.favorite.setImageResource(R.drawable.nolove);
+            holder.favorite.setImageResource(R.drawable.ic_favorite_border);
 
+        }
+
+        if(SplashScreen.languageId == 1){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[1]);
+        }
+
+        if(SplashScreen.languageId == 2){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[2]);
+        }
+        if(SplashScreen.languageId == 3){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[3]);
+        }
+
+        if(SplashScreen.languageId>= 1){
+
+            holder.translationView.setText(word.getTranslation());
+            holder.secondTranslation.setText(word.getExtra());
+        }else{
+
+            holder.translationView.setText(word.getTranslation());
         }
 
 
 
 
-        holder.wordView.setText(word.getWord());
+
         holder.translationView.setText(word.getTranslation());
+
+
+        holder.wordView.setText(word.getWord());
+
         holder.grammarView.setText(word.getGrammar());
         holder.pronunciationView.setText(word.getPronun());
         holder.exampleView1.setText(word.getExample1());
@@ -103,7 +139,7 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView wordView,translationView, grammarView, pronunciationView, exampleView1;
+        TextView wordView,translationView, grammarView, pronunciationView, exampleView1, secondTranslation, secondLanguage;
         ImageView favorite;
 
 
@@ -115,6 +151,9 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);
+
+            secondLanguage = (TextView)itemView.findViewById(R.id.card_language_extra);
+            secondTranslation = (TextView)itemView.findViewById(R.id.card_translation_extra);
 
             favorite = (ImageView)itemView.findViewById(R.id.favorite);
             favorite.setTag(null);
@@ -137,8 +176,8 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
 
                     isFav.set(getAdapterPosition(),"True");
                     db.updateFav(position+"","True");
-                    favorite.setImageResource(R.drawable.love);
-                    favorite.setTag(R.drawable.love);
+                    favorite.setImageResource(R.drawable.favorite_card_view);
+                    favorite.setTag(R.drawable.favorite_card_view);
 
                 }
                 else {
@@ -147,7 +186,7 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
                     isFav.set(getAdapterPosition(),"False");
 
                     db.updateFav(position+"","False");
-                    favorite.setImageResource(R.drawable.nolove);
+                    favorite.setImageResource(R.drawable.ic_favorite_border);
                     favorite.setTag(null);
 
 
