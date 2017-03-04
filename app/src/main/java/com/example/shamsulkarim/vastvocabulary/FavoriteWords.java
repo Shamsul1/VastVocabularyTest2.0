@@ -26,6 +26,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,7 +42,7 @@ public class FavoriteWords extends Fragment  {
 
 
 
-    private ImageView fab;
+    private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -57,7 +59,7 @@ public class FavoriteWords extends Fragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_favorite_words,container,false);
 
-        fab = (ImageView)v.findViewById(R.id.fab_favorite);
+        fab = (FloatingActionButton)v.findViewById(R.id.fab_favorite);
 
         fabY = fab.getY();
 

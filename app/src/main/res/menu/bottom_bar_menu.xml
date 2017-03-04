@@ -14,12 +14,14 @@
         android:id="@+id/home"
         android:orderInCategory="100"
         android:title="Home"
+        android:color="#000000"
         android:icon="@drawable/ic_home_active"
         app:showAsAction="always" />
     <item
         android:id="@+id/words"
         android:orderInCategory="200"
         android:title="Words"
+        android:color="#ffffff"
         android:icon="@drawable/ic_wods_active"
         app:showAsAction="always"
         ></item>
@@ -27,18 +29,21 @@
         android:id="@+id/learned"
         android:orderInCategory="300"
         android:title="Learned"
+        android:color="#ffffff"
         android:icon="@drawable/ic_school_active"
         app:showAsAction="always"></item>
     <item
         android:id="@+id/favorite"
         android:orderInCategory="300"
         android:title="Favorite"
+        android:color="#ffffff"
         android:icon="@drawable/ic_favorite_active"
         app:showAsAction="always"></item>
     <item
         android:id="@+id/profile"
         android:orderInCategory="300"
         android:title="Profile"
+        android:color="#ffffff"
         android:icon="@drawable/ic_person_active"
         app:showAsAction="always"></item>
 

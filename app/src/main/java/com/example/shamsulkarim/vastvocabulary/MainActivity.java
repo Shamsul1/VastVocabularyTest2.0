@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
@@ -61,7 +64,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+
 
 
 
@@ -96,14 +105,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
 
         ImageView homeView = (ImageView)findViewById(R.id.home);
 
-//        HomeFragment homeFragment = new HomeFragment();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
-//
-//        homeView.setImageResource(R.drawable.ic_home_active);
-//        wordsView.setImageResource(R.drawable.ic_wods);
-//        learnedView.setImageResource(R.drawable.ic_school);
-//        settingsView.setImageResource(R.drawable.ic_person);
-//        favoriteView.setImageResource(R.drawable.ic_favorite);
+        HomeFragment homeFragment = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
+
+
 
         syncSQL();
 
@@ -112,106 +117,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
 
 
     }
-    public void onStartTrainingActivity(View view){
-        Intent intent = new Intent(this,StartTrainingActivity.class);
-        sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
 
-        if(view.getId() == R.id.beginner_text_home){
-            sp.edit().putString("level","beginner").apply();
-            this.startActivity(intent);
-
-
-        }
-        if(view.getId() == R.id.intermediate_text_home){
-            sp.edit().putString("level","intermediate").apply();
-            this.startActivity(intent);
-
-
-        }
-        if(view.getId() == R.id.advance_text_home){
-            sp.edit().putString("level","advanced").apply();
-            this.startActivity(intent);
-
-
-        }
-
-
-    }
-
-
-//
-//    public void onBottomClick(View view){
-//
-//
-//
-//
-//        switch (view.getId()){
-//
-//            case R.id.home:
-//                HomeFragment homeFragment = new HomeFragment();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,homeFragment).commit();
-//
-//                homeView.setImageResource(R.drawable.ic_home_active );
-//                wordsView.setImageResource(R.drawable.ic_wods);
-//                learnedView.setImageResource(R.drawable.ic_school);
-//                settingsView.setImageResource(R.drawable.ic_person);
-//                favoriteView.setImageResource(R.drawable.ic_favorite);
-//                break;
-//
-//            case R.id.words:
-//                Wordactivity wordFragment = new Wordactivity();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
-//
-//                homeView.setImageResource(R.drawable.ic_home);
-//                wordsView.setImageResource(R.drawable.ic_wods_active);
-//                learnedView.setImageResource(R.drawable.ic_school);
-//                settingsView.setImageResource(R.drawable.ic_person);
-//                favoriteView.setImageResource(R.drawable.ic_favorite);
-//
-//                break;
-//            case R.id.learned:
-//                LearnedWords learnedWords = new LearnedWords();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
-//
-//                homeView.setImageResource(R.drawable.ic_home);
-//                wordsView.setImageResource(R.drawable.ic_wods);
-//                learnedView.setImageResource(R.drawable.ic_school_active);
-//                settingsView.setImageResource(R.drawable.ic_person);
-//                favoriteView.setImageResource(R.drawable.ic_favorite);
-//                break;
-//
-//            case R.id.favorite_home:
-//
-//                FavoriteWords favoriteWords = new FavoriteWords();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,favoriteWords).commit();
-//
-//                homeView.setImageResource(R.drawable.ic_home);
-//                wordsView.setImageResource(R.drawable.ic_wods);
-//                learnedView.setImageResource(R.drawable.ic_school);
-//                settingsView.setImageResource(R.drawable.ic_person);
-//                favoriteView.setImageResource(R.drawable.ic_favorite_active);
-//
-//                break;
-//
-//            case R.id.settings:
-//
-//                SettingFragment setting = new SettingFragment();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
-//
-//                homeView.setImageResource(R.drawable.ic_home);
-//                wordsView.setImageResource(R.drawable.ic_wods);
-//                learnedView.setImageResource(R.drawable.ic_school);
-//                settingsView.setImageResource(R.drawable.ic_person_active);
-//                favoriteView.setImageResource(R.drawable.ic_favorite);
-//                break;
-//
-//
-//        }
-//
-//
-//    }
-//
-//
 
 
 

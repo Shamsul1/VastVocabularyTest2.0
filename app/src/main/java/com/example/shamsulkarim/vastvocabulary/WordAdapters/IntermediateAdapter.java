@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.IntermediatewordDatabase;
 import com.example.shamsulkarim.vastvocabulary.R;
@@ -62,7 +61,7 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_language,parent,false);
         }else {
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.second_language,parent,false);
         }
 
         WordViewHolder viewHolder = new WordViewHolder(view);
@@ -146,8 +145,8 @@ public class IntermediateAdapter extends RecyclerView.Adapter<IntermediateAdapte
         public WordViewHolder(View itemView) {
             super(itemView);
 
-            wordView = (TextView)itemView.findViewById(R.id.card_word);
-            translationView = (TextView)itemView.findViewById(R.id.card_translation);
+            wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
+            translationView = (TextView)itemView.findViewById(R.id.favorite_card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);

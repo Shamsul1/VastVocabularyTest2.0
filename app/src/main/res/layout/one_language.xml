@@ -22,7 +22,7 @@
 
             <TextView
                 android:layout_centerVertical="true"
-                android:id="@+id/card_word"
+                android:id="@+id/favorite_card_word"
                 android:layout_margin="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:text="v."
                 android:textSize="12sp"
                 android:id="@+id/card_grammar"
-                android:layout_toRightOf="@+id/card_word"
+                android:layout_toRightOf="@+id/favorite_card_word"
                 android:layout_centerVertical="true"
 
                 />
@@ -67,7 +67,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/card_translation"
+            android:id="@+id/favorite_card_translation"
             android:layout_margin="18dp"
             android:layout_below="@+id/top"
             android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
 
-            android:layout_below="@+id/card_translation"
+            android:layout_below="@+id/favorite_card_translation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This is an translation"

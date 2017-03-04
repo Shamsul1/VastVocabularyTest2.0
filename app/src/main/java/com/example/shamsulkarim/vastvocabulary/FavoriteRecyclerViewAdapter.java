@@ -64,11 +64,11 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
         View view;
         if(SplashScreen.languageId >= 1){
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite_second_language,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite_two_language,parent,false);
 
         }else {
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_favorite_one_language,parent,false);
         }
 
 
@@ -89,9 +89,9 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
         if(isFav.get(pos) == true){
 
 
-            holder.favorite.setImageResource(R.drawable.love);
+            holder.favorite.setImageResource(R.drawable.favorite_card_view);
         }else {
-         holder.favorite.setImageResource(R.drawable.nolove);
+         holder.favorite.setImageResource(R.drawable.ic_favorite_border);
 
 
         }
@@ -184,8 +184,8 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
                 if(favorite.getTag() == null){
 
-                    favorite.setImageResource(R.drawable.nolove);
-                    favorite.setTag(R.drawable.nolove);
+                    favorite.setImageResource(R.drawable.ic_favorite_border);
+                    favorite.setTag(R.drawable.ic_favorite_border);
                     isFav.set(getAdapterPosition(),false);
 
 
@@ -215,7 +215,7 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
                 }else {
 
                     isFav.set(getAdapterPosition(),true);
-                    favorite.setImageResource(R.drawable.love);
+                    favorite.setImageResource(R.drawable.favorite_card_view);
                     favorite.setTag(null);
 
                     if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){

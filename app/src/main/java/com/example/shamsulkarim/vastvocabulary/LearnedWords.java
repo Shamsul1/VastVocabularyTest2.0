@@ -34,6 +34,8 @@ import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.IntermediateAdapter;
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.WordRecyclerViewAdapter;
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.advanceAdapter;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,21 +46,20 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LearnedWords extends Fragment {
+public class LearnedWords extends Fragment implements View.OnClickListener{
 
 
 
     Toolbar toolbar;
-    private MaterialSpinner spinner;
     private RecyclerView recyclerView;
-    RelativeLayout fab_option1, fab_option2,fab_option3;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Word> words = new ArrayList<>();
     boolean isShowingFabOption = false;
-    ImageView fab;
-    private float fabY;
     public static List<Word> practiceWords;
+
+    FloatingActionButton fab1,fab2,fab3;
+    FloatingActionMenu fam;
 
 
     public static List<String> bWord,aWord,iWord;
@@ -70,20 +71,16 @@ public class LearnedWords extends Fragment {
         View v = inflater.inflate(R.layout.fragment_learned_words,container,false);
         practiceWords = new ArrayList<>();
 
-//        spinnerInitializatin(v);
-        fab = (ImageView)v.findViewById(R.id.fab_favorite_learned);
-        fab_option1 = (RelativeLayout)v.findViewById(R.id.fab_option1_learned);
-        fab_option2 = (RelativeLayout)v.findViewById(R.id.fab_option2_learned);
-        fab_option3 = (RelativeLayout)v.findViewById(R.id.fab_option3_learned);
-
-        fabY = fab.getY();
-        fab_option1.setVisibility(View.INVISIBLE);
-        fab_option2.setVisibility(View.INVISIBLE);
-        fab_option3.setVisibility(View.INVISIBLE);
 
 
+        fab1 = (FloatingActionButton)v.findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)v.findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton)v.findViewById(R.id.fab3);
+        fam = (FloatingActionMenu)v.findViewById(R.id.fam);
 
-
+        fab1.setOnClickListener(this);
+        fab2.setOnClickListener(this);
+        fab3.setOnClickListener(this);
 
         toolbar = (Toolbar)v.findViewById(R.id.learned_toolbar);
         toolbar.setTitle("Learned");
@@ -107,43 +104,6 @@ public class LearnedWords extends Fragment {
         iWordDatabasePosition = new ArrayList<>();
 
 
-
-//
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//
-//                switch (adapterView.getSelectedItemPosition()){
-//
-//                    case 0:
-//                        beginnerWordInitialization();
-//                        break;
-//
-//                    case 1:
-//                        intermediateWordInitialization();
-//
-//                        break;
-//                    case 2:
-//                        advanceWordInitialization();
-//
-//                        break;
-//
-//                    default:
-//                        beginnerWordInitialization();
-//                        break;
-//
-//                }
-//
-//                Toast.makeText(getContext(),adapterView.getSelectedItemPosition()+" Selected",Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
  @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -154,9 +114,8 @@ public class LearnedWords extends Fragment {
                     fabAnimation(false);
 
                     if(isShowingFabOption){
-                        onFabTransitionBack();
-                        onFabScaleBack();
-                        fab.animate().rotation(-20f);
+
+                        fam.animate().rotation(-20f);
                         isShowingFabOption = false;
 
                     }
@@ -174,104 +133,8 @@ public class LearnedWords extends Fragment {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(!isShowingFabOption){
-
-                    onFabTransition();
-                    onFabScale();
-                    isShowingFabOption = true;
 
 
-                }else {
-                    onFabScaleBack();
-                    onFabTransitionBack();
-
-                    isShowingFabOption = false;
-                }
-
-            }
-        });
-
-
-        fab_option1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"fab opton 1 clicked", Toast.LENGTH_SHORT).show();
-
-                MainActivity.practice = "learned";
-                practiceWords.clear();
-                practiceWords = getAdvanceWords();
-
-                if(practiceWords.size() >= 5){
-                    getContext().startActivity(new Intent(getContext(), Practice.class));
-                    onFabScaleBack();
-                    onFabTransitionBack();
-
-                }else {
-                    Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
-                    onFabScaleBack();
-                    onFabTransitionBack();
-                }
-
-
-
-            }
-        });
-
-        fab_option2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"fab opton 2 clicked", Toast.LENGTH_SHORT).show();
-
-                MainActivity.practice = "learned";
-                practiceWords.clear();
-                practiceWords = getIntermediateWords();
-
-                if(practiceWords.size() >= 5){
-                    getContext().startActivity(new Intent(getContext(), Practice.class));
-                    onFabScaleBack();
-                    onFabTransitionBack();
-
-                }else {
-                    Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
-                    onFabScaleBack();
-                    onFabTransitionBack();
-                }
-
-
-
-            }
-        });
-
-        fab_option3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"fab opton 3 clicked", Toast.LENGTH_SHORT).show();
-
-                MainActivity.practice = "learned";
-                practiceWords.clear();
-                practiceWords = getBeginnerWords();
-
-                if(practiceWords.size() >= 5){
-                    getContext().startActivity(new Intent(getContext(), Practice.class));
-                    onFabScaleBack();
-                    onFabTransitionBack();
-                    isShowingFabOption = false;
-
-                }else {
-                    Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
-                    onFabScaleBack();
-                    onFabTransitionBack();
-                    isShowingFabOption = false;
-                }
-
-
-
-            }
-        });
 
 
 
@@ -341,24 +204,15 @@ public class LearnedWords extends Fragment {
 
     protected void fabAnimation(boolean isVisible) {
         if (isVisible) {
-            fab.animate().cancel();
-            fab.animate().translationY(fabY);
+            fam.animate().cancel();
+            fam.animate().translationY(0f);
         } else {
-            fab.animate().cancel();
-            fab.animate().translationY(fabY + 500);
+            fam.animate().cancel();
+            fam.animate().translationY(60f + 500);
         }
     }
 
-//    private void spinnerInitializatin(View v){
-//
-//        String[] ITEMS = {"Intermediate", "Advance"};
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, ITEMS);
-//        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner = (MaterialSpinner)v.findViewById(R.id.spinner_learned_words);
-//        spinner.setHint("Beginner");
-//        spinner.setAdapter(arrayAdapter);
-//
-//    }
+
 
 
     private void beginnerWordInitialization(){
@@ -400,185 +254,6 @@ public class LearnedWords extends Fragment {
 
     }
 
-    private void onFabTransition(){
-        fab.animate().rotation(40f).setDuration(500L).setInterpolator(new AnticipateOvershootInterpolator());
-
-        float position =  fab.getHeight();
-
-        ValueAnimator va = ValueAnimator.ofFloat(position,0);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float) valueAnimator.getAnimatedValue();
-
-                fab_option1.setTranslationY(value);
-                fab_option2.setTranslationY(value);
-                fab_option3.setTranslationY(value);
-
-
-
-                fab_option1.setTranslationX(value);
-                fab_option2.setTranslationX(value);
-                fab_option3.setTranslationX(value);
-
-
-
-
-            }
-        });
-
-
-        va.setDuration(500L);
-        va.setInterpolator(new AnticipateOvershootInterpolator());
-        va.start();
-
-
-    }
-
-    public void onFabScale(){
-
-
-
-
-        ValueAnimator va = ValueAnimator.ofFloat(0,1 );
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value  = (float)valueAnimator.getAnimatedValue();
-
-
-
-                fab_option1.setScaleX(value);
-                fab_option1.setScaleY(value);
-
-                fab_option2.setScaleY(value);
-                fab_option2.setScaleX(value);
-
-                fab_option3.setScaleX(value);
-                fab_option3.setScaleY(value);
-
-
-                fab_option1.setAlpha(value);
-                fab_option2.setAlpha(value);
-                fab_option3.setAlpha(value);
-
-                fab_option1.setVisibility(View.VISIBLE);
-                fab_option2.setVisibility(View.VISIBLE);
-                fab_option3.setVisibility(View.VISIBLE);
-
-
-
-
-
-
-            }
-        });
-
-
-        va.setDuration(500L);
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.start();
-
-
-
-
-
-
-    }
-
-    private void onFabTransitionBack(){
-
-        fab.animate().rotation(0f).setDuration(500).setInterpolator(new AnticipateOvershootInterpolator());
-        float position =  fab.getHeight();
-
-        ValueAnimator va = ValueAnimator.ofFloat(0,position);
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value = (float) valueAnimator.getAnimatedValue();
-
-                fab_option1.setTranslationY(value);
-                fab_option2.setTranslationY(value);
-                fab_option3.setTranslationY(value);
-
-
-
-                fab_option1.setTranslationX(value);
-                fab_option2.setTranslationX(value);
-                fab_option3.setTranslationX(value);
-
-
-
-
-            }
-        });
-
-
-        va.setDuration(500L);
-        va.setInterpolator(new AnticipateOvershootInterpolator());
-        va.start();
-
-
-    }
-
-
-    public void onFabScaleBack(){
-
-
-
-
-        ValueAnimator va = ValueAnimator.ofFloat(1,0 );
-
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
-
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
-                float value  = (float)valueAnimator.getAnimatedValue();
-
-
-
-                fab_option1.setScaleX(value);
-                fab_option1.setScaleY(value);
-
-                fab_option2.setScaleY(value);
-                fab_option2.setScaleX(value);
-
-                fab_option3.setScaleX(value);
-                fab_option3.setScaleY(value);
-
-
-
-
-
-
-
-
-            }
-        });
-
-
-        va.setDuration(500L);
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
-        va.start();
-
-        fab_option1.setVisibility(View.INVISIBLE);
-        fab_option2.setVisibility(View.INVISIBLE);
-        fab_option3.setVisibility(View.INVISIBLE);
-
-
-
-
-    }
 
 
 
@@ -718,4 +393,62 @@ public class LearnedWords extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        if(view.getId() == fab1.getId()){
+            Toast.makeText(getContext(),"fab opton 1 clicked", Toast.LENGTH_SHORT).show();
+
+            MainActivity.practice = "learned";
+            practiceWords.clear();
+            practiceWords = getAdvanceWords();
+
+            if(practiceWords.size() >= 5){
+                getContext().startActivity(new Intent(getContext(), Practice.class));
+
+
+            }else {
+                Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+
+        if(view.getId() == fab2.getId()){
+            Toast.makeText(getContext(),"fab opton 2 clicked", Toast.LENGTH_SHORT).show();
+
+            MainActivity.practice = "learned";
+            practiceWords.clear();
+            practiceWords = getIntermediateWords();
+
+            if(practiceWords.size() >= 5){
+                getContext().startActivity(new Intent(getContext(), Practice.class));
+
+
+            }else {
+                Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+        if(view.getId() == fab3.getId()){
+            Toast.makeText(getContext(),"fab opton 3 clicked", Toast.LENGTH_SHORT).show();
+
+            MainActivity.practice = "learned";
+            practiceWords.clear();
+            practiceWords = getBeginnerWords();
+
+            if(practiceWords.size() >= 5){
+                getContext().startActivity(new Intent(getContext(), Practice.class));
+
+                isShowingFabOption = false;
+
+            }else {
+                Toast.makeText(getContext(),"not enough words", Toast.LENGTH_SHORT).show();
+
+                isShowingFabOption = false;
+            }
+        }
+
+    }
 }

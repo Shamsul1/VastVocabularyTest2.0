@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +39,10 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_syncing_firebase_to_sql);
 
 
@@ -115,6 +122,11 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
 
                             sp.edit().putString("intermediateLearnedNum",strData[5]).apply();
                             sp.edit().putInt("intermediate", Integer.parseInt(strData[5])).apply();
+
+                        }
+                        if( j == 6){
+
+                            sp.edit().putString("userName",strData[6]).apply();
 
                         }
 
@@ -221,6 +233,7 @@ public class SyncingFirebaseToSQL extends AppCompatActivity {
     private void printSavedNums(){
 
 
+        Toast.makeText(this,"User Name: "+sp.getString("userName","boo"),Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"beginner fav: "+SplashScreen.savedBeginnerFav,Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"beginner learned: "+SplashScreen.savedBeginnerLearned,Toast.LENGTH_SHORT).show();
         Toast.makeText(this,"intermediate fav: "+SplashScreen.savedIntermediateFav,Toast.LENGTH_SHORT).show();

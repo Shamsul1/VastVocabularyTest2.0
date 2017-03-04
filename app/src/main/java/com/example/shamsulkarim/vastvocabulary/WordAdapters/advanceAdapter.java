@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shamsulkarim.vastvocabulary.AdvancedWordDatabase;
-import com.example.shamsulkarim.vastvocabulary.IntermediatewordDatabase;
 import com.example.shamsulkarim.vastvocabulary.R;
 import com.example.shamsulkarim.vastvocabulary.SplashScreen;
 import com.example.shamsulkarim.vastvocabulary.Word;
@@ -65,7 +64,7 @@ public class advanceAdapter extends RecyclerView.Adapter<advanceAdapter.WordView
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_language,parent,false);
         }else {
 
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.second_language,parent,false);
         }
 
         WordViewHolder viewHolder = new WordViewHolder(view);
@@ -126,8 +125,8 @@ public class advanceAdapter extends RecyclerView.Adapter<advanceAdapter.WordView
         public WordViewHolder(View itemView) {
             super(itemView);
 
-            wordView = (TextView)itemView.findViewById(R.id.card_word);
-            translationView = (TextView)itemView.findViewById(R.id.card_translation);
+            wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
+            translationView = (TextView)itemView.findViewById(R.id.favorite_card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);

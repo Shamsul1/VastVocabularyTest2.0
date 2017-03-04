@@ -44,7 +44,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
              view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_language,parent,false);
         }else {
 
-             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_row_layout_extra,parent,false);
+             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.second_language,parent,false);
         }
 
 
@@ -140,8 +140,8 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         public WordViewHolder(View itemView) {
             super(itemView);
 
-            wordView = (TextView)itemView.findViewById(R.id.card_word);
-            translationView = (TextView)itemView.findViewById(R.id.card_translation);
+            wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
+            translationView = (TextView)itemView.findViewById(R.id.favorite_card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);

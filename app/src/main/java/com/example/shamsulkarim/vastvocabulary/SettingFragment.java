@@ -40,10 +40,10 @@ import java.util.logging.Handler;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment implements View.OnClickListener {
+public class SettingFragment extends Fragment  {
 
     TextView userName, totalLearned, totalWord, totalFavorite;
-    ImageView setting;
+
     SharedPreferences sp;
     Toolbar toolbar;
     int totalFavCount;
@@ -58,7 +58,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_setting, container, false);
+        View v = inflater.inflate(R.layout.profile_fragment, container, false);
 
 
 
@@ -71,7 +71,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
 
 
-        setting = (ImageView)v.findViewById(R.id.profile_setting) ;
+
         sp = getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         userName = (TextView)v.findViewById(R.id.userNameProfile);
         totalLearned = (TextView)v.findViewById(R.id.total_learned_count_view);
@@ -90,7 +90,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         totalLearned.setText(""+totalLearnedCount);
         totalFavorite.setText(""+totalFavCount);
 
-        setting.setOnClickListener(this);
+
 
         return v;
 
@@ -117,18 +117,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
         return super.onOptionsItemSelected(item);
 
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-
-        if(view == setting ){
-
-
-
-        }
 
     }
 

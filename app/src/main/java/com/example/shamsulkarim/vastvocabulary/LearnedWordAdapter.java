@@ -106,8 +106,8 @@ public class LearnedWordAdapter extends RecyclerView.Adapter<LearnedWordAdapter.
 
             secondLanguageName = (TextView)itemView.findViewById(R.id.card_translation_extra);
             secondLanguageName = (TextView)itemView.findViewById(R.id.card_language_extra);
-            wordView = (TextView)itemView.findViewById(R.id.card_word);
-            translationView = (TextView)itemView.findViewById(R.id.card_translation);
+            wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
+            translationView = (TextView)itemView.findViewById(R.id.favorite_card_translation);
             grammarView = (TextView)itemView.findViewById(R.id.card_grammar);
             pronunciationView = (TextView)itemView.findViewById(R.id.card_pronunciation);
             exampleView1 = (TextView)itemView.findViewById(R.id.card_example1);

@@ -7,6 +7,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="-10dp"
         android:layout_below="@+id/favoriteToolbar"
+        android:layout_above="@+id/dummy_bottom_navigation"
         android:id="@+id/recycler_view_favorite_words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -37,18 +38,22 @@
 
 
 
-    <ImageView
-        android:id="@+id/fab_favorite"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:src="@drawable/fab"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="onFabClick_learned"
-        />
 
+
+    <View
+        android:id="@+id/dummy_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+
+        ></View>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fab_add"
+        />
 
 
 

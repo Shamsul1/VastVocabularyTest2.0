@@ -10,52 +10,11 @@
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="-10dp"
         android:layout_below="@+id/learned_toolbar"
+        android:layout_above="@+id/dummy_bottom_navigation"
         android:id="@+id/recycler_view_learned_words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/actionbar_learned_words"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:minHeight="?attr/actionBarSize">-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="56dp"-->
-            <!--android:src="@drawable/actionbar"-->
-            <!--android:scaleType="fitXY"/>-->
-
-
-
-
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Learned"-->
-            <!--android:layout_marginLeft="18dp"-->
-            <!--android:layout_centerVertical="true"-->
-
-            <!--android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />-->
-
-        <!--<fr.ganfra.materialspinner.MaterialSpinner-->
-            <!--android:id="@+id/spinner_learned_words"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--app:ms_multiline="false"-->
-            <!--app:ms_enableFloatingLabel="false"-->
-            <!--app:ms_enableErrorLabel="false"-->
-            <!--app:ms_floatingLabelText="floating label"-->
-            <!--app:ms_thickness="0dp"-->
-            <!--app:ms_arrowSize="16dp"-->
-            <!--app:ms_alignLabels="false"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--/>-->
-
-    <!--</RelativeLayout>-->
 
 
     <android.support.v7.widget.Toolbar
@@ -77,80 +36,25 @@
         android:layout_below="@id/learned_toolbar"
         ></View>
 
-    <RelativeLayout
-        android:id="@+id/fab_option1_learned"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:background= "@drawable/red"
-        android:layout_above="@+id/fab_favorite_learned"
-        android:layout_alignRight="@+id/fab_favorite_learned"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Advance"
-            android:gravity="center"
-            android:textSize="18dp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/fab_option2_learned"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:background="@drawable/red"
-        android:layout_above="@+id/fab_option1_learned"
-        android:layout_alignRight="@+id/fab_option1_learned"
-
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Intermediate"
-            android:gravity="center"
-            android:textSize="18dp"/>
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/fab_option3_learned"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:background="@drawable/red"
-        android:layout_above="@+id/fab_option2_learned"
-        android:layout_alignRight="@+id/fab_option2_learned"
-
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Beginner"
-            android:gravity="center"
-            android:textSize="18dp"/>
-
-    </RelativeLayout>
 
 
 
-    <ImageView
-        android:id="@+id/fab_favorite_learned"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:src="@drawable/fab"
+
+
+
+
+
+
+
+
+
+    <View
+        android:id="@+id/dummy_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="onFabClick_learned"
-        />
 
-
-
-
-
+        ></View>
 
 
 </RelativeLayout>
