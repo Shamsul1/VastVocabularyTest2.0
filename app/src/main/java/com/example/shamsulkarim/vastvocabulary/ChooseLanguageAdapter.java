@@ -88,19 +88,19 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
             SplashScreen.languageId = getAdapterPosition();
 
 
-            if(getAdapterPosition() == 0){
-
-                noLanguage.setText("No language picked");
-                languageIcon.setImageResource(0);
-                locationIcon.setImageResource(0);
-                speakersIcon.setImageResource(0);
-                language.setText("");
-                location.setText("");
-                speakers.setText("");
-
-
-
-            }else {
+//            if(getAdapterPosition() == 0){
+//
+//                noLanguage.setText("No language picked");
+//                languageIcon.setImageResource(0);
+//                locationIcon.setImageResource(0);
+//                speakersIcon.setImageResource(0);
+//                language.setText("");
+//                location.setText("");
+//                speakers.setText("");
+//
+//
+//
+//            }else {
 
                 noLanguage.setText("");
                 languageIcon.setImageResource(R.drawable.language);
@@ -110,8 +110,8 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
                 language.setText(languageInfo.get(getAdapterPosition()).getName());
                 location.setText(languageInfo.get(getAdapterPosition()).getLocation());
                 speakers.setText(languageInfo.get(getAdapterPosition()).getSpeakers());
-
-            }
+//
+//            }
 
 
 

@@ -9,6 +9,7 @@
     android:textColor="@color/colorPrimary"
     app:bbn_itemColorActive="#673AB7"
     app:bbn_itemColorInactive="#9E9E9E"
+    app:bbn_itemAnimationDuration="60"
     >
     <item
         android:id="@+id/home"

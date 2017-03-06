@@ -88,6 +88,23 @@ public class advanceAdapter extends RecyclerView.Adapter<advanceAdapter.WordView
 
         }
 
+        if(SplashScreen.languageId == 1){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[1]);
+        }
+
+        if(SplashScreen.languageId == 2){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[2]);
+        }
+        if(SplashScreen.languageId == 3){
+
+
+            holder.secondLanguage.setText(SplashScreen.languageName[3]);
+        }
+
         if(SplashScreen.languageId>= 1){
 
             holder.translationView.setText(word.getTranslation());

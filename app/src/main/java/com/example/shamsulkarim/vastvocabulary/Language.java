@@ -31,10 +31,10 @@ public class Language {
         List<Language> languages = new ArrayList<>();
 
 
-        languages.add(new Language(R.drawable.chinese,"","",""));
-        languages.add(new Language(R.drawable.spanish,"Spanish","Spain, Mexico and 18 more","570 million"));
-        languages.add(new Language(R.drawable.bangla, "Bengali", "Bangladesh, India", "250 million"));
-        languages.add(new Language(R.drawable.chinese, "Mandarin Chinese","China","960 million"));
+        languages.add(new Language(R.drawable.english,"English","America, Australia, England etc","510 million"));
+        languages.add(new Language(R.drawable.spanish,"Spanish","Spain, Mexico etc","420 million"));
+        languages.add(new Language(R.drawable.bangla, "Bengali", "Bangladesh, India", "215 million"));
+        languages.add(new Language(R.drawable.hindi, "Hindi","India","490 million"));
 
 
 

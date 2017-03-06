@@ -130,45 +130,6 @@ MaterialSpinner spinner;
 
 
 
-    private void beginnerWordInitialization(){
-
-        words.clear();
-
-        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
-
-        if(SplashScreen.languageId == 0){
-
-            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
-
-
-                extraArray[i] = "";
-            }
-
-        }
-
-        if(SplashScreen.languageId == 1){
-
-            extraArray = SplashScreen.beginnerSpanish;
-        }
-        if(SplashScreen.languageId == 2){
-
-            extraArray = SplashScreen.beginnerBengali;
-        }
-        if(SplashScreen.languageId == 3){
-
-            extraArray = SplashScreen.beginnerHindi;
-        }
-
-
-        for(int i = 0 ; i < SplashScreen.beginnerWordArray.length; i++){
-
-            words.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i], SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0));
-
-        }
-
-
-
-    }
 
     private void beginnerWordInitialization2(View v){
 

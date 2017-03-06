@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag,wordFragment).commit();
 
                     }
-                },150L);
+                },120L);
 
 
                 break;
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
                         getSupportFragmentManager().beginTransaction().replace(R.id.frag,learnedWords).commit();
 
                     }
-                },150L);
+                },120L);
 
                 break;
 
@@ -307,14 +307,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
 
 
                     }
-                },150L);
+                },120L);
 
                 break;
 
             case 4:
 
-                SettingFragment setting = new SettingFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SettingFragment setting = new SettingFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frag,setting).commit();
+
+
+                    }
+                },120L);
+
 
 
                 break;

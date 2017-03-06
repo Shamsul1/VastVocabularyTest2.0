@@ -93,7 +93,7 @@ public class LearnedWords extends Fragment implements View.OnClickListener{
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        beginnerWordInitialization();
+//        beginnerWordInitialization();
 
 
         bWord = new ArrayList<>();

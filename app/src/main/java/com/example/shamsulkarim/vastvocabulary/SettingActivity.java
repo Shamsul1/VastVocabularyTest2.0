@@ -103,21 +103,21 @@ public class SettingActivity extends AppCompatActivity{
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.setting_toolbar_menus, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(item.getItemId()== R.id.setting_logout){
-
-            SyncingFirebaseToSQL.firebaseAuth.signOut();
-            startActivity(new Intent(this,SignInActivity.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.setting_toolbar_menus, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        if(item.getItemId()== R.id.setting_logout){
+//
+//            SyncingFirebaseToSQL.firebaseAuth.signOut();
+//            startActivity(new Intent(this,SignInActivity.class));
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
