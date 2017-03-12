@@ -294,7 +294,7 @@ public class LearnedWords extends Fragment implements View.OnClickListener{
 
         for(int i = 0 ; i < advanceLearnedCount; i++){
 
-            getWords.add(new Word(SplashScreen.advanceWordArray[i],SplashScreen.advanceTranslationArray[i],extraArray[i],SplashScreen.advancePronunciationArray[i],SplashScreen.advanceGrammarArray[i],SplashScreen.advanceExampleArray1[i],"advance",0));
+            getWords.add(new Word(SplashScreen.advanceWordArray[i],SplashScreen.advanceTranslationArray[i],extraArray[i],SplashScreen.advancePronunciationArray[i],SplashScreen.advanceGrammarArray[i],SplashScreen.advanceExampleArray1[i],SplashScreen.advanceExampleArray2[i],SplashScreen.advanceExampleArray3[i],"advance"));
 
         }
 
@@ -338,7 +338,7 @@ public class LearnedWords extends Fragment implements View.OnClickListener{
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(SplashScreen.intermediateWordArray[i],SplashScreen.intermediateTranslationArray[i],extraArray[i],SplashScreen.intermediatePronunciationArray[i],SplashScreen.intermediateGrammarArray[i],SplashScreen.intermediateExampleArray1[i],"intermediate",0));
+            getWords.add(new Word(SplashScreen.intermediateWordArray[i],SplashScreen.intermediateTranslationArray[i],extraArray[i],SplashScreen.intermediatePronunciationArray[i],SplashScreen.intermediateGrammarArray[i],SplashScreen.intermediateExampleArray1[i],SplashScreen.intermediateExampleArray2[i],SplashScreen.intermediateExampleArray3[i],"intermediate"));
 
         }
 
@@ -384,7 +384,7 @@ public class LearnedWords extends Fragment implements View.OnClickListener{
 
         for(int i = 0 ; i < beginnerLearnedCount; i++){
 
-            getWords.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i],SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0));
+            getWords.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i],SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],SplashScreen.beginnerExampleArray2[i],SplashScreen.beginnerExampleArray3[i],"beginner"));
 
         }
 

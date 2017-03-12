@@ -15,27 +15,29 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="32dp"
         android:scaleType="fitXY"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/beginner_planet_train_normal" />
+        app:srcCompat="@drawable/beginner_planet_train" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:background="#f05e2a"
         android:onClick="neext"
         android:padding="24dp"
         android:text="fskfslfjslkjflsjflkjslkfjsljfklsfjslflksjdfklsjfskldfjksdflkjsadlfjslfjslkfjslkjfsldjflsjfjklsjflsjflsdjflsjfljsfljslfjslfjsljfsljfsljfsljfsl"
         android:textColor="#ffffff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -51,6 +53,7 @@
         android:padding="24dp"
         android:text="Button"
         android:textColor="#ffffff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="@+id/button4"
@@ -68,6 +71,7 @@
         android:padding="24dp"
         android:text="Button"
         android:textColor="#ffffff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/button3"
@@ -85,8 +89,9 @@
         android:padding="24dp"
         android:text="jsflsjflsjfljsflkjslkfjslkfjsaljfslkfjlsdnvlksdjslkdjvsdlknvslnvlsfljnslnvsnvlksajflksajfkljsalfksjflsajdflksakjfsadlkfjsajfsal"
         android:textColor="#ffffff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/button2"
         app:layout_constraintRight_toRightOf="@+id/button2" />
 
@@ -94,8 +99,8 @@
         android:id="@+id/white_background_train"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@color/cardview_light_background"
@@ -109,7 +114,7 @@
     <ImageView
         android:id="@+id/board_top_background"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="65dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
@@ -125,13 +130,14 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="8dp"
+        android:paddingLeft="24dp"
         android:text="Adjective"
         android:textColor="#ffffff"
-        android:textSize="14sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/board_top_background"
         app:layout_constraintLeft_toLeftOf="@+id/board_top_background"
         app:layout_constraintTop_toTopOf="@+id/board_top_background"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/pronunciation"
@@ -140,10 +146,10 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:paddingLeft="24dp"
         android:text="/safa/"
         android:textColor="#ffffff"
-        android:textSize="14sp"
-        android:textStyle="italic"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/board_top_background"
         app:layout_constraintLeft_toRightOf="@+id/grammar"
         app:layout_constraintTop_toTopOf="@+id/board_top_background" />
@@ -152,33 +158,33 @@
         android:id="@+id/translation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="0dp"
+        android:layout_marginTop="6dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="@+id/board_top_background"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toRightOf="@+id/english"
         app:layout_constraintRight_toRightOf="@+id/white_background_train"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/board_top_background"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/board_top_background" />
 
     <TextView
         android:id="@+id/example1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="25dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="14sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/translation"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
         app:layout_constraintRight_toRightOf="@+id/translation"
-        app:layout_constraintTop_toBottomOf="@+id/translation" />
+        app:layout_constraintTop_toBottomOf="@+id/translationExtra_train"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/example2"
@@ -190,6 +196,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="@+id/example1"
         app:layout_constraintRight_toRightOf="@+id/example1"
         app:layout_constraintTop_toBottomOf="@+id/example1" />
@@ -204,6 +211,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="@+id/example2"
         app:layout_constraintRight_toRightOf="@+id/example2"
         app:layout_constraintTop_toBottomOf="@+id/example2" />
@@ -228,28 +237,72 @@
 
     <ImageView
         android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         android:onClick="neext"
-        app:layout_constraintBottom_toBottomOf="@+id/board_top_background"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board_top_background"
+        app:layout_constraintBottom_toBottomOf="@+id/dummy_next"
+        app:layout_constraintLeft_toLeftOf="@+id/dummy_next"
+        app:layout_constraintRight_toRightOf="@+id/dummy_next"
+        app:layout_constraintTop_toTopOf="@+id/dummy_next"
         app:srcCompat="@drawable/beginner_next_train" />
 
     <ImageView
         android:id="@+id/dummy_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="8dp"
         android:onClick="dummyNext"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintRight_toRightOf="@+id/next"
-        app:layout_constraintTop_toTopOf="@+id/next"
-        app:srcCompat="@drawable/advance_next_train" />
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board_top_background"
+        app:srcCompat="@drawable/advance_next_train_xlarge" />
+
+    <TextView
+        android:id="@+id/english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
+        android:text="english"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
+        app:layout_constraintTop_toBottomOf="@+id/board_top_background" />
+
+    <TextView
+        android:id="@+id/second_language_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="spanish"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="@+id/english"
+        app:layout_constraintTop_toBottomOf="@+id/translation" />
+
+    <TextView
+        android:id="@+id/translationExtra_train"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="Experiencing something bad or unpleasant"
+        android:textSize="30sp"
+        app:layout_constraintLeft_toLeftOf="@+id/translation"
+        app:layout_constraintRight_toRightOf="@+id/white_background_train"
+        app:layout_constraintTop_toBottomOf="@+id/translation"
+        app:layout_constraintHorizontal_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

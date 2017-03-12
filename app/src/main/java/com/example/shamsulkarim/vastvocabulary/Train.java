@@ -4,14 +4,19 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +30,8 @@ public class Train extends AppCompatActivity {
 
 
     boolean firstTime = true;
-    RelativeLayout translation_layout,button1,button2,button3,button4;
+    RelativeLayout translation_layout;
+    Button button1,button2,button3,button4;
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendWord = new String[5];
     String[] sendTranslation = new String[5];
@@ -34,19 +40,27 @@ public class Train extends AppCompatActivity {
 
     int[] wordCounter = new int[5];
     String[] wordArray, translationArray,sendWords,grammarArray,pronunArray,example1array,example2Array,example3Array, beginnerTranslationExtra;
-    TextView wordView, translationView, countView,grammarView,pronunView,exampleView1,exampleView2,exampleView3, translationExtraView,secondLanguageName;
-    TextView answer1, answer2, answer3, answer4;
-    ImageView next, fakeNext,train_land;
+    TextView wordView, translationView, english,grammarView,pronunView,exampleView1,exampleView2,exampleView3, translationExtraView,secondLanguageName;
+    ImageView next, fakeNext, trainPlanet, whiteBackground, boardTopBackground;
     int id = 0;
     int ia = 0;
     int question = 4;
     int COUNTWORDS = 0;
     int wordsPerSession = 5;
     String level;
+    double screenInches;
+    String toastMsg,secondLanguage;
+    int screenSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
 
         // picking layout
@@ -56,17 +70,48 @@ public class Train extends AppCompatActivity {
         }else {
             setContentView(R.layout.activity_train);
         }
+        // Determining Screen Size ---------------------------------------------------------------
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width=dm.widthPixels;
+        int height=dm.heightPixels;
+        double wi=(double)width/(double)dm.xdpi;
+        double hi=(double)height/(double)dm.ydpi;
+        double x = Math.pow(wi,2);
+        double y = Math.pow(hi,2);
+        screenInches = Math.sqrt(x+y);
+
+
+        screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+
+        switch(screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                toastMsg = "Large screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                toastMsg = "Normal screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                toastMsg = "Small screen";
+                break;
+            default:
+                toastMsg = "Screen size is neither large, normal or small";
+        }
+        //----------------------------------------------------------------------------------------
+
 
 
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         level = sp.getString("level","NOTHING");
 
         // INITIALIZATION
-
-        gettingResources();
-        arrayInitializations();
         buttonInitializations();
         textViewInitializations();
+        gettingResources();
+        arrayInitializations();
+
 
         Toast.makeText(this,level,Toast.LENGTH_SHORT).show();
 
@@ -80,7 +125,9 @@ public class Train extends AppCompatActivity {
             if(SplashScreen.languageId >= 1){
 
                 translationExtraView.setText(fiveWords.get(ia).getExtra());
-                secondLanguageName.setText(SplashScreen.languageName[SplashScreen.languageId]);
+                secondLanguage = SplashScreen.languageName[SplashScreen.languageId];
+
+                secondLanguageName.setText(secondLanguage);
             }
             wordView.setText(fiveWords.get(ia).getWord());
             translationView.setText(fiveWords.get(ia).getTranslation());
@@ -150,7 +197,8 @@ public class Train extends AppCompatActivity {
 
                 if (fiveWords.get(id).isSeen()) {
                     next.setVisibility(View.INVISIBLE);
-                    translation_layout.setVisibility(View.INVISIBLE);
+                    boardTopBackground.setVisibility(View.INVISIBLE);
+                    whiteBackground.setVisibility(View.INVISIBLE);
                     button1.setVisibility(View.VISIBLE);
                     button2.setVisibility(View.VISIBLE);
                     button3.setVisibility(View.VISIBLE);
@@ -159,8 +207,9 @@ public class Train extends AppCompatActivity {
                     if(SplashScreen.languageId >= 1){
 
                         translationExtraView.setText("");
+                        secondLanguageName.setText("");
+                        english.setText("");
                     }
-
                     translationView.setText("");
                     grammarView.setText("");
                     pronunView.setText("");
@@ -198,14 +247,18 @@ public class Train extends AppCompatActivity {
 
     public void showWords(int index) {
         next.setVisibility(View.VISIBLE);
-        translation_layout.setVisibility(View.VISIBLE);
+        boardTopBackground.setVisibility(View.VISIBLE);
+        whiteBackground.setVisibility(View.VISIBLE);
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.INVISIBLE);
         button4.setVisibility(View.INVISIBLE);
         translationView.setText(fiveWords.get(index).getTranslation());
+
         if(SplashScreen.languageId >= 1){
             translationExtraView.setText(fiveWords.get(index).getExtra());
+            english.setText("english");
+            secondLanguageName.setText(secondLanguage);
         }
 
         wordView.setText(fiveWords.get(index).getWord());
@@ -226,22 +279,21 @@ public class Train extends AppCompatActivity {
         if(SplashScreen.languageId >= 1){
 
 
-            answer1.setText(buttonQuestion.get(0).getExtra());
-            answer2.setText(buttonQuestion.get(1).getExtra());
-            answer3.setText(buttonQuestion.get(2).getExtra());
-            answer4.setText(buttonQuestion.get(3).getExtra());
+            button1.setText(buttonQuestion.get(0).getExtra());
+            button2.setText(buttonQuestion.get(1).getExtra());
+            button3.setText(buttonQuestion.get(2).getExtra());
+            button4.setText(buttonQuestion.get(3).getExtra());
         }else{
 
-            answer1.setText(buttonQuestion.get(0).getTranslation());
-            answer2.setText(buttonQuestion.get(1).getTranslation());
-            answer3.setText(buttonQuestion.get(2).getTranslation());
-            answer4.setText(buttonQuestion.get(3).getTranslation());
+            button1.setText(buttonQuestion.get(0).getTranslation());
+            button2.setText(buttonQuestion.get(1).getTranslation());
+            button3.setText(buttonQuestion.get(2).getTranslation());
+            button4.setText(buttonQuestion.get(3).getTranslation());
 
         }
 
 
         wordView.setText(fiveWords.get(id).getWord());
-        countView.setText(fiveWords.get(id).getCount() + " ");
 
     }
 
@@ -253,7 +305,7 @@ public class Train extends AppCompatActivity {
 
 
         if (view.getId() == button1.getId()) {
-            answer = answer1.getText().toString();
+            answer = button1.getText().toString();
 
             if(SplashScreen.languageId >= 1){
 
@@ -261,7 +313,7 @@ public class Train extends AppCompatActivity {
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
                     // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
                 } else {
                     showAnswer(fiveWords.get(id));
@@ -276,7 +328,7 @@ public class Train extends AppCompatActivity {
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
                     // Toast.makeText(this,"Correct",Toast.LENGTH_SHORT).show();
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
                 } else {
                     showAnswer(fiveWords.get(id));
@@ -295,14 +347,14 @@ public class Train extends AppCompatActivity {
         // Button 2
 
         if (view.getId() == button2.getId()) {
-            answer = answer2.getText().toString();
+            answer = button2.getText().toString();
 
 
             if (SplashScreen.languageId >= 1){
 
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
 
                 } else {
@@ -315,7 +367,7 @@ public class Train extends AppCompatActivity {
 
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
 
                 } else {
@@ -332,13 +384,13 @@ public class Train extends AppCompatActivity {
 
         // Button 3
         if (view.getId() == button3.getId()) {
-            answer = answer3.getText().toString();
+            answer = button3.getText().toString();
 
 
             if(SplashScreen.languageId >= 1){
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
 
                 } else {
@@ -353,7 +405,7 @@ public class Train extends AppCompatActivity {
 
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + " ");
+//                    countView.setText(fiveWords.get(id).getCount() + " ");
                     id++;
 
                 } else {
@@ -369,7 +421,7 @@ public class Train extends AppCompatActivity {
 
         // Button 4
         if (view.getId() == button4.getId()) {
-            answer = answer4.getText().toString();
+            answer = button4.getText().toString();
 
 
             if(SplashScreen.languageId >= 1 ){
@@ -378,7 +430,7 @@ public class Train extends AppCompatActivity {
 
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getExtra())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + "");
+//                    countView.setText(fiveWords.get(id).getCount() + "");
                     id++;
 
                 } else {
@@ -392,7 +444,7 @@ public class Train extends AppCompatActivity {
 
                 if (answer.equalsIgnoreCase(fiveWords.get(id).getTranslation())) {
                     fiveWords.get(id).setCount(1);
-                    countView.setText(fiveWords.get(id).getCount() + "");
+//                    countView.setText(fiveWords.get(id).getCount() + "");
                     id++;
 
                 } else {
@@ -422,7 +474,11 @@ public class Train extends AppCompatActivity {
 
         if(SplashScreen.languageId >= 1){
             translationExtraView.setText(wordAnswer.getExtra());
+            secondLanguageName.setText(secondLanguage);
+            english.setText("english");
         }
+        boardTopBackground.setVisibility(View.VISIBLE);
+        whiteBackground.setVisibility(View.VISIBLE);
         translationView.setText(wordAnswer.getTranslation());
         pronunView.setText(wordAnswer.getPronun());
         grammarView.setText(wordAnswer.getGrammar());
@@ -430,7 +486,7 @@ public class Train extends AppCompatActivity {
         exampleView2.setText(wordAnswer.getExample2());
         exampleView3.setText(wordAnswer.getExample3());
 
-        translation_layout.setVisibility(View.VISIBLE);
+//        translation_layout.setVisibility(View.VISIBLE);
 
         wrongAnswerAnimation();
 
@@ -439,7 +495,22 @@ public class Train extends AppCompatActivity {
 
     // DummyNext
     public void dummyNext(View view) {
-        translation_layout.setVisibility(View.INVISIBLE);
+//        translation_layout.setVisibility(View.INVISIBLE);
+        boardTopBackground.setVisibility(View.INVISIBLE);
+        whiteBackground.setVisibility(View.INVISIBLE);
+        translationView.setText("");
+        grammarView.setText("");
+        pronunView.setText("");
+        exampleView1.setText("");
+        exampleView2.setText("");
+        exampleView3.setText("");
+
+        if(SplashScreen.languageId >= 1) {
+            translationExtraView.setText("");
+            secondLanguageName.setText("");
+            english.setText("");
+        }
+
         button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
@@ -562,42 +633,45 @@ public class Train extends AppCompatActivity {
     }
 
     private void buttonInitializations() {
-        translation_layout = (RelativeLayout)findViewById(R.id.translation_layout);
+
         fakeNext = (ImageView) findViewById(R.id.dummy_next);
+        whiteBackground = (ImageView)findViewById(R.id.white_background_train);
+        boardTopBackground = (ImageView)findViewById(R.id.board_top_background);
 
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button)findViewById(R.id.button2);
+        button3 = (Button)findViewById(R.id.button3);
+        button4 = (Button)findViewById(R.id.button4);
 
-        button1 = (RelativeLayout)findViewById(R.id.button1);
-        button2 = (RelativeLayout)findViewById(R.id.button2);
-        button3 = (RelativeLayout)findViewById(R.id.button3);
-        button4 = (RelativeLayout)findViewById(R.id.button4);
+            button1.setVisibility(View.INVISIBLE);
+            button2.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
 
-        answer1 = (TextView) findViewById(R.id.answer1);
-        answer2 = (TextView) findViewById(R.id.answer2);
-        answer3 = (TextView) findViewById(R.id.answer3);
-        answer4 = (TextView) findViewById(R.id.answer4);
+        fakeNext.setVisibility(View.INVISIBLE);
 
         next = (ImageView) findViewById(R.id.next);
-        train_land = (ImageView)findViewById(R.id.train_land);
+        trainPlanet = (ImageView)findViewById(R.id.planet_train);
 
 
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.INVISIBLE);
-        button4.setVisibility(View.INVISIBLE);
+
     }
 
     private void textViewInitializations() {
+
+
         wordView = (TextView) findViewById(R.id.word);
         translationView = (TextView) findViewById(R.id.translation);
-        countView = (TextView) findViewById(R.id.count);
         grammarView = (TextView) findViewById(R.id.grammar);
         pronunView = (TextView) findViewById(R.id.pronunciation);
         exampleView1 = (TextView) findViewById(R.id.example1);
         exampleView2 = (TextView) findViewById(R.id.example2);
         exampleView3 = (TextView) findViewById(R.id.example3);
+
         if(SplashScreen.languageId >= 1){
             translationExtraView = (TextView) findViewById(R.id.translationExtra_train);
             secondLanguageName = (TextView) findViewById(R.id.second_language_name);
+            english = (TextView)findViewById(R.id.english);
         }
 
 
@@ -610,12 +684,65 @@ public class Train extends AppCompatActivity {
     private void gettingResources() {
          beginnerTranslationExtra = new String[getResources().getStringArray(R.array.beginner_words).length];
 
-        train_land = (ImageView)findViewById(R.id.train_land);
 
 
         if(level.equalsIgnoreCase("beginner") ){
 
-            train_land.setImageResource(R.drawable.beginner_ful_land2);
+
+            // Choosing Planet Image according to screen size -----------------------------------
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
+
+
+                if(screenInches < 4.8 ){
+
+                    Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
+
+                    trainPlanet.setImageResource(R.drawable.beginner_planet_train_normal_lessthan);
+
+                }else {
+
+
+                    trainPlanet.setImageResource(R.drawable.beginner_planet_train_normal);
+
+                }
+
+
+            }else {
+
+
+                trainPlanet.setImageResource(R.drawable.beginner_planet_train);
+
+            }
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE){
+
+                next.setImageResource(R.drawable.beginner_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.beginner_next_train_xlarge);
+
+            }
+            if( screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE){
+
+                next.setImageResource(R.drawable.beginner_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.beginner_next_train_xlarge);
+
+
+            }
+            else{
+
+                next.setImageResource(R.drawable.beginner_next_train);
+                fakeNext.setImageResource(R.drawable.beginner_next_train);
+
+            }
+            //-----------------------------------------------------------------------------------
+
+
+            boardTopBackground.setBackgroundColor(Color.parseColor("#f05e2a"));
+            button1.setBackgroundColor(Color.parseColor("#f05e2a"));
+            button4.setBackgroundColor(Color.parseColor("#f05e2a"));
+            button3.setBackgroundColor(Color.parseColor("#f05e2a"));
+            button2.setBackgroundColor(Color.parseColor("#f05e2a"));
+
             wordArray = getResources().getStringArray(R.array.beginner_words);
             translationArray = getResources().getStringArray(R.array.beginner_translation);
             grammarArray =  getResources().getStringArray(R.array.beginner_grammar);
@@ -651,7 +778,60 @@ public class Train extends AppCompatActivity {
         }
         else if(level.equalsIgnoreCase("intermediate")){
 
-            train_land.setImageResource(R.drawable.new_intermediate);
+            // Choosing Planet Image according to screen size -----------------------------------
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
+
+
+                if(screenInches < 4.8 ){
+
+                    Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
+
+                    trainPlanet.setImageResource(R.drawable.intermediate_planet_train_noraml_lessthan);
+
+                }else {
+
+
+                    trainPlanet.setImageResource(R.drawable.intermediate_planet_train_normal);
+
+                }
+
+
+            }else {
+
+
+                trainPlanet.setImageResource(R.drawable.intermediate_planet_train);
+
+            }
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE){
+
+                next.setImageResource(R.drawable.intermediate_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.intermediate_next_train_xlarge);
+
+            }
+            if( screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE){
+
+                next.setImageResource(R.drawable.intermediate_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.intermediate_next_train_xlarge);
+
+
+            }
+            else{
+
+                next.setImageResource(R.drawable.intermediate_next_train);
+                fakeNext.setImageResource(R.drawable.intermediate_next_train);
+
+            }
+            //-----------------------------------------------------------------------------------
+
+
+            button1.setBackgroundColor(Color.parseColor("#83a9ba"));
+            button2.setBackgroundColor(Color.parseColor("#83a9ba"));
+            button3.setBackgroundColor(Color.parseColor("#83a9ba"));
+            button4.setBackgroundColor(Color.parseColor("#83a9ba"));
+
+            boardTopBackground.setBackgroundColor(Color.parseColor("#83a9ba"));
             wordArray = getResources().getStringArray(R.array.intermediate_words);
             translationArray = getResources().getStringArray(R.array.intermediate_translation);
             grammarArray =  getResources().getStringArray(R.array.intermediate_grammar);
@@ -686,7 +866,7 @@ public class Train extends AppCompatActivity {
             }
 
         }
-        else if(level.equalsIgnoreCase("advanced")){
+        else if(level.equalsIgnoreCase("advance")){
 
 
             if(SplashScreen.languageId == 1){
@@ -714,9 +894,62 @@ public class Train extends AppCompatActivity {
             }
 
 
+            // Choosing Planet Image according to screen size -----------------------------------
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
 
 
-            train_land.setImageResource(R.drawable.new_advance);
+                if(screenInches < 4.8 ){
+
+                    Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
+                    trainPlanet.setImageResource(R.drawable.advance_planet_train_normal_lessthan);
+
+
+                }else {
+
+
+                    trainPlanet.setImageResource(R.drawable.advance_planet_train_normal);
+
+                }
+
+
+            }else {
+
+
+                trainPlanet.setImageResource(R.drawable.advance_planet_train);
+
+
+            }
+
+
+            if(screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE){
+
+                next.setImageResource(R.drawable.advance_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.advance_next_train_xlarge);
+
+            }
+            if( screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE){
+
+                next.setImageResource(R.drawable.advance_next_train_xlarge);
+                fakeNext.setImageResource(R.drawable.advance_next_train_xlarge);
+
+
+            }
+            else{
+
+                next.setImageResource(R.drawable.advance_next_train);
+                fakeNext.setImageResource(R.drawable.advance_next_train);
+
+            }
+            //-----------------------------------------------------------------------------------
+
+
+            button1.setBackgroundColor(Color.parseColor("#f9b24e"));
+            button2.setBackgroundColor(Color.parseColor("#f9b24e"));
+            button3.setBackgroundColor(Color.parseColor("#f9b24e"));
+            button4.setBackgroundColor(Color.parseColor("#f9b24e"));
+
+            boardTopBackground.setBackgroundColor(Color.parseColor("#f9b24e"));
             wordArray = getResources().getStringArray(R.array.advanced_words);
             translationArray = getResources().getStringArray(R.array.advanced_translation);
             grammarArray =  getResources().getStringArray(R.array.advanced_grammar);
@@ -743,7 +976,23 @@ public class Train extends AppCompatActivity {
         float height = dm.heightPixels;
 
         next.setX(-width);
-        translation_layout.setY(-height);
+//        translation_layout.setY(-height);
+        whiteBackground.setY(-height);
+        boardTopBackground.setY(-height);
+        grammarView.setY(-height);
+        pronunView.setY(-height);
+        translationView.setY(-height);
+        exampleView1.setY(-height);
+        exampleView2.setY(-height);
+        exampleView3.setY(-height);
+        if(SplashScreen.languageId >= 1) {
+
+            translationExtraView.setY(-height);
+            secondLanguageName.setY(-height);
+            english.setY(-height);
+        }
+
+
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -755,7 +1004,7 @@ public class Train extends AppCompatActivity {
                 float width = dm.widthPixels;
                 float height = dm.heightPixels;
 
-                ValueAnimator va = ValueAnimator.ofFloat(width,0);
+                final ValueAnimator va = ValueAnimator.ofFloat(width,0);
 
                 va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
 
@@ -780,7 +1029,22 @@ public class Train extends AppCompatActivity {
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                         float value = (float)valueAnimator.getAnimatedValue();
-                        translation_layout.setTranslationY(value/2);
+//                        translation_layout.setTranslationY(value/2);
+                        whiteBackground.setTranslationY(value/2);
+                        boardTopBackground.setTranslationY(value/2);
+                        grammarView.setTranslationY(value/2);
+                        pronunView.setTranslationY(value/2);
+                        translationView.setTranslationY(value/2);
+                        exampleView1.setTranslationY(value/2);
+                        exampleView2.setTranslationY(value/2);
+                        exampleView3.setTranslationY(value/2);
+
+                        if(SplashScreen.languageId >= 1) {
+                            translationExtraView.setTranslationY((value / 2));
+                            secondLanguageName.setTranslationY(value / 2);
+                            english.setTranslationY(value/2);
+                        }
+
                     }
                 });
 
@@ -802,8 +1066,7 @@ public class Train extends AppCompatActivity {
     }
 
     private void nextAnimation(){
-        float alpha = train_land.getAlpha();
-
+        float alpha = trainPlanet.getAlpha();
         ValueAnimator va = ValueAnimator.ofFloat(alpha,0);
 
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
@@ -812,7 +1075,21 @@ public class Train extends AppCompatActivity {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 float value = (float) valueAnimator.getAnimatedValue();
-                translation_layout.setAlpha(value);
+                boardTopBackground.setAlpha(value);
+                whiteBackground.setAlpha(value);
+                pronunView.setAlpha(value);
+                grammarView.setAlpha(value);
+                translationView.setAlpha(value);
+                exampleView3.setAlpha(value);
+                exampleView2.setAlpha(value);
+                exampleView1.setAlpha(value);
+
+                if(SplashScreen.languageId >= 1) {
+                    translationExtraView.setAlpha((value));
+                    secondLanguageName.setAlpha(value);
+                    english.setAlpha(value);
+                }
+
                 button1.setAlpha(value);
                 button2.setAlpha(value);
                 button3.setAlpha(value);
@@ -869,7 +1146,21 @@ public class Train extends AppCompatActivity {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
 
                 float value = (float)valueAnimator.getAnimatedValue();
-                translation_layout.setTranslationY(value/2);
+                whiteBackground.setTranslationY(value/2);
+                boardTopBackground.setTranslationY(value/2);
+                grammarView.setTranslationY(value/2);
+                pronunView.setTranslationY(value/2);
+                translationView.setTranslationY(value/2);
+                exampleView1.setTranslationY(value/2);
+                exampleView2.setTranslationY(value/2);
+                exampleView3.setTranslationY(value/2);
+
+                if(SplashScreen.languageId >= 1) {
+                    translationExtraView.setTranslationY((value / 2));
+                    secondLanguageName.setTranslationY(value / 2);
+                    english.setTranslationY(value/2);
+                }
+//                translation_layout.setTranslationY(value/2);
             }
         });
 
