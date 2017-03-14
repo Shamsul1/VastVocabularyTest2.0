@@ -702,12 +702,12 @@ public class Practice extends AppCompatActivity {
 
                 Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
 
-                trainPlanet.setImageResource(R.drawable.beginner_planet_train_normal_lessthan);
+                trainPlanet.setImageResource(R.drawable.planet_practice_lessthan);
 
             }else {
 
 
-                trainPlanet.setImageResource(R.drawable.beginner_planet_train_normal);
+                trainPlanet.setImageResource(R.drawable.planet_practice_normal);
 
             }
 
@@ -715,27 +715,27 @@ public class Practice extends AppCompatActivity {
         }else {
 
 
-            trainPlanet.setImageResource(R.drawable.beginner_planet_train);
+            trainPlanet.setImageResource(R.drawable.planet_practice_large);
 
         }
 
         if(screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE){
 
-            next.setImageResource(R.drawable.beginner_next_train_xlarge);
-            fakeNext.setImageResource(R.drawable.beginner_next_train_xlarge);
+            next.setImageResource(R.drawable.practice_next_xlarge);
+            fakeNext.setImageResource(R.drawable.practice_next_xlarge);
 
         }
         if( screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE){
 
-            next.setImageResource(R.drawable.beginner_next_train_xlarge);
-            fakeNext.setImageResource(R.drawable.beginner_next_train_xlarge);
+            next.setImageResource(R.drawable.practice_next_xlarge);
+            fakeNext.setImageResource(R.drawable.practice_next_xlarge);
 
 
         }
         else{
 
-            next.setImageResource(R.drawable.beginner_next_train);
-            fakeNext.setImageResource(R.drawable.beginner_next_train);
+            next.setImageResource(R.drawable.practice_next_normal);
+            fakeNext.setImageResource(R.drawable.practice_next_normal);
 
         }
     }
