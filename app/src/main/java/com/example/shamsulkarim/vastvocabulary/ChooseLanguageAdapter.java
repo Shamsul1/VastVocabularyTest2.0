@@ -2,17 +2,20 @@ package com.example.shamsulkarim.vastvocabulary;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.advanceAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +42,8 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
         this.languageIcon = languageIcon;
         this.locationIcon = locationIcon;
         this.speakersIcon = speakersIcon;
+
+
     }
 
     @Override
@@ -55,6 +60,7 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
 
 
         holder.languageImage.setImageResource(languageInfo.get(position).getImage());
+
     }
 
 
@@ -69,6 +75,7 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
     class LanguageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView languageImage, tickMark;
+        RelativeLayout background;
 
 
 
@@ -76,6 +83,7 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
             super(itemView);
             languageImage = (ImageView)itemView.findViewById(R.id.languagImage);
             tickMark  = (ImageView)itemView.findViewById(R.id.tickMark);
+            background = (RelativeLayout)itemView.findViewById(R.id.row_layout);
 
 
             languageImage.setOnClickListener(this);
@@ -103,9 +111,10 @@ public class ChooseLanguageAdapter extends RecyclerView.Adapter<ChooseLanguageAd
 //            }else {
 
                 noLanguage.setText("");
-                languageIcon.setImageResource(R.drawable.language);
-                locationIcon.setImageResource(R.drawable.location);
-                speakersIcon.setImageResource(R.drawable.speakers);
+                languageIcon.setImageResource(R.drawable.ic_language);
+                locationIcon.setImageResource(R.drawable.ic_location);
+                speakersIcon.setImageResource(R.drawable.ic_speakers);
+
 
                 language.setText(languageInfo.get(getAdapterPosition()).getName());
                 location.setText(languageInfo.get(getAdapterPosition()).getLocation());

@@ -23,14 +23,13 @@
         app:srcCompat="@drawable/moon" />
 
     <ImageView
-        android:id="@+id/reset"
+        android:id="@+id/astronut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-93dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="0dp"
-        android:onClick="reset"
         app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -88,18 +87,19 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/reset"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:background="#2f3d4b"
+        android:onClick="reset"
         android:text="Reset"
         android:textColor="#ffffff"
         android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="@+id/home_button"
-        app:layout_constraintRight_toRightOf="@+id/home_button"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/home_button" />
+        app:layout_constraintLeft_toLeftOf="@+id/home_button"
+        app:layout_constraintRight_toRightOf="@+id/home_button" />
 </android.support.constraint.ConstraintLayout>

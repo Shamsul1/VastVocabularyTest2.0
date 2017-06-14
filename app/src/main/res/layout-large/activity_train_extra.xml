@@ -133,7 +133,7 @@
         android:paddingLeft="24dp"
         android:text="Adjective"
         android:textColor="#ffffff"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/board_top_background"
         app:layout_constraintLeft_toLeftOf="@+id/board_top_background"
         app:layout_constraintTop_toTopOf="@+id/board_top_background"
@@ -149,7 +149,7 @@
         android:paddingLeft="24dp"
         android:text="/safa/"
         android:textColor="#ffffff"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/board_top_background"
         app:layout_constraintLeft_toRightOf="@+id/grammar"
         app:layout_constraintTop_toTopOf="@+id/board_top_background" />
@@ -164,7 +164,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toRightOf="@+id/english"
         app:layout_constraintRight_toRightOf="@+id/white_background_train"
@@ -180,11 +180,12 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="24sp"
+        android:textColor="#424242"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
         app:layout_constraintRight_toRightOf="@+id/translation"
-        app:layout_constraintTop_toBottomOf="@+id/translationExtra_train"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/translationExtra_train" />
 
     <TextView
         android:id="@+id/example2"
@@ -196,7 +197,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="24sp"
+        android:textColor="#424242"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="@+id/example1"
         app:layout_constraintRight_toRightOf="@+id/example1"
         app:layout_constraintTop_toBottomOf="@+id/example1" />
@@ -211,7 +213,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="24sp"
+        android:textColor="#424242"
+        android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="@+id/example2"
         app:layout_constraintRight_toRightOf="@+id/example2"
@@ -299,10 +302,10 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant"
-        android:textSize="30sp"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/translation"
         app:layout_constraintRight_toRightOf="@+id/white_background_train"
-        app:layout_constraintTop_toBottomOf="@+id/translation"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/translation" />
 
 </android.support.constraint.ConstraintLayout>

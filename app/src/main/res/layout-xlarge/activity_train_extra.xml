@@ -23,77 +23,77 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/beginner_planet_train" />
 
-    <!--<Button-->
-        <!--android:id="@+id/button4"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="96dp"-->
-        <!--android:layout_marginLeft="62dp"-->
-        <!--android:layout_marginRight="62dp"-->
-        <!--android:background="#f05e2a"-->
-        <!--android:onClick="neext"-->
-        <!--android:padding="24dp"-->
-        <!--android:text="fskfslfjslkjflsjflkjslkfjsljfklsfjslflksjdfklsjfskldfjksdflkjsadlfjslfjslkfjslkjfsldjflsjfjklsjflsjflsdjflsjfljsfljslfjslfjsljfsljfsljfsljfsl"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent" />-->
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="62dp"
+        android:background="#f05e2a"
+        android:onClick="neext"
+        android:padding="24dp"
+        android:text="fskfslfjslkjflsjflkjslkfjsljfklsfjslflksjdfklsjfskldfjksdflkjsadlfjslfjslkfjslkjfsldjflsjfjklsjflsjflsdjflsjfljsfljslfjslfjsljfsljfsljfsljfsl"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
-    <!--<Button-->
-        <!--android:id="@+id/button3"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="0dp"-->
-        <!--android:layout_marginRight="0dp"-->
-        <!--android:background="#f05e2a"-->
-        <!--android:onClick="neext"-->
-        <!--android:padding="24dp"-->
-        <!--android:text="Button"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/button4"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintLeft_toLeftOf="@+id/button4"-->
-        <!--app:layout_constraintRight_toRightOf="@+id/button4" />-->
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#f05e2a"
+        android:onClick="neext"
+        android:padding="24dp"
+        android:text="Button"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/button4"
+        app:layout_constraintRight_toRightOf="@+id/button4" />
 
-    <!--<Button-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="0dp"-->
-        <!--android:layout_marginRight="0dp"-->
-        <!--android:background="#f05e2a"-->
-        <!--android:onClick="neext"-->
-        <!--android:padding="24dp"-->
-        <!--android:text="Button"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/button3"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintLeft_toLeftOf="@+id/button3"-->
-        <!--app:layout_constraintRight_toRightOf="@+id/button3" />-->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#f05e2a"
+        android:onClick="neext"
+        android:padding="24dp"
+        android:text="Button"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/button3"
+        app:layout_constraintRight_toRightOf="@+id/button3" />
 
-    <!--<Button-->
-        <!--android:id="@+id/button1"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="0dp"-->
-        <!--android:layout_marginRight="0dp"-->
-        <!--android:background="#f05e2a"-->
-        <!--android:onClick="neext"-->
-        <!--android:padding="24dp"-->
-        <!--android:text="jsflsjflsjfljsflkjslkfjslkfjsaljfslkfjlsdnvlksdjslkdjvsdlknvslnvlsfljnslnvsnvlksajflksajfkljsalfksjflsajdflksakjfsadlkfjsajfsal"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="20sp"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/button2"-->
-        <!--app:layout_constraintLeft_toLeftOf="@+id/button2"-->
-        <!--app:layout_constraintRight_toRightOf="@+id/button2"-->
-        <!--app:layout_constraintHorizontal_bias="0.0" />-->
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="#f05e2a"
+        android:onClick="neext"
+        android:padding="24dp"
+        android:text="jsflsjflsjfljsflkjslkfjslkfjsaljfslkfjlsdnvlksdjslkdjvsdlknvslnvlsfljnslnvsnvlksajflksajfkljsalfksjflsajdflksakjfsadlkfjsajfsal"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintLeft_toLeftOf="@+id/button2"
+        app:layout_constraintRight_toRightOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.0" />
 
 
     <ImageView
@@ -180,6 +180,7 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="48dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/second_language_name"
@@ -194,6 +195,7 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="@+id/example1"
         app:layout_constraintRight_toRightOf="@+id/example1"
@@ -207,6 +209,7 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="8dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="@+id/example2"
         app:layout_constraintRight_toRightOf="@+id/example2"

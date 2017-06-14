@@ -2,25 +2,34 @@ package com.example.shamsulkarim.vastvocabulary;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yarolegovich.lovelydialog.LovelyChoiceDialog;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
+import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +44,7 @@ public class Train extends AppCompatActivity {
     List<Word> fiveWords, learnedWords, buttonQuestion, words, wordForQuestions;
     String[] sendWord = new String[5];
     String[] sendTranslation = new String[5];
+    public static List<Word> wordObjects;
 
 
 
@@ -46,11 +56,14 @@ public class Train extends AppCompatActivity {
     int ia = 0;
     int question = 4;
     int COUNTWORDS = 0;
-    int wordsPerSession = 5;
+    int wordsPerSession = 0;
+    int repeatPerSession = 0;
     String level;
     double screenInches;
     String toastMsg,secondLanguage;
     int screenSize;
+    Typeface ABeeZee, ABeeZeeItalic ;
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +118,15 @@ public class Train extends AppCompatActivity {
 
         SharedPreferences sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         level = sp.getString("level","NOTHING");
+        ABeeZee = Typeface.createFromAsset(getAssets(),"fonts/ABeeZee-Regular.ttf");
+        ABeeZeeItalic = Typeface.createFromAsset(getAssets(),"fonts/ABeeZee-Italic.ttf");
+        wordsPerSession = 0;
+        repeatPerSession = 0;
+        repeatPerSession = SplashScreen.sp.getInt("repeatationPerSession",5);
+        wordsPerSession = SplashScreen.sp.getInt("wordsPerSession",5);
 
         // INITIALIZATION
+        wordObjects = new ArrayList<>();
         buttonInitializations();
         textViewInitializations();
         gettingResources();
@@ -121,6 +141,8 @@ public class Train extends AppCompatActivity {
         wordCounter[1] = learnedWords.size();
 
         if( !fiveWords.isEmpty()){
+            wordObjects.clear();
+            wordObjects = fiveWords;
 
             if(SplashScreen.languageId >= 1){
 
@@ -143,6 +165,7 @@ public class Train extends AppCompatActivity {
         }
 
          comeInAnimation();
+        Toast.makeText(this, "words: "+wordsPerSession, Toast.LENGTH_SHORT).show();
 
 
 
@@ -153,6 +176,7 @@ public class Train extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
 
     public  void neext(View view){
+        Toast.makeText(this,""+id,Toast.LENGTH_SHORT).show();
 
         final View view1 = view;
 
@@ -179,11 +203,11 @@ public class Train extends AppCompatActivity {
 
 
     public void nextWord(View view) {
-
+//
 
         // To Next Activity
-        if (fiveWords.get(fiveWords.size() - 2).getCount() == 2) {
-            addLearnedWordsToSend();
+        if (fiveWords.get(fiveWords.size() - 1).getCount() == repeatPerSession) {
+//            addLearnedWordsToSend();
             this.finish();
             Intent intent = new Intent(this, DisplayLearningScore.class);
             intent.putExtra("word", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
@@ -193,7 +217,7 @@ public class Train extends AppCompatActivity {
             //----------
 
             /// IF SEEN IT TRUE THEN IT WOULD START TO ASK QUESTION
-            if (id < fiveWords.size()  && fiveWords.size() != 0) {
+            if (id < fiveWords.size()  && fiveWords.size() != 0 ) {
 
                 if (fiveWords.get(id).isSeen()) {
                     next.setVisibility(View.INVISIBLE);
@@ -456,6 +480,15 @@ public class Train extends AppCompatActivity {
 
 
         }
+
+        if (fiveWords.get(fiveWords.size() - 1).getCount() == repeatPerSession) {
+//            addLearnedWordsToSend();
+            this.finish();
+            Intent intent = new Intent(this, DisplayLearningScore.class);
+            intent.putExtra("word", sendWord).putExtra("translation",sendTranslation).putExtra("wordCount", wordCounter).putExtra("level",level);
+            this.startActivity(intent);
+
+        }
         if (id == fiveWords.size()) {
             id = 0;
 
@@ -487,6 +520,7 @@ public class Train extends AppCompatActivity {
         exampleView3.setText(wordAnswer.getExample3());
 
 //        translation_layout.setVisibility(View.VISIBLE);
+
 
         wrongAnswerAnimation();
 
@@ -555,19 +589,19 @@ public class Train extends AppCompatActivity {
     }
 
 
-    private void addLearnedWordsToSend() {
-        for (int i = 0; i < fiveWords.size(); i++) {
-            sendWord[i] = fiveWords.get(i).getWord();
-            sendTranslation[i] = fiveWords.get(i).getTranslation();
-            learnedWords.add(fiveWords.get(i));
-            if (words.contains(fiveWords.get(i))) {
-                words.remove(words.indexOf(fiveWords.get(i)));
-            }
-        }
-
-        wordCounter[0] = words.size();
-        wordCounter[1] = learnedWords.size();
-    }
+//    private void addLearnedWordsToSend() {
+//        for (int i = 0; i < fiveWords.size(); i++) {
+//            sendWord[i] = fiveWords.get(i).getWord();
+//            sendTranslation[i] = fiveWords.get(i).getTranslation();
+//            learnedWords.add(fiveWords.get(i));
+//            if (words.contains(fiveWords.get(i))) {
+//                words.remove(words.indexOf(fiveWords.get(i)));
+//            }
+//        }
+//
+//        wordCounter[0] = words.size();
+//        wordCounter[1] = learnedWords.size();
+//    }
 
 
 
@@ -643,6 +677,11 @@ public class Train extends AppCompatActivity {
         button3 = (Button)findViewById(R.id.button3);
         button4 = (Button)findViewById(R.id.button4);
 
+        button1.setTypeface(ABeeZee);
+        button2.setTypeface(ABeeZee);
+        button3.setTypeface(ABeeZee);
+        button4.setTypeface(ABeeZee);
+
             button1.setVisibility(View.INVISIBLE);
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
@@ -668,10 +707,28 @@ public class Train extends AppCompatActivity {
         exampleView2 = (TextView) findViewById(R.id.example2);
         exampleView3 = (TextView) findViewById(R.id.example3);
 
+        translationView.setTextColor(Color.parseColor("#212121"));
+        wordView.setTypeface(ABeeZee);
+        translationView.setTypeface(ABeeZee);
+        grammarView.setTypeface(ABeeZee);
+        pronunView.setTypeface(ABeeZee);
+        exampleView1.setTypeface(ABeeZeeItalic);
+        exampleView2.setTypeface(ABeeZeeItalic);
+        exampleView3.setTypeface(ABeeZeeItalic);
+        int leftPadding = exampleView1.getPaddingLeft();
+        int rightPadding = exampleView1.getPaddingRight();
+        exampleView1.setPadding(leftPadding+15,0,rightPadding+15,0);
+        exampleView2.setPadding(leftPadding+15,0,rightPadding+15,0);
+        exampleView3.setPadding(leftPadding+15,0,rightPadding+15,0);
+
         if(SplashScreen.languageId >= 1){
             translationExtraView = (TextView) findViewById(R.id.translationExtra_train);
             secondLanguageName = (TextView) findViewById(R.id.second_language_name);
             english = (TextView)findViewById(R.id.english);
+            translationExtraView.setTextColor(Color.parseColor("#212121"));
+            translationExtraView.setTypeface(ABeeZee);
+            secondLanguageName.setTypeface(ABeeZeeItalic);
+            english.setTypeface(ABeeZeeItalic);
         }
 
 
@@ -694,7 +751,7 @@ public class Train extends AppCompatActivity {
             if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
 
 
-                if(screenInches < 4.8 ){
+                if(screenInches < 4.5 ){
 
                     Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
 
@@ -735,7 +792,8 @@ public class Train extends AppCompatActivity {
 
             }
             //-----------------------------------------------------------------------------------
-
+//
+            color = R.color.beginnerColor;
 
             boardTopBackground.setBackgroundColor(Color.parseColor("#f05e2a"));
             button1.setBackgroundColor(Color.parseColor("#f05e2a"));
@@ -783,7 +841,7 @@ public class Train extends AppCompatActivity {
             if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
 
 
-                if(screenInches < 4.8 ){
+                if(screenInches < 4.5 ){
 
                     Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
 
@@ -825,6 +883,7 @@ public class Train extends AppCompatActivity {
             }
             //-----------------------------------------------------------------------------------
 
+            color = R.color.intermediateColor;
 
             button1.setBackgroundColor(Color.parseColor("#83a9ba"));
             button2.setBackgroundColor(Color.parseColor("#83a9ba"));
@@ -899,7 +958,7 @@ public class Train extends AppCompatActivity {
             if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
 
 
-                if(screenInches < 4.8 ){
+                if(screenInches < 4.5 ){
 
                     Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
                     trainPlanet.setImageResource(R.drawable.advance_planet_train_normal_lessthan);
@@ -943,7 +1002,8 @@ public class Train extends AppCompatActivity {
             }
             //-----------------------------------------------------------------------------------
 
-
+//
+            color = R.color.advanceColor;
             button1.setBackgroundColor(Color.parseColor("#f9b24e"));
             button2.setBackgroundColor(Color.parseColor("#f9b24e"));
             button3.setBackgroundColor(Color.parseColor("#f9b24e"));
@@ -1049,7 +1109,7 @@ public class Train extends AppCompatActivity {
                 });
 
 
-                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setInterpolator(new DecelerateInterpolator());
                 va.setDuration(500L);
                 va.start();
 
@@ -1165,7 +1225,7 @@ public class Train extends AppCompatActivity {
         });
 
 
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setInterpolator(new DecelerateInterpolator());
         va.setDuration(500L);
         va.start();
 
@@ -1182,7 +1242,38 @@ public class Train extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
 
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Are you sure you want to leave this training session?")
+//                .setCancelable(false)
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        finish();
+//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                    }
+//                })
+//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        AlertDialog alert = builder.create();
+//        alert.show();
 
-
-}
+        new LovelyStandardDialog(this)
+                .setTopColorRes(color)
+                .setButtonsColorRes(color)
+                .setIcon(R.drawable.ic_leave)
+                .setTitle("Do you want to leave this session?")
+                .setMessage("Leaving this session will make you lose your progress")
+                .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Train.this.startActivity(new Intent(Train.this,MainActivity.class));
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
+    }}

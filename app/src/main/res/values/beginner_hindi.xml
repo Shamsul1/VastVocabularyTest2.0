@@ -5,27 +5,38 @@
 
 
     <string-array name="beginner_hindi">
-        <item>"raksha"</item>
-        <item>"prabhaav"</item>
-        <item>"pradooshan"</item>
-        <item>"kathor"</item>
-        <item>"upabhog karana"</item>
-        <item>"ansh"</item>
-        <item>"videsh mein"</item>
-        <item>"vyanjanon"</item>
-        <item>"ang"</item>
-        <item>"visheshata"</item>
+        <item>"रक्षा (raksha)"</item>
+        <item>"प्रभाव (prabhaav)"</item>
+        <item>"प्रदूषण (pradooshan)"</item>
+        <item>"कठोर (kathor)"</item>
+        <item>"खाना या पीना(khaana ya peena),व्यय करना (vyay karana)"</item>
+        <item>"पहलू (pahaloo)"</item>
+        <item>"विदेश (videsh)"</item>
+        <item>"पाक शैली (paak shailee)"</item>
+        <item>"सामग्री (saamagree)"</item>
+        <item>"विशेषता (visheshata)"</item>
 
-        <item>"vishesh"</item>
-        <item>"pratishtha"</item>
-        <item>"dosh"</item>
-        <item>"daridrata"</item>
-        <item>"rokana"</item>
-        <item>"paryaapt"</item>
-        <item>"kamee poorti"</item>
-        <item>"mahatvapoorn"</item>
-        <item>"keval"</item>
-        <item>"zaahir"</item>
+        <item>"विशेषता (vishesh)"</item>
+        <item>"प्रतिष्ठा (pratishtha)"</item>
+        <item>"कमी (kamee)"</item>
+        <item>"गरीबी (gareebee)"</item>
+        <item>"बाधित करना (baadhit karana)"</item>
+        <item>"पर्याप्त (paryaapt)"</item>
+        <item>"क्षतिपूर्ति करना (kshatipoorti karana)"</item>
+        <item>"महत्वपूर्ण (mahatvapoorn)"</item>
+        <item>"सिर्फ़ (sirf)"</item>
+        <item>"स्पष्ट (spasht)"</item>
+
+        <item>"घटाना (घटाना (ghataana)"</item>
+        <item>"जटिल (jatil)"</item>
+        <item>"असुरक्षित (asurakshit)"</item>
+        <item>"परिवर्तन करना (parivartan karana)"</item>
+        <item>"लाभ होना (laabh hona)"</item>
+        <item>"अलंकृत (alankrt)"</item>
+        <item>"प्रमाण (pramaan)"</item>
+        <item>"अति महत्वपूर्ण (ati mahatvapoorn)"</item>
+        <item>"स्थिर करना (sthir karana)"</item>
+        <item>"योगदान करना (yogadaan karana)"</item>
 
 
     </string-array>

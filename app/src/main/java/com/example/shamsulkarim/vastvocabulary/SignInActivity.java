@@ -24,7 +24,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
 
     EditText loginEmail, loginPassword;
-    TextView dontHaveAnAccount;
+    TextView dontHaveAnAccount,skip;
     Button singIn;
 
     ProgressDialog progressDialog;
@@ -52,9 +52,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         loginPassword = (EditText) findViewById(R.id.password_login);
         dontHaveAnAccount = (TextView) findViewById(R.id.dontHaveAnAccount);
         singIn = (Button)findViewById(R.id.singIn);
+        skip = (TextView)findViewById(R.id.skip);
 
         singIn.setOnClickListener(this);
         dontHaveAnAccount.setOnClickListener(this);
+        skip.setOnClickListener(this);
 
 
 
@@ -74,6 +76,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             finish();
             startActivity(new Intent(this, RegisterActivity.class));
 
+        }
+
+        if(view.getId() == skip.getId()){
+
+            finish();
+            SplashScreen.sp.edit().putBoolean("skip",true).apply();
+            startActivity(new Intent(this, MainActivity.class));
         }
 
     }

@@ -115,17 +115,19 @@
 
         <TextView
 
-            android:layout_marginBottom="30dp"
             android:id="@+id/card_example1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_translation_extra"
+            android:layout_marginBottom="30dp"
+
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
             android:layout_marginTop="18dp"
-
-            android:layout_below="@+id/card_translation_extra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="This is an translation"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="#424242"
+            android:textSize="12sp" />
 
 
 

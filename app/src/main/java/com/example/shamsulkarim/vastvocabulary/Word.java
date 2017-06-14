@@ -13,6 +13,9 @@ public class Word {
     boolean removable;
     String level;
     int databasePosition;
+    int favNum;
+    boolean isFavorite;
+    int number;
 
 
 
@@ -42,7 +45,7 @@ public class Word {
 
     }
 
-    public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String level,int nothing) {
+    public Word(String word, String translation,String extra, String pronun, String grammar, String example1, String level,int favNum,int number) {
         this.word = word;
         this.translation = translation;
         this.pronun = pronun;
@@ -50,6 +53,9 @@ public class Word {
         this.example1 = example1;
         this.level = level;
         this.extra = extra;
+        this.favNum = favNum;
+        this.number = number;
+
 
     }
 
@@ -73,6 +79,30 @@ public class Word {
         this.example2 = example2;
         this.example3 = example3;
         this.level = level;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public int getFavNum() {
+        return favNum;
+    }
+
+    public void setFavNum(int favNum) {
+        this.favNum = favNum;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String getLevel() {

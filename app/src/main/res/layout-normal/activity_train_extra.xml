@@ -154,14 +154,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="0dp"
+        android:layout_marginTop="12dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/english"
         app:layout_constraintRight_toRightOf="@+id/white_background_train"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@+id/board_top_background" />
 
     <TextView
@@ -174,7 +174,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
-        android:textSize="14sp"
+        android:textColor="#424242"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
         app:layout_constraintRight_toRightOf="@+id/translation"
         app:layout_constraintTop_toBottomOf="@+id/translationExtra_train" />
@@ -189,6 +190,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="@+id/example1"
         app:layout_constraintRight_toRightOf="@+id/example1"
         app:layout_constraintTop_toBottomOf="@+id/example1" />
@@ -203,6 +206,8 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="@+id/example2"
         app:layout_constraintRight_toRightOf="@+id/example2"
         app:layout_constraintTop_toBottomOf="@+id/example2" />
@@ -260,11 +265,12 @@
         android:id="@+id/english"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="english"
-        android:textStyle="italic"
         android:layout_marginLeft="24dp"
-        app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
         android:layout_marginTop="16dp"
+        android:text="english"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="@+id/white_background_train"
         app:layout_constraintTop_toBottomOf="@+id/board_top_background" />
 
     <TextView
@@ -274,6 +280,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="16dp"
         android:text="spanish"
+        android:textSize="10sp"
         android:textStyle="italic"
         app:layout_constraintLeft_toLeftOf="@+id/english"
         app:layout_constraintTop_toBottomOf="@+id/translation" />
@@ -282,16 +289,16 @@
         android:id="@+id/translationExtra_train"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="12dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@+id/second_language_name"
-        app:layout_constraintRight_toRightOf="@+id/white_background_train"
+        android:textSize="16sp"
         app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="12dp"
+        app:layout_constraintLeft_toLeftOf="@+id/translation"
+        app:layout_constraintRight_toRightOf="@+id/white_background_train"
         app:layout_constraintTop_toBottomOf="@+id/translation" />
 
 </android.support.constraint.ConstraintLayout>

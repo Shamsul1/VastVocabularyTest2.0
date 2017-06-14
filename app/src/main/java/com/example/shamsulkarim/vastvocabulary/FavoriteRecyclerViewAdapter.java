@@ -2,6 +2,7 @@ package com.example.shamsulkarim.vastvocabulary;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,13 +152,16 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView wordView,translationView, grammarView, pronunciationView, exampleView1,exampleView2,exampleView3,secondLanguageName,secondTranslation;
+        TextView wordView,translationView, grammarView, pronunciationView, exampleView1,exampleView2,exampleView3,secondLanguageName,secondTranslation, englishLanguage;
         ImageView favorite;
 
 
         public WordViewHolder(View itemView) {
             super(itemView);
+            Typeface ABeeZee = Typeface.createFromAsset(itemView.getContext().getAssets(),"fonts/ABeeZee-Regular.ttf");
+            Typeface ABeeZeeItalic  = Typeface.createFromAsset(itemView.getContext().getAssets(),"fonts/ABeeZee-Italic.ttf");
 
+            englishLanguage = (TextView)itemView.findViewById(R.id.favorite_second_language);
             secondLanguageName = (TextView)itemView.findViewById(R.id.favorite_second_language2);
             secondTranslation = (TextView)itemView.findViewById(R.id.favorite_second_translation);
             wordView = (TextView)itemView.findViewById(R.id.favorite_card_word);
@@ -165,6 +171,22 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
             exampleView1 = (TextView)itemView.findViewById(R.id.favorite_card_example1);
             exampleView2 = (TextView)itemView.findViewById(R.id.favorite_card_example2);
             exampleView3 = (TextView)itemView.findViewById(R.id.favorite_card_example3);
+
+            wordView.setTypeface(ABeeZee);
+            translationView.setTypeface(ABeeZee);
+            grammarView.setTypeface(ABeeZee);
+            pronunciationView.setTypeface(ABeeZee);
+            exampleView1.setTypeface(ABeeZee);
+
+
+            exampleView2.setTypeface(ABeeZee);
+            exampleView3.setTypeface(ABeeZee);
+
+            if(SplashScreen.languageId == 1){
+                secondLanguageName.setTypeface(ABeeZeeItalic);
+                englishLanguage.setTypeface(ABeeZeeItalic);
+                secondTranslation.setTypeface(ABeeZee);
+            }
 
             favorite = (ImageView)itemView.findViewById(R.id.favorite_favorite);
             favorite.setOnClickListener(this);
@@ -189,6 +211,12 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
                     isFav.set(getAdapterPosition(),false);
 
 
+                    if(SplashScreen.favoriteCount > 0){
+
+                        SplashScreen.favoriteCount--;
+                        SplashScreen.sp.edit().putInt("favoriteCountProfile",SplashScreen.favoriteCount).apply();
+
+                    }
 
                     if(words.get(getAdapterPosition()).level.equalsIgnoreCase("beginner")){
 
@@ -213,6 +241,9 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
 
                 }else {
+                    SplashScreen.favoriteCount++;
+                    SplashScreen.sp.edit().putInt("favoriteCountProfile",SplashScreen.favoriteCount).apply();
+
 
                     isFav.set(getAdapterPosition(),true);
                     favorite.setImageResource(R.drawable.favorite_card_view);

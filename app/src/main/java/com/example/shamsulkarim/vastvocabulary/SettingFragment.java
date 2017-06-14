@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -42,11 +43,12 @@ import java.util.logging.Handler;
  */
 public class SettingFragment extends Fragment  {
 
-    TextView userName, totalLearned, totalWord, totalFavorite;
+    TextView userName, totalLearned, totalWord, totalFavorite,wordText,favoriteText,learnedText;
 
     SharedPreferences sp;
     Toolbar toolbar;
     int totalFavCount;
+    Typeface ABeeZee;
 
 
     public SettingFragment() {
@@ -61,10 +63,11 @@ public class SettingFragment extends Fragment  {
         View v = inflater.inflate(R.layout.profile_fragment, container, false);
 
 
-
+        ABeeZee = Typeface.createFromAsset(v.getContext().getAssets(),"fonts/ABeeZee-Regular.ttf");
         toolbar = (Toolbar)v.findViewById(R.id.profileToolbar);
         toolbar.setTitleTextColor(Color.parseColor("#673AB7"));
         toolbar.setTitle("Profile");
+
         setHasOptionsMenu(true);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
@@ -77,6 +80,17 @@ public class SettingFragment extends Fragment  {
         totalLearned = (TextView)v.findViewById(R.id.total_learned_count_view);
         totalFavorite = (TextView)v.findViewById(R.id.total_favorite_count_view);
         totalWord = (TextView)v.findViewById(R.id.total_word_count_view);
+        wordText = (TextView)v.findViewById(R.id.word_text_profile);
+        favoriteText = (TextView)v.findViewById(R.id.favorite_text_profile);
+        learnedText = (TextView)v.findViewById(R.id.learned_text_profile);
+
+        userName.setTypeface(ABeeZee);
+        totalLearned.setTypeface(ABeeZee);
+        totalFavorite.setTypeface(ABeeZee);
+        totalWord.setTypeface(ABeeZee);
+        wordText.setTypeface(ABeeZee);
+        favoriteText.setTypeface(ABeeZee);
+        learnedText.setTypeface(ABeeZee);
 
         int totalWordCount = getResources().getStringArray(R.array.beginner_words).length+getResources().getStringArray(R.array.intermediate_words).length+getResources().getStringArray(R.array.advanced_words).length;
         int totalLearnedCount = sp.getInt("beginner",0)+sp.getInt("intermediate",0)+sp.getInt("advanced",0);
@@ -88,7 +102,7 @@ public class SettingFragment extends Fragment  {
 
         totalWord.setText(""+totalWordCount);
         totalLearned.setText(""+totalLearnedCount);
-        totalFavorite.setText(""+totalFavCount);
+        totalFavorite.setText(""+SplashScreen.favoriteCount);
 
 
 

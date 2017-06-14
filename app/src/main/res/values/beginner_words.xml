@@ -25,6 +25,18 @@
         <item>"merely"</item>
         <item>"obvious"</item>
 
+        <item>"reduce"</item>
+        <item>"tricky"</item>
+        <item>"vulnerable"</item>
+        <item>"alter"</item>
+        <item>"benefit"</item>
+        <item>"elaborate"</item>
+        <item>"evidence"</item>
+        <item>"vital"</item>
+        <item>"stabilize"</item>
+        <item>"contribute"</item>
+
+
 
 
     </string-array>
@@ -43,7 +55,7 @@
 
         <item>"specific details or circumstances"</item>
         <item>"general belief or opinion that other people have about something and someone"</item>
-        <item>"flaw, fault"</item>
+        <item>"flaw"</item>
         <item>"the state of being extremely poor"</item>
         <item>"prevent an action or process"</item>
         <item>"acceptable in quanlity or quantity, enough"</item>
@@ -52,78 +64,129 @@
         <item>"just, only"</item>
         <item>"easily perceived or understood"</item>
 
+
+        <item>"make smaller or less in amount, degree, or size"</item>
+        <item>"having hidden difficulty"</item>
+        <item>"open to attack or damage"</item>
+        <item>"change or cause to change"</item>
+        <item>"an advantage or profit gained from something"</item>
+        <item>"planned or carried out with great care"</item>
+        <item>"anything that can be used to prove something"</item>
+        <item>"absolutely necessary or important, essential"</item>
+        <item>"to make or hold stable, firm, or steadfast"</item>
+        <item>"to give something in order to achieve something together with other people"</item>
+
     </string-array>
 
     <string-array name="beginner_grammar">
-        <item>"n."</item>
-        <item>"n."</item>
-        <item>"n."</item>
-        <item>"adj."</item>
-        <item>"v."</item>
-        <item>"n."</item>
-        <item>"adv."</item>
-        <item>"n."</item>
-        <item>"n"</item>
-        <item>"n"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"adjective."</item>
+        <item>"verb"</item>
+        <item>"noun"</item>
+        <item>"adverb"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
 
-        <item>"adj"</item>
-        <item>"n."</item>
-        <item>"n."</item>
-        <item>"n."</item>
-        <item>"v."</item>
-        <item>"adj."</item>
-        <item>"v."</item>
-        <item>"adj."</item>
-        <item>"adv."</item>
-        <item>"adj."</item>
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"noun"</item>
+        <item>"verb"</item>
+        <item>"adjective"</item>
+        <item>"verb"</item>
+        <item>"adjective."</item>
+        <item>"adverb."</item>
+        <item>"adjective."</item>
+
+        <item>"verb"</item>
+        <item>"adjective"</item>
+        <item>"adjective"</item>
+        <item>"verb"</item>
+        <item>"noun"</item>
+        <item>"adjective"</item>
+        <item>"noun"</item>
+        <item>"adjective"</item>
+        <item>"verb"</item>
+        <item>"verb"</item>
+
+
     </string-array>
 
     <string-array name="beginner_pronunciation">
-        <item>"/dəˈfens,ˈdēˌfens"</item>
-        <item>"/ˈimˌpakt/"</item>
-        <item>"/pəˈlo͞oSH(ə)n/"</item>
-        <item>"/härSH/"</item>
-        <item>"/kənˈso͞om/"</item>
-        <item>"/ˈaspekt/"</item>
-        <item>"/əˈbrôd/"</item>
-        <item>"/kwəˈzēn/"</item>
-        <item>"/inˈɡrēdēənt/"</item>
-        <item>"/ˌker(ə)ktəˈristik/"</item>
+        <item>" de·fense"</item>
+        <item>"im·pact"</item>
+        <item>"pol·lu·tion"</item>
+        <item>"harsh"</item>
+        <item>"con·sume"</item>
+        <item>"as·pect"</item>
+        <item>"a·broad"</item>
+        <item>"cui·sine"</item>
+        <item>"in·gre·di·ent"</item>
+        <item>"char·ac·ter·is·tic"</item>
 
-        <item>"/pə(r)ˈtikyələr/"</item>
-        <item>"/ˌrepyəˈtāSH(ə)n/"</item>
-        <item>"/ˈdēfekt/"</item>
-        <item>"/ˈpävərdē"</item>
-        <item>"/inˈhibit/"</item>
-        <item>"/ˈadəkwət/"</item>
-        <item>"/ˈkämpənˌsāt/"</item>
-        <item>"/ˈkro͞oSHəl/"</item>
-        <item>"/ˈmirlē/"</item>
-        <item>"/ˈäbvēəs/"</item>
+        <item>"par·tic·u·lar"</item>
+        <item>"rep·u·ta·tion"</item>
+        <item>"de·fect"</item>
+        <item>"pov·er·ty"</item>
+        <item>"in·hib·it"</item>
+        <item>"ad·e·quate"</item>
+        <item>"com·pen·sate"</item>
+        <item>"cru·cial"</item>
+        <item>"mere·ly"</item>
+        <item>"ob·vi·ous"</item>
+
+        <item>"re·duce"</item>
+        <item>"trick·y"</item>
+        <item>"vul·ner·a·ble"</item>
+        <item>"al·ter"</item>
+        <item>"ben·e·fit"</item>
+        <item>"e·lab·o·rate"</item>
+        <item>"ev·i·dence"</item>
+        <item>"vi·tal"</item>
+        <item>"sta·bi·lize"</item>
+        <item>"con·trib·ute"</item>
+
+
     </string-array>
 
     <string-array name="beginner_example1">
-        <item>"You should learn self-defense."</item>
-        <item>"The storm had a bad impact on the crops."</item>
-        <item>"Pollution is damaging our earth."</item>
-        <item>"I think Tom is harsh."</item>
-        <item>"Tom consumes a lot of wine."</item>
-        <item>"Imagination affects every aspect of our lives."</item>
-        <item>"I study abroad."</item>
-        <item>"his restaurant serves authentic French cuisine."</item>
-        <item>"What's the secret ingredient?"</item>
-        <item>"A polite manner is characteristic of Japanese people."</item>
+        <item>"Defense has to do with protecting something or fighting against an opponent, whether it's national defense, a football team's defense, or a defense lawyer."</item>
+        <item>"The noun impact can refer to a physical force (like a collision), an influence (a bad role model or a hero), or a strong effect (a foot of snow will have an impact on driving conditions)."</item>
+        <item>"Pollution is unwanted, harmful stuff contaminating an environment. The race to develop clean energy is motivated by high levels of pollution that people fear are permanently damaging the earth's environment."</item>
+        <item>"Harsh means severe or strict, particularly when referring to punishment. It would be a harsh punishment if you got grounded for two weeks just for coming home a little late for dinner."</item>
+        <item>""The Freshman 15" describes freshman-year college students who gain about fifteen pounds because they consume way too much lousy dorm food all day long."</item>
+        <item>"Aspect means a part or feature of something. If you are going to vote for a candidate, you should first learn about the various aspects of her political agenda."</item>
+        <item>"If you study abroad in your junior year of college, you are going to school in another country. Use abroad when you are talking about going to or from a place across an ocean."</item>
+        <item>"Cuisine is a type of food that is cooked in a specific way based on a culture's ingredients, region, and traditions. If you're craving cannoli, a visit to Chinatown doesn't make much sense, since cheese is more characteristic of Italian cuisine."</item>
+        <item>"An ingredient is one part of a mixture. For example, if you're making chocolate chip cookies, flour is just one ingredient you'll need."</item>
+        <item>"If something is a characteristic of someone or something, it is a feature you would expect. A characteristic of classical-style architecture is large stone columns. A characteristic of poodles is their pom-pom like tails."</item>
 
-        <item>"I had nothing in particular to say."</item>
-        <item>"He has a good reputation."</item>
-        <item>"They checked the machine for defects."</item>
-        <item>"Some people blame poverty for crime. "</item>
-        <item>"The young woman was so shy that it inhibited her ability to make friends."</item>
-        <item>"Is your salary adequate to support your family?"</item>
-        <item>"Who will compensate for the loss?"</item>
-        <item>"Sunday's match will be crucial."</item>
-        <item>"It's merely a joke."</item>
-        <item>"She saw only the most obvious differences."</item>
+        <item>"As an adjective, particular describes something specific, such as when you prefer one particular type of cereal over another. The noun form means specific points or details, as in the particulars of a police investigation."</item>
+        <item>"Your reputation is the general belief or opinion that other people have about you. If you are considered trustworthy and kind, you have a good reputation."</item>
+        <item>"A flaw in something is a defect. At certain stores you can buy clothes with slight defects. You have to be careful because the defect can be minor, like a missing button, or major, like sleeves of uneven lengths."</item>
+        <item>"Families who live in poverty have a hard time getting enough food to eat. "The loss of jobs in the area led to increased poverty." "The poverty rate is the percent of people who live in poverty in a geographic area.""</item>
+        <item>"When you inhibit something, you block it or hold it back. If you put plants in a dark room, you inhibit their growth. A teacher who mocks their students for giving wrong answers inhibits their willingness to speak up in class."</item>
+        <item>"When you want to say that something is enough or good enough for a particular need, use the adjective adequate. You might have an adequate amount of flour for a batch of pancakes, but not a lot extra."</item>
+        <item>"Compensate is about correcting for an imbalance. If you step in an unmarked pothole, the city may compensate you by paying your doctor bills treating a broken ankle."</item>
+        <item>"The word crucial describes something that is important or essential to success, like the crucial dress rehearsals that ensure everything will run smoothly on your play's opening night."</item>
+        <item>"Merely means "only." If you say "I was merely trying to help," your efforts were probably not appreciated and you're likely to be stalking off with your nose in the air."</item>
+        <item>"Something obvious is plain to see and easily understandable. It was obvious that you didn't enjoy your meal because I found it rolled in a napkin and shoved under the rug."</item>
+
+
+        <item>"You reduce something when you lessen its volume, size, or degree. That's why we say when someone goes on a diet, it's because they want to reduce; it's a polite way of suggesting they need to drop pounds and become a smaller size."</item>
+        <item>"I'd advise leaving the car here till you go to the university; parking can be tricky in the town centre."</item>
+        <item>"Use the adjective vulnerable to describe something or someone open to being physically or emotionally wounded, like a newborn chick or an overly sensitive teenager."</item>
+        <item>"After eating too many gingerbread cookies, she no longer fit into her uniform, so she had a seamstress alter it. It looked pretty much the same."</item>
+        <item>"A benefit is something that helps you, whether in the form of health insurance provided by an employer, welfare given by the government to those in need, or the benefit of the doubt extended to you by a friend."</item>
+        <item>"Use the adjective elaborate when you want to describe how something is very detailed or especially complicated, like a devilish prank planned out weeks in advance."</item>
+        <item>"Evidence is anything that can be used to prove something — like the evidence presented in a trial, or the trail of bread crumbs that is evidence of the path Hansel took through the woods."</item>
+        <item>"A patient's vital signs are their important body functions, such as pulse rate, that shows they are still alive. Use the adjective vital to describe something that is important and necessary, or a person full of energy."</item>
+        <item>"The verb stabilize means to hold steady or make firm. When you climb a ladder, you should stabilize the ladder before you get on it, otherwise you may get a lesson in the laws of gravity — you know, what goes up comes down!"</item>
+        <item>"To contribute something is to provide a part of the whole. When your company has their annual softball game and potluck picnic, you will probably be asked to contribute a dish, like your famous macaroni salad."</item>
+
 
     </string-array>
 
@@ -149,6 +212,18 @@
         <item>"It's crucial that we arrive before 8 o'clock."</item>
         <item>"She was merely stating a fact."</item>
         <item>"He was the obvious candidate for president"</item>
+
+        <item>"We need to install speed bumps to reduce the speed of the cars on this street."</item>
+        <item>"It's a very tricky problem, but I think there are a number of things you can do."</item>
+        <item>"Old people are particularly vulnerable members of our society."</item>
+        <item>"The government had to alter its foreign policy."</item>
+        <item>"He was given the benefit of the doubt."</item>
+        <item>"She made elaborate preparations for the party."</item>
+        <item>"There is considerable evidence that global warming is real."</item>
+        <item>"Her help is vital to the success of this plan."</item>
+        <item>"The government's efforts to stabilize prices have not succeeded."</item>
+        <item>"The state contributed €5 million to repair the damage caused by the earthquake."</item>
+
     </string-array>
 
     <string-array name="beginner_example3">
@@ -173,6 +248,17 @@
         <item>"Vitamins are crucial for maintaining good health."</item>
         <item>"A job is not merely a means to earn a living."</item>
         <item>"It's obvious Tom doesn't like Mary."</item>
+
+        <item>"Can you please reduce the volume of the music?"</item>
+        <item>"it's a tricky word to learn"</item>
+        <item>"The troops were in a vulnerable position."</item>
+        <item>"The kids became ill and we had to alter our holiday plans."</item>
+        <item>"We can all benefit from his experience."</item>
+        <item>"Tom's explanation is very elaborate."</item>
+        <item>"I was careful to not leave any evidence."</item>
+        <item>"International trade is vital for healthy economies."</item>
+        <item>"The pilots were able to stabilize the airplane and land safely."</item>
+        <item>"He contributed fifty dollars to the project."</item>
 
 
     </string-array>

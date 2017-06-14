@@ -3,11 +3,19 @@ package com.example.shamsulkarim.vastvocabulary;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.shamsulkarim.vastvocabulary.WordAdapters.WordRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +27,18 @@ public class SplashScreen extends AppCompatActivity {
     static BeginnerWordDatabase beginnerDatabase;
     static IntermediatewordDatabase intermediateDatabase;
     static AdvancedWordDatabase advanceDatabase;
+    static int wordsPerSession, repeatationPerSession;
+
     public static SharedPreferences sp;
     static List<Integer> savedBeginnerFav, savedAdvanceFav,savedIntermediateFav;
     static int savedBeginnerLearned,  savedIntemediateLearned, savedAdvanceLearned;
-    public static int languageId;
+    public static int languageId,favoriteCount;
     public static String languageName[] = {"","spanish","bengali","hindi"};
+
+    TextView vastVocabulary;
+    Typeface ABeeZee;
+
+    static public List<Word> words = new ArrayList<>();
 
 
     //word resource variables
@@ -41,6 +56,12 @@ public class SplashScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
+
+
+        ABeeZee = Typeface.createFromAsset(getAssets(),"fonts/ABeeZee-Regular.ttf");
+        vastVocabulary = (TextView)findViewById(R.id.vast_vocabulary);
+        vastVocabulary.setText("Vast Vocabulary");
+        vastVocabulary.setTypeface(ABeeZee);
 
 
         advanceWordArray = getResources().getStringArray(R.array.advanced_words);
@@ -80,6 +101,9 @@ public class SplashScreen extends AppCompatActivity {
         advanceHindi = getResources().getStringArray(R.array.advance_hindi);
 
 
+
+
+
         sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
         sp.edit().putString("advanceFavNum","").apply();
         sp.edit().putString("advanceLearnedNum","0").apply();
@@ -88,11 +112,30 @@ public class SplashScreen extends AppCompatActivity {
         sp.edit().putString("intermediateFavNum", "").apply();
         sp.edit().putString("intermediateLearnedNum","0").apply();
 
+        if(!sp.contains("skip")){
 
-        if(!SplashScreen.sp.contains("language")){
+
+            sp.edit().putBoolean("skip",false).apply();
+        }
 
 
-            SplashScreen.sp.edit().putInt("language",0).apply();
+
+
+        if(!sp.contains("favoriteCountProfile")){
+
+            sp.edit().putInt("favoriteCountProfile",0).apply();
+
+
+        }else {
+
+            favoriteCount = sp.getInt("favoriteCountProfile",0);
+
+        }
+
+        if(!sp.contains("language")){
+
+
+            sp.edit().putInt("language",0).apply();
 
 
         }
@@ -105,13 +148,36 @@ public class SplashScreen extends AppCompatActivity {
         savedAdvanceFav = new ArrayList<>();
         savedBeginnerFav = new ArrayList<>();
 
+        beginnerWordInitialization2();
         initializingSQLDatabase();
         addBeginnerWordToSQLite();
         addIntermediateWordToSQLite();
         addAdvanceWordToSQLite();
 
         launchMainActivity();
-        
+
+        if(!sp.contains("wordsPerSession")){
+
+            sp.edit().putInt("wordsPerSession",5).apply();
+            wordsPerSession = 5;
+        }else {
+
+            wordsPerSession = sp.getInt("wordsPerSession",5);
+
+        }
+        if(!sp.contains("repeatationPerSession")){
+
+            sp.edit().putInt("repeatationPerSession",5).apply();
+            repeatationPerSession = 5;
+        }else {
+
+            repeatationPerSession = sp.getInt("repeatationPerSession",5);
+
+        }
+
+        Toast.makeText(this,"Repeatation: "+repeatationPerSession+" words: "+ wordsPerSession, Toast.LENGTH_SHORT).show();
+
+
     }
 
 
@@ -126,7 +192,16 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
 
                 finish();
-                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+
+                if(sp.getBoolean("skip",false)){
+
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                }else {
+                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+
+
+                }
 
 
             }
@@ -279,6 +354,49 @@ public class SplashScreen extends AppCompatActivity {
 
 
     }
+
+    private void beginnerWordInitialization2(){
+
+        words.clear();
+
+        String[] extraArray = new String[getResources().getStringArray(R.array.beginner_words).length];
+
+//        if(SplashScreen.languageId == 0){
+//
+//            for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
+//
+//
+//                extraArray[i] = "";
+//            }
+//
+//        }
+
+        if(SplashScreen.languageId == 1){
+
+            extraArray = SplashScreen.beginnerSpanish;
+        }
+        if(SplashScreen.languageId == 2){
+
+            extraArray = SplashScreen.beginnerBengali;
+        }
+        if(SplashScreen.languageId == 3){
+
+            extraArray = SplashScreen.beginnerHindi;
+        }
+
+        int len = SplashScreen.beginnerWordArray.length;
+
+        for(int i = 0 ; i < len; i++){
+
+            words.add(new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],extraArray[i], SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],"beginner",0,0));
+
+        }
+
+
+
+
+    }
+
 
 
 

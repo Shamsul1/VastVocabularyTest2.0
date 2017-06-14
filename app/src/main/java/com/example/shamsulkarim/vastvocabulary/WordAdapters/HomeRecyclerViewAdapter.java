@@ -2,6 +2,8 @@ package com.example.shamsulkarim.vastvocabulary.WordAdapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 
 public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder>{
+
 
     int[] images = {R.drawable.advance_planet_home,R.drawable.intermediate_planet_home,R.drawable.beginner_planet_home};
     String[] text = {"Advance","Intermediate","Beginner"};
@@ -55,13 +58,18 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         ImageView image;
         TextView text;
         Context ctx;
+        SharedPreferences sp;
 
         public HomeViewHolder(View itemView) {
             super(itemView);
-
             ctx = itemView.getContext();
+             sp = ctx.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+            Typeface ABeeZee = Typeface.createFromAsset(itemView.getContext().getAssets(),"fonts/ABeeZee-Regular.ttf");
+
+
             image =(ImageView) itemView.findViewById(R.id.home_planet);
             text = (TextView) itemView.findViewById(R.id.home_level_text);
+            text.setTypeface(ABeeZee);
             image.setOnClickListener(this);
             text.setOnClickListener(this);
         }
@@ -75,19 +83,19 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
                 if(getAdapterPosition() == 0){
 
-                    SplashScreen.sp.edit().putString("level","advance").apply();
+                    sp.edit().putString("level","advance").apply();
                     ctx.startActivity(new Intent(ctx, StartTrainingActivity.class));
 
                 }
                 if(getAdapterPosition() == 1){
 
-                    SplashScreen.sp.edit().putString("level","intermediate").apply();
+                    sp.edit().putString("level","intermediate").apply();
                     ctx.startActivity(new Intent(ctx, StartTrainingActivity.class));
 
                 }
                 if(getAdapterPosition() == 2){
 
-                    SplashScreen.sp.edit().putString("level","beginner").apply();
+                    sp.edit().putString("level","beginner").apply();
                     ctx.startActivity(new Intent(ctx, StartTrainingActivity.class));
 
                 }

@@ -23,6 +23,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamsulkarim.vastvocabulary.Practice.Practice;
@@ -41,17 +42,21 @@ public class FavoriteWords extends Fragment  {
 
 
 
-
+    BeginnerWordDatabase beginnerDatabase;
+    IntermediatewordDatabase intermediateDatabase;
+    AdvancedWordDatabase advanceDatabase;
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     static public List<Word> words = new ArrayList<>();
     private float fabY;
+    SharedPreferences sp;
 
     List<String> bWord,aWord,iWord;
     List<Integer> bWordDatabasePosition, aWordDatabasePosition, iWordDatabasePosition;
     boolean isFabOptionOn = false;
+    TextView noFavorite;
 
 
     @Nullable
@@ -63,9 +68,11 @@ public class FavoriteWords extends Fragment  {
 
         fabY = fab.getY();
 
+        sp = v.getContext().getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
+        initializingSQLDatabase(v);
 
 
-
+        noFavorite = (TextView)v.findViewById(R.id.havenotlearned);
         Toolbar toolbar= (Toolbar)v.findViewById(R.id.favoriteToolbar);
         toolbar.setTitle("Favorite");
         toolbar.setTitleTextColor(Color.parseColor("#673AB7"));
@@ -82,6 +89,15 @@ public class FavoriteWords extends Fragment  {
         getFavoriteWordRes();
         addFavoriteWord();
 
+
+        int favoriteWordSize = words.size();
+
+        if(favoriteWordSize >= 1){
+          noFavorite.setVisibility(View.INVISIBLE);
+
+        }else {
+            noFavorite.setVisibility(View.VISIBLE);
+        }
 
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view_favorite_words);
         layoutManager = new LinearLayoutManager(getContext());
@@ -138,7 +154,7 @@ public class FavoriteWords extends Fragment  {
 
                 }else {
 
-                    MainActivity.practice = "favorite";
+                    sp.edit().putString("practice","favorite").apply();
                     Intent intent = new Intent(getContext(),Practice.class);
 
                     getContext().startActivity(intent);
@@ -157,9 +173,9 @@ public class FavoriteWords extends Fragment  {
     private void getFavoriteWordRes(){
 
 
-        Cursor aRes = SplashScreen.advanceDatabase.getData();
-        Cursor bRes = SplashScreen.beginnerDatabase.getData();
-        Cursor iRes = SplashScreen.intermediateDatabase.getData();
+        Cursor aRes = advanceDatabase.getData();
+        Cursor bRes = beginnerDatabase.getData();
+        Cursor iRes = intermediateDatabase.getData();
 
         while (aRes.moveToNext()){
 
@@ -190,14 +206,14 @@ public class FavoriteWords extends Fragment  {
     public   void addFavoriteWord(){
 
         words.clear();
-
+        int languageId = sp.getInt("language",0);
 
 
         String[] beginnerSecondTranslation = new String[getResources().getStringArray(R.array.beginner_words).length];
-        String[] intermediateSecondTranslation = new String[SplashScreen.intermediateSpanish.length];
-        String[] advanceSecondTranslation = new String[SplashScreen.advanceHindi.length];
+        String[] intermediateSecondTranslation = new String[getResources().getStringArray(R.array.intermediate_words).length];
+        String[] advanceSecondTranslation = new String[getResources().getStringArray(R.array.advanced_words).length];
 
-        if(SplashScreen.languageId == 0){
+        if(languageId == 0){
 
             for(int i = 0; i < getResources().getStringArray(R.array.beginner_words).length; i++){
 
@@ -207,28 +223,52 @@ public class FavoriteWords extends Fragment  {
 
         }
 
-        if(SplashScreen.languageId == 1){
+        if(languageId == 1){
 
-            beginnerSecondTranslation = SplashScreen.beginnerSpanish;
-            intermediateSecondTranslation = SplashScreen.intermediateSpanish;
-            advanceSecondTranslation = SplashScreen.advanceSpanish;
+            beginnerSecondTranslation = getResources().getStringArray(R.array.beginner_spanish);
+            intermediateSecondTranslation = getResources().getStringArray(R.array.intermediate_spanish);
+            advanceSecondTranslation = getResources().getStringArray(R.array.advance_spanish);
         }
-        if(SplashScreen.languageId == 2){
+        if(languageId == 2){
 
             beginnerSecondTranslation = getResources().getStringArray(R.array.beginner_bengali);
-            intermediateSecondTranslation = SplashScreen.intermediateBengali;
-            advanceSecondTranslation = SplashScreen.advanceBengali;
+            intermediateSecondTranslation = getResources().getStringArray(R.array.intermediate_bengali);
+            advanceSecondTranslation = getResources().getStringArray(R.array.advance_bengali);
         }
-        if(SplashScreen.languageId == 3){
+        if(languageId == 3){
 
             beginnerSecondTranslation = getResources().getStringArray(R.array.beginner_hindi);
-            intermediateSecondTranslation = SplashScreen.intermediateHindi;
-            advanceSecondTranslation = SplashScreen.advanceHindi;
+            intermediateSecondTranslation = getResources().getStringArray(R.array.intermediate_hindi);
+            advanceSecondTranslation = getResources().getStringArray(R.array.advance_hindi);
         }
 
         int aWordSize = aWord.size();
         int bWordSize = bWord.size();
         int iWordSize = iWord.size();
+
+        String[] beginnerWordArray = getResources().getStringArray(R.array.beginner_words);
+        String[] beginnerTranslationArray = getResources().getStringArray(R.array.beginner_translation);
+        String[] beginnerPronunciationArray = getResources().getStringArray(R.array.beginner_pronunciation);
+        String[] beginnerGrammarArray = getResources().getStringArray(R.array.beginner_grammar);
+        String[] beginnerExampleArray1 = getResources().getStringArray(R.array.beginner_example1);
+        String[] beginnerExampleArray2 = getResources().getStringArray(R.array.beginner_example2);
+        String[] beginnerExampleArray3 = getResources().getStringArray(R.array.beginner_example3);
+
+        String[] intermediateWordArray = getResources().getStringArray(R.array.intermediate_words);
+        String[] intermediateTranslationArray = getResources().getStringArray(R.array.intermediate_translation);
+        String[] intermediatePronunciationArray = getResources().getStringArray(R.array.intermediate_pronunciation);
+        String[] intermediateGrammarArray = getResources().getStringArray(R.array.intermediate_grammar);
+        String[] intermediateExampleArray1 = getResources().getStringArray(R.array.intermediate_example1);
+        String[] intermediateExampleArray2 = getResources().getStringArray(R.array.intermediate_example2);
+        String[] intermediateExampleArray3 = getResources().getStringArray(R.array.intermediate_example3);
+
+        String[] advanceWordArray = getResources().getStringArray(R.array.advanced_words);
+        String[] advanceTranslationArray = getResources().getStringArray(R.array.advanced_translation);
+        String[] advancePronunciationArray = getResources().getStringArray(R.array.advanced_pronunciation);
+        String[] advanceGrammarArray = getResources().getStringArray(R.array.advanced_grammar);
+        String[] advanceExampleArray1 = getResources().getStringArray(R.array.advanced_example1);
+        String[] advanceExampleArray2 = getResources().getStringArray(R.array.advanced_example2);
+        String[] advanceExampleArray3 = getResources().getStringArray(R.array.advanced_example3);
 
 
         for(int i = 0; i < aWordSize; i++){
@@ -236,9 +276,11 @@ public class FavoriteWords extends Fragment  {
 
 
 
+
+
             if(aWord.get(i).equalsIgnoreCase("True")){
 
-                Word word = new Word(SplashScreen.advanceWordArray[i],SplashScreen.advanceTranslationArray[i],advanceSecondTranslation[i],SplashScreen.advancePronunciationArray[i],SplashScreen.advanceGrammarArray[i],SplashScreen.advanceExampleArray1[i],SplashScreen.advanceExampleArray2[i],SplashScreen.advanceExampleArray3[i],aWordDatabasePosition.get(i),"Advance");
+                Word word = new Word(advanceWordArray[i],advanceTranslationArray[i],advanceSecondTranslation[i],advancePronunciationArray[i],advanceGrammarArray[i],advanceExampleArray1[i],advanceExampleArray2[i], advanceExampleArray3[i],aWordDatabasePosition.get(i),"Advance");
                 words.add(word);
 
             }
@@ -249,7 +291,7 @@ public class FavoriteWords extends Fragment  {
 
             if(bWord.get(i).equalsIgnoreCase("True")){
 
-                Word word = new Word(SplashScreen.beginnerWordArray[i],SplashScreen.beginnerTranslationArray[i],beginnerSecondTranslation[i],SplashScreen.beginnerPronunciationArray[i],SplashScreen.beginnerGrammarArray[i],SplashScreen.beginnerExampleArray1[i],SplashScreen.beginnerExampleArray2[i],SplashScreen.beginnerExampleArray3[i],bWordDatabasePosition.get(i),"Beginner");
+                Word word = new Word(beginnerWordArray[i],beginnerTranslationArray[i],beginnerSecondTranslation[i],beginnerPronunciationArray[i],beginnerGrammarArray[i],beginnerExampleArray1[i],beginnerExampleArray2[i],beginnerExampleArray3[i],bWordDatabasePosition.get(i),"Beginner");
 
                 words.add(word);
             }
@@ -260,7 +302,7 @@ public class FavoriteWords extends Fragment  {
 
             if(iWord.get(i).equalsIgnoreCase("True")){
 
-                Word word = new Word(SplashScreen.intermediateWordArray[i],SplashScreen.intermediateTranslationArray[i],intermediateSecondTranslation[i],SplashScreen.intermediatePronunciationArray[i],SplashScreen.intermediateGrammarArray[i],SplashScreen.intermediateExampleArray1[i],SplashScreen.intermediateExampleArray2[i],SplashScreen.intermediateExampleArray3[i],iWordDatabasePosition.get(i),"Intermediate");
+                Word word = new Word(intermediateWordArray[i],intermediateTranslationArray[i],intermediateSecondTranslation[i],intermediatePronunciationArray[i],intermediateGrammarArray[i],intermediateExampleArray1[i],intermediateExampleArray2[i],intermediateExampleArray3[i],iWordDatabasePosition.get(i),"Intermediate");
                 words.add(word);
 
             }
@@ -284,7 +326,12 @@ public class FavoriteWords extends Fragment  {
 
 
 
+    private void initializingSQLDatabase(View v){
 
+        beginnerDatabase = new BeginnerWordDatabase(v.getContext());
+        advanceDatabase = new AdvancedWordDatabase(v.getContext());
+        intermediateDatabase = new IntermediatewordDatabase(v.getContext());
+    }
 
 
 

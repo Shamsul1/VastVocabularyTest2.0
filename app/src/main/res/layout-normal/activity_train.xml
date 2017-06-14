@@ -174,6 +174,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         android:textSize="14sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/translation"
@@ -190,6 +191,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         app:layout_constraintLeft_toLeftOf="@+id/example1"
         app:layout_constraintRight_toRightOf="@+id/example1"
         app:layout_constraintTop_toBottomOf="@+id/example1" />
@@ -204,6 +206,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:text="Experiencing something bad or unpleasant Experiencing something bad or unpleasant"
+        android:textColor="#424242"
         app:layout_constraintLeft_toLeftOf="@+id/example2"
         app:layout_constraintRight_toRightOf="@+id/example2"
         app:layout_constraintTop_toBottomOf="@+id/example2" />

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#673ab7</color>
     <color name="colorPrimaryDark">#D1C4E9</color>
     <color name="colorAccent">#ff4081</color>
+
+    <color name="beginnerColor">#f05e2a</color>
+    <color name="intermediateColor">#83a9ba</color>
+    <color name="advanceColor">#f9b24e</color>
+    <color name="practiceColor">#673AB7</color>
+
 </resources>

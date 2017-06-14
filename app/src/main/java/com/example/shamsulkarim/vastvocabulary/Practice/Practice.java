@@ -2,14 +2,17 @@ package com.example.shamsulkarim.vastvocabulary.Practice;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -31,7 +35,9 @@ import com.example.shamsulkarim.vastvocabulary.NoWordLeft;
 import com.example.shamsulkarim.vastvocabulary.PracticeFinishedActivity;
 import com.example.shamsulkarim.vastvocabulary.R;
 import com.example.shamsulkarim.vastvocabulary.SplashScreen;
+import com.example.shamsulkarim.vastvocabulary.Train;
 import com.example.shamsulkarim.vastvocabulary.Word;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,12 +51,17 @@ public class Practice extends AppCompatActivity {
     TextView wordView, english, translationView,translationExtraView,secondLanguageName,grammarView,pronunView,exampleView1,exampleView2,exampleView3;
     ImageView next, fakeNext,trainPlanet,whiteBackground,boardTopBackground;
     Button button1,button2, button3, button4;
+    SharedPreferences sp;
     int id = 1;
     int ia = 0;
     int question = 4;
+    int repeatPerSession = 0;
     String toastMsg,secondLanguage;
     int screenSize;
     double screenInches;
+    Typeface ABeeZee, ABeeZeeItalic ;
+    public static List<Word> practicedWords;
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +111,13 @@ public class Practice extends AppCompatActivity {
         }
         //------------------------------------------------------------------------
 
+        ABeeZee = Typeface.createFromAsset(getAssets(),"fonts/ABeeZee-Regular.ttf");
+        ABeeZeeItalic = Typeface.createFromAsset(getAssets(),"fonts/ABeeZee-Italic.ttf");
+        sp = this.getSharedPreferences("com.example.shamsulkarim.vocabulary", Context.MODE_PRIVATE);
 
+        repeatPerSession = 0;
+        repeatPerSession = SplashScreen.sp.getInt("repeatationPerSession",5);
+        color = R.color.practiceColor;
 
          id = 1;
          ia = 0;
@@ -117,6 +134,8 @@ public class Practice extends AppCompatActivity {
         // INITIALIZING WORDS
         addingNewWords();
         for(int i = 0; i < fiveWords.size(); i++){
+
+            practicedWords = fiveWords;
             fiveWords.get(i).setCountToZero(0);
 
             Toast.makeText(this,""+fiveWords.get(i).getCount(),Toast.LENGTH_SHORT).show();
@@ -185,7 +204,7 @@ public class Practice extends AppCompatActivity {
     public void nextWord(View view) {
 
         // To Next Activity
-        if (fiveWords.get(fiveWords.size() - 1).getCount() == 2) {
+        if (fiveWords.get(fiveWords.size() - 1).getCount() == repeatPerSession) {
             this.startActivity(new Intent(this, PracticeFinishedActivity.class));
 
             this.finish();
@@ -522,6 +541,16 @@ public class Practice extends AppCompatActivity {
 
 
         }
+
+        // To Next Activity
+        if (fiveWords.get(fiveWords.size() - 1).getCount() == repeatPerSession) {
+            this.startActivity(new Intent(this, PracticeFinishedActivity.class));
+
+            this.finish();
+
+
+        }
+        
         if (id == fiveWords.size()) {
             id = 0;
 
@@ -627,8 +656,9 @@ public class Practice extends AppCompatActivity {
 
         fiveWords = new ArrayList<>();
       fiveWords.clear();
+        String practice = sp.getString("practice","learned");
 
-      if(MainActivity.practice.equalsIgnoreCase("favorite")){
+      if(practice.equalsIgnoreCase("favorite")){
           fiveWords = FavoriteWords.words;
 
           for(int i = 0; i < fiveWords.size(); i++){
@@ -641,7 +671,7 @@ public class Practice extends AppCompatActivity {
 
       }
 
-        if(MainActivity.practice.equalsIgnoreCase("learned")){
+        if(practice.equalsIgnoreCase("learned")){
             fiveWords = LearnedWords.practiceWords;
 
             for(int i = 0; i < fiveWords.size(); i++){
@@ -688,6 +718,10 @@ public class Practice extends AppCompatActivity {
         button4.setVisibility(View.INVISIBLE);
         fakeNext.setVisibility(View.INVISIBLE);
 
+        button1.setTypeface(ABeeZee);
+        button2.setTypeface(ABeeZee);
+        button3.setTypeface(ABeeZee);
+        button4.setTypeface(ABeeZee);
         boardTopBackground.setBackgroundColor(Color.parseColor("#673AB7"));
         button1.setBackgroundColor(Color.parseColor("#673AB7"));
         button4.setBackgroundColor(Color.parseColor("#673AB7"));
@@ -698,15 +732,17 @@ public class Practice extends AppCompatActivity {
         if(screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL){
 
 
-            if(screenInches < 4.8 ){
+            if(screenInches < 4.5 ){
 
                 Toast.makeText(this,"< 5 ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"lessthan Planet Selected",Toast.LENGTH_SHORT).show();
 
                 trainPlanet.setImageResource(R.drawable.planet_practice_lessthan);
 
             }else {
 
 
+                Toast.makeText(this,"Normal Planet Selected",Toast.LENGTH_SHORT).show();
                 trainPlanet.setImageResource(R.drawable.planet_practice_normal);
 
             }
@@ -714,7 +750,7 @@ public class Practice extends AppCompatActivity {
 
         }else {
 
-
+            Toast.makeText(this,"large Planet Selected",Toast.LENGTH_SHORT).show();
             trainPlanet.setImageResource(R.drawable.planet_practice_large);
 
         }
@@ -749,10 +785,23 @@ public class Practice extends AppCompatActivity {
         exampleView2 = (TextView) findViewById(R.id.example2);
         exampleView3 = (TextView) findViewById(R.id.example3);
 
+        translationView.setTextColor(Color.parseColor("#212121"));
+        wordView.setTypeface(ABeeZee);
+        translationView.setTypeface(ABeeZee);
+        grammarView.setTypeface(ABeeZee);
+        pronunView.setTypeface(ABeeZee);
+        exampleView1.setTypeface(ABeeZee);
+        exampleView2.setTypeface(ABeeZee);
+        exampleView3.setTypeface(ABeeZee);
+
         if(SplashScreen.languageId >= 1){
             translationExtraView = (TextView) findViewById(R.id.translationExtra_train);
             secondLanguageName = (TextView) findViewById(R.id.second_language_name);
             english = (TextView)findViewById(R.id.english);
+            translationExtraView.setTextColor(Color.parseColor("#212121"));
+            translationExtraView.setTypeface(ABeeZee);
+            secondLanguageName.setTypeface(ABeeZeeItalic);
+            english.setTypeface(ABeeZeeItalic);
         }
 
 
@@ -838,7 +887,7 @@ public class Practice extends AppCompatActivity {
                 });
 
 
-                va.setInterpolator(new AccelerateDecelerateInterpolator());
+                va.setInterpolator(new DecelerateInterpolator());
                 va.setDuration(500L);
                 va.start();
 
@@ -943,9 +992,31 @@ public class Practice extends AppCompatActivity {
         });
 
 
-        va.setInterpolator(new AccelerateDecelerateInterpolator());
+        va.setInterpolator(new DecelerateInterpolator());
         va.setDuration(500L);
         va.start();
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+
+        new LovelyStandardDialog(this)
+                .setTopColorRes(color)
+                .setButtonsColorRes(color)
+                .setIcon(R.drawable.ic_leave)
+                .setTitle("Do you want to leave this session?")
+                .setMessage("Leaving this session will make you lose your progress")
+                .setPositiveButton(android.R.string.ok, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Practice.this.startActivity(new Intent(Practice.this,MainActivity.class));
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
 
     }
 

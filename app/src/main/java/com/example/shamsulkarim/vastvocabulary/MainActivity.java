@@ -8,6 +8,8 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import com.example.shamsulkarim.vastvocabulary.WordAdapters.HomeRecyclerViewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
     FirebaseUser user;
     StringBuilder beginnerFavNumBuilder, intermediateFavNumBuilder, advanceFavNumBuilder;
     ImageView homeView,wordsView,learnedView,settingsView,favoriteView, bottomBarBackground;
+    private Toast toast;
+    private long lastBackPressTime = 0;
+    public static boolean connected;
 
     public static String practice;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -70,19 +76,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-
-
-
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        }
+        else{
+            connected = false;
+        }
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         ref = firebaseDatabase.getReference();
         user = firebaseAuth.getCurrentUser();
 
-        if(firebaseAuth.getCurrentUser() == null){
-            finish();
-            startActivity(new Intent(this, SignInActivity.class));
-        }
 
         bottomNavigation = (BottomNavigation)findViewById(R.id.BottomNavigation);
         bottomNavigation.setOnMenuItemClickListener(this);
@@ -110,7 +118,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
 
 
 
-        syncSQL();
+        if(firebaseAuth.getCurrentUser() !=null){
+
+
+            syncSQL();
+
+        }
 
 
 
@@ -182,7 +195,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
     protected void onStop() {
         super.onStop();
 
-        updateFirebase();
+        if(firebaseAuth.getCurrentUser() !=null){
+
+
+            updateFirebase();
+
+        }
+
 
     }
 
@@ -195,13 +214,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
             @Override
             public void run() {
 
-//                int begi = SplashScreen.savedBeginnerLearned;
-//                int inte = SplashScreen.savedIntemediateLearned;
-//                int adva = SplashScreen.savedAdvanceLearned;
-//
-//                sp.edit().putInt("beginner", begi);
-//                sp.edit().putInt("intermediate", inte);
-//                sp.edit().putInt("advanced", adva);
+                int favCount = SplashScreen.savedAdvanceFav.size()+SplashScreen.savedBeginnerFav.size()+SplashScreen.savedIntermediateFav.size();
+
+               SplashScreen.sp.edit().putInt("favoriteCountProfile",favCount).apply();
 
 
 
@@ -336,5 +351,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigation.
     public void onMenuItemReselect(@IdRes int i, int i1, boolean b) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if (this.lastBackPressTime < System.currentTimeMillis() - 4000) {
+            toast = Toast.makeText(this, "Press back again to close this app", Toast.LENGTH_LONG);
+            toast.show();
+            this.lastBackPressTime = System.currentTimeMillis();
+        } else {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+        }
+    }
+
+
+
 }
 

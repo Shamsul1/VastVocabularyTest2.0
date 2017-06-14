@@ -32,7 +32,7 @@ public class Language {
 
 
         languages.add(new Language(R.drawable.english,"English","America, Australia, England etc","510 million"));
-        languages.add(new Language(R.drawable.spanish,"Spanish","Spain, Mexico etc","420 million"));
+        languages.add(new Language(R.drawable.spanish,"Spanish","Peru, Spain, Mexico etc","420 million"));
         languages.add(new Language(R.drawable.bangla, "Bengali", "Bangladesh, India", "215 million"));
         languages.add(new Language(R.drawable.hindi, "Hindi","India","490 million"));
 
